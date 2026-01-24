@@ -1,0 +1,112 @@
+<!-- Service Detail Page -->
+<div class="service-detail-wrapper" *ngIf="serviceContent; else notFound">
+
+    <!-- Unified Page Header -->
+    <app-page-header [title]="serviceContent.service" [bgImage]="bgImage"></app-page-header>
+
+    <div class="sd-content-area">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Main Presentation Column -->
+                <div class="col-lg-8">
+                    <article class="sd-article">
+                        <!-- Focused Visual Frame -->
+                        <div class="sd-visual-frame">
+                            <div class="frame-backdrop"
+                                [style.backgroundImage]="'url(' + (serviceContent.img2 || serviceContent.img) + ')'">
+                            </div>
+                            <div class="frame-content">
+                                <img [src]="serviceContent.img2 || serviceContent.img" [alt]="serviceContent.service"
+                                    class="frame-img">
+                                <div class="frame-overlay"></div>
+                            </div>
+                        </div>
+
+                        <div class="sd-article-body">
+                            <div class="sd-meta-header">
+                                <div class="sd-badge-row">
+                                    <span class="content-tag">{{ serviceContent.features ? 'MENTORSHIP & TRAINING' :
+                                        'TAJ EXPERTISE' }}</span>
+                                    <span class="duration-pill" *ngIf="serviceContent.duration">
+                                        <i class="fas fa-bolt"></i> {{ serviceContent.duration }}
+                                    </span>
+                                </div>
+                                <h2 class="sd-title">{{ serviceContent.caption }}</h2>
+                                <div class="title-accent"></div>
+                            </div>
+
+                            <div class="sd-text-block">
+                                <p class="text-lead">{{ serviceContent.text1 }}</p>
+                                <p class="text-base">{{ serviceContent.text2 }}</p>
+                            </div>
+
+                            <!-- Integrated Curriculum (Vibrant) -->
+                            <div class="sd-curriculum" *ngIf="serviceContent.features">
+                                <div class="curriculum-header-group">
+                                    <h4 class="curriculum-heading">Program Curriculum</h4>
+                                    <p class="curriculum-sub">A comprehensive technical roadmap designed by industry
+                                        experts.</p>
+                                </div>
+                                <div class="curriculum-items">
+                                    <div class="curriculum-item" *ngFor="let feat of serviceContent.features">
+                                        <div class="check-box">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="feat-text">{{ feat }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Strategic Sidebar Column -->
+                <div class="col-lg-4">
+                    <aside class="sd-sidebar-new">
+
+                        <!-- NEW: Expert Insight Sidebar Card (Moved from Main Content) -->
+                        <div class="sd-sidebar-widget insight-widget">
+                            <i class="fas fa-quote-left quote-icon-main"></i>
+                            <p class="insight-text">{{ serviceContent.text3 }}</p>
+                            <div class="insight-footer">
+                                <div class="author-line"></div>
+                                <span class="author-label">Strategic Perspective</span>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Hub -->
+                        <div class="sd-sidebar-widget hub-widget">
+                            <h4 class="widget-title-new">Our Ecosystem</h4>
+                            <nav class="hub-nav">
+                                <a *ngFor="let item of services" [routerLink]="['/service-detail', item.id]"
+                                    class="hub-link" [class.active]="item.id == serviceId">
+                                    <span class="hub-text">{{ item.service }}</span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+
+                        <!-- CTA Widget -->
+                        <div class="sd-sidebar-widget help-widget">
+                            <div class="help-card">
+                                <span class="help-tag">Ready to start?</span>
+                                <h3>Let's build something great together.</h3>
+                                <a href="tel:{{tel}}" class="help-action">
+                                    <i class="fas fa-phone-alt"></i> Get in touch
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #notFound>
+    <app-page-header title="Service Not Found"></app-page-header>
+    <div class="container text-center py-5">
+        <h3>Service not found</h3>
+        <a routerLink="/services" class="active-link">Back to Services</a>
+    </div>
+</ng-template>

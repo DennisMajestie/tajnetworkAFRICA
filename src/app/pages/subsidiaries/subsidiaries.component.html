@@ -1,0 +1,46 @@
+<!--Page Header Start -->
+<section class="page-header">
+    <div class="page-header__bg" style="background-image: url({{bgImage}});">
+    </div>
+    <div class="page-header-shape-1"></div>
+    <div class="page-header-shape-2"></div>
+    <div class="page-header-shape-3"></div>
+    <div class="page-header__overly"></div>
+    <div class="container">
+        <div class="page-header__inner">
+            <h2>Subsidiaries</h2>
+        </div>
+    </div>
+</section>
+<!--Page Header End -->
+
+<!--Services Carousel Page Start-->
+<section class="services-carousel-page">
+    <div class="container">
+        <div class="services-carousel-style owl-theme carousel-dot-style">
+            <owl-carousel-o [options]="ServiceOptions">
+                <ng-template carouselSlide *ngFor="let item of subsidiaries">
+                    <div class="item">
+                        <div class="services-five__single">
+                            <div class="services-one__img">
+                                <img src="{{item.img}}" alt="">
+                            </div>
+                            <div class="services-five__content">
+                                <div class="services-five__icon">
+                                    <span class="icon-digital-product"></span>
+                                </div>
+                                <h3 class="services-five__title"><a href="{{item.link}}">{{item.service}}</a>
+                                </h3>
+                                <p class="services-five__text">{{item.text}} </p>
+                                <div class="about-one-sec__btn-box">
+                                    <a href="{{item.link}}" class="thm-btn"><span></span>Visit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</section>
+<!--Services Carousel Page End-->

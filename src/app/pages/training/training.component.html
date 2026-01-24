@@ -1,0 +1,50 @@
+<!-- Training Page Layout -->
+<main class="training-page">
+    <!-- Premium Header Section -->
+    <app-services-intro tag="Skill Development" title="Ignite Your Career"
+        subtitle="Master the skills that drive the digital world with our expert-led mentorship and training programs."
+        [bgImage]="introImage">
+    </app-services-intro>
+
+    <!-- Training Grid Section -->
+    <section class="training-grid-section">
+        <div class="container">
+            <!-- Section Header Removed Per User Request -->
+
+            <div class="courses-grid">
+                <div class="course-card wow fadeInUp" *ngFor="let item of trainingCourses; let i = index"
+                    [attr.data-wow-delay]="(i * 100) + 'ms'">
+
+                    <div class="course-image">
+                        <img [src]="item.images" [alt]="item.title">
+                        <div class="course-overlay"></div>
+                        <!-- <div class="card-badge-new">Elite Training</div> -->
+                    </div>
+
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span class="meta-tag"><i class="fas fa-university"></i> Taj Academy</span>
+                            <span class="meta-tag"><i class="fas fa-certificate"></i> Certified</span>
+                        </div>
+
+                        <h3 class="course-title">{{item.title}}</h3>
+                        <p class="course-caption">{{item.caption}}</p>
+
+                        <div class="course-features">
+                            <span class="feature-tag" *ngFor="let feature of item.features | slice:0:3">
+                                <i class="fas fa-check-circle"></i> {{feature}}
+                            </span>
+                        </div>
+
+                        <div class="course-footer">
+                            <a [routerLink]="['/training-detail', item.id]" class="btn-explore-new">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

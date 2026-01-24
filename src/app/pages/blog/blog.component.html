@@ -1,0 +1,39 @@
+<main class="blog-page">
+    <!-- Premium Header -->
+    <app-services-intro tag="Insights & Updates" title="Our Blog"
+        subtitle="Stay updated with the latest in technology, innovation, and digital transformation across Africa."
+        bgImage="assets/images/taj/homeslider/slider5.jpg">
+    </app-services-intro>
+
+    <!-- Blog Grid Section -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-grid">
+                <article class="blog-card" *ngFor="let item of blog">
+                    <div class="blog-card__image">
+                        <img [src]="item.img" [alt]="item.caption">
+                        <div class="blog-card__overlay">
+                            <a [routerLink]="['/blog-detail', item.id]" class="blog-card__view">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <span class="blog-card__category">Technology</span>
+                    </div>
+                    <div class="blog-card__content">
+                        <div class="blog-card__meta">
+                            <span class="meta-item"><i class="far fa-calendar"></i> {{ item.date }}</span>
+                            <span class="meta-item"><i class="far fa-user"></i> {{ item.author }}</span>
+                        </div>
+                        <h3 class="blog-card__title">
+                            <a [routerLink]="['/blog-detail', item.id]">{{ item.caption }}</a>
+                        </h3>
+                        <p class="blog-card__excerpt">{{ item.title }}</p>
+                        <a [routerLink]="['/blog-detail', item.id]" class="blog-card__link">
+                            Read Article <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>

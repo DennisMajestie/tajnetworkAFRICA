@@ -1,0 +1,19 @@
+<!-- Services Page Layout -->
+<main class="services-page">
+
+    <!-- Services Intro Section (New - matches reference design) -->
+    <app-services-intro tag="Feature Services" title="A wide range of technology solutions"
+        subtitle="From web development to cybersecurity, we provide comprehensive IT services tailored to your needs."
+        [bgImage]="introImage">
+    </app-services-intro>
+
+    <!-- Services Grid (Clean card design) -->
+    <app-services-grid tag="Expertise" title="Solutions We Deliver"
+        subtitle="From concept to deployment, we provide end-to-end technology services." [services]="services"
+        [showHeader]="false">
+    </app-services-grid>
+
+    <!-- CTA Section -->
+    <app-services-cta></app-services-cta>
+
+</main>

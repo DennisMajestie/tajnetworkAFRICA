@@ -1,0 +1,166 @@
+<main class="register-page">
+    <app-services-intro tag="Student Enrollment" title="Start Your Digital Legacy"
+        subtitle="Join the next cohort of African innovators. Complete the enrollment protocol below to initiate your journey."
+        [bgImage]="bgImage">
+    </app-services-intro>
+
+    <section class="registration-form-section">
+        <!-- Animated Background Elements -->
+        <div class="form-bg-effects">
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <div class="container--wide">
+            <div class="registration-layout">
+                <!-- Left: Benefits Sidebar -->
+                <aside class="benefits-sidebar">
+                    <div class="sidebar-sticky">
+                        <div class="sidebar-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Enrollment</span>
+                        </div>
+
+                        <h3 class="sidebar-title">Why Join <span class="highlight">TAJ Academy?</span></h3>
+
+                        <ul class="benefit-list">
+                            <li>
+                                <div class="benefit-icon"><i class="fas fa-certificate"></i></div>
+                                <div class="benefit-content">
+                                    <h4>Industry Certification</h4>
+                                    <p>Globally recognized credentials upon completion</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                                <div class="benefit-content">
+                                    <h4>Elite Mentorship</h4>
+                                    <p>1-on-1 guidance from industry veterans</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="benefit-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="benefit-content">
+                                    <h4>Real Projects</h4>
+                                    <p>Build portfolio-worthy applications</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="benefit-icon"><i class="fas fa-briefcase"></i></div>
+                                <div class="benefit-content">
+                                    <h4>Career Support</h4>
+                                    <p>Job placement assistance & networking</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <span class="trust-number">500+</span>
+                                <span class="trust-label">Graduates</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">95%</span>
+                                <span class="trust-label">Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Right: Form Container -->
+                <div class="form-container">
+                    <div class="crystalline-container">
+                        <div class="form-header">
+                            <div class="header-decoration">
+                                <span class="deco-line"></span>
+                                <span class="protocol-tag">Protocol: ENROLL-2026</span>
+                                <span class="deco-line"></span>
+                            </div>
+                            <h2 class="form-title">Program <span class="highlight">Registration</span></h2>
+                            <p class="form-subtitle" *ngIf="!selectedCourseName">Complete the fields below to secure
+                                your spot</p>
+                            <p class="form-subtitle course-selected" *ngIf="selectedCourseName">
+                                <i class="fas fa-check-circle"></i>
+                                Enrolling for: <strong>{{ selectedCourseName }}</strong>
+                            </p>
+                        </div>
+
+                        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="crystalline-form">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label>Full Name</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" formControlName="name" placeholder="Enter your full name">
+                                        <div class="input-glow"></div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Email Address</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" formControlName="email" placeholder="your.email@domain.com">
+                                        <div class="input-glow"></div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Phone Number</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" formControlName="phone" placeholder="+234 XXX XXX XXXX">
+                                        <div class="input-glow"></div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Preferred Program</label>
+                                    <div class="input-wrapper select-wrapper">
+                                        <select formControlName="course" class="taj-select">
+                                            <option value="" disabled selected>Select Your Path</option>
+                                            <option *ngFor="let course of courseData" [value]="course.value">
+                                                {{ course.label }}
+                                            </option>
+                                        </select>
+                                        <div class="select-arrow">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="input-glow"></div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group full-width">
+                                    <label>Contact Address</label>
+                                    <div class="input-wrapper">
+                                        <textarea formControlName="address"
+                                            placeholder="Where are you connecting from?"></textarea>
+                                        <div class="input-glow"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-footer">
+                                <div class="terms-note">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Your data is encrypted and secure</span>
+                                </div>
+
+                                <button type="submit" class="btn-enroll-submit" [disabled]="contactForm.invalid">
+                                    <span class="btn-text">Submit Form</span>
+                                    <!-- <span class="btn-icon">
+                                        <i class="fas fa-rocket"></i>
+                                    </span> -->
+                                    <span class="btn-shine"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

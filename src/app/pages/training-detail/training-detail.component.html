@@ -1,0 +1,102 @@
+<ng-container *ngIf="trainingContent">
+    <!-- Premium Header Section -->
+    <app-services-intro tag="Training Detail" [title]="trainingContent.title" [subtitle]="trainingContent.caption"
+        [bgImage]="bgImage">
+    </app-services-intro>
+
+    <!-- Training details content -->
+    <section class="training-detail-section">
+        <div class="container">
+            <div class="training-layout">
+                <!-- Left Column: Hero Image + Main Content -->
+                <div class="training-main">
+                    <!-- Hero Image -->
+                    <div class="training-hero-media wow fadeInUp">
+                        <img [src]="trainingContent.images" [alt]="trainingContent.title">
+                        <div class="media-overlay"></div>
+                    </div>
+                    <div class="training-info">
+                        <h2 class="training-title">{{trainingContent.title}}</h2>
+                        <div class="training-meta">
+                            <span class="meta-item"><i class="fas fa-certificate"></i> Certification Included</span>
+                            <span class="meta-item"><i class="fas fa-clock"></i> Lifetime Access</span>
+                            <span class="meta-item"><i class="fas fa-users"></i> Expert Mentorship</span>
+                        </div>
+
+                        <p class="training-caption">{{trainingContent.caption}}</p>
+                        <h3 class="training-subtitle">{{trainingContent.shortDescription}}</h3>
+
+                        <div class="training-description">
+                            <p>{{trainingContent.longDescription}}</p>
+                        </div>
+
+                        <!-- Highlights / What you'll learn -->
+                        <div class="training-highlights">
+                            <div class="highlight-header">
+                                <h4 class="highlight-title">Curriculum Highlights</h4>
+                                <div class="highlight-line"></div>
+                            </div>
+                            <div class="highlight-grid">
+                                <div class="highlight-card"
+                                    *ngFor="let feature of trainingContent.features; let i = index">
+                                    <div class="highlight-indicator">
+                                        <span class="highlight-num">0{{i + 1}}</span>
+                                        <div class="highlight-dot"></div>
+                                    </div>
+                                    <p class="highlight-text">{{feature}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Column -->
+                <aside class="training-sidebar">
+                    <!-- Enrollment Box -->
+                    <div class="sidebar-widget enrollment-widget wow fadeInRight">
+                        <div class="widget-bg"></div>
+                        <div class="widget-content">
+                            <h3 class="widget-title">Ready to Start?</h3>
+                            <p class="widget-text">Take the first step towards mastering {{trainingContent.title}}.</p>
+                            <a [routerLink]="['/register']" [queryParams]="{course: trainingId}" class="btn-enroll">
+                                <span>Enroll Now</span>
+                                <i class="fas fa-graduation-cap"></i>
+                            </a>
+                            <p class="enroll-note">Limited spots available for the next cohort.</p>
+                        </div>
+                    </div>
+
+                    <!-- Benefits Widget -->
+                    <div class="sidebar-widget benefits-widget wow fadeInRight" data-wow-delay="100ms">
+                        <h4 class="sidebar-title">What You Stand To Gain</h4>
+                        <ul class="benefit-list list-unstyled">
+                            <li *ngFor="let item of trainingContent.features">
+                                <i class="fas fa-circle-check"></i>
+                                <span>{{item}}</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-circle-check"></i>
+                                <span>Industry Recognized Projects</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Help Widget -->
+                    <div class="sidebar-widget help-widget wow fadeInRight" data-wow-delay="200ms">
+                        <div class="help-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 class="help-title">Need Assistance?</h4>
+                        <p class="help-text">Our mentorship team is here to guide your learning path.</p>
+                        <a href="tel:+2348029824786" class="help-link">+234 802 982 4786</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<a href="#" class="scroll-to-top scroll-to-target" data-target="html">
+    <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
+    <!-- <span class="scroll-to-top__text">Go Back Top</span> -->
+</a>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Taj-Network Africa - Where creativity meet strategy</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CRITICAL: Apply saved theme BEFORE everything else to prevent flash -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('taj-theme-mode');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var isLight = theme === 'light' || (!theme && !prefersDark);
+
+            var root = document.documentElement;
+            if (isLight) {
+                root.classList.add('theme-light');
+                root.style.setProperty('--bg-preloader', '#dbd9fd');
+                root.style.setProperty('--text-preloader', '#0c152a');
+                root.style.backgroundColor = '#dbd9fd';
+            } else {
+                root.style.setProperty('--bg-preloader', '#0a0f14');
+                root.style.setProperty('--text-preloader', '#ffffff');
+                root.style.backgroundColor = '#0a0f14';
+            }
+        })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/favicons/favicon.png">
+
+    <meta name="description"
+        content="Transform your business with our innovative tech solutions and expert mentorship programs. We offer IT consultancy, software development, cloud computing, cybersecurity, and more.">
+    <meta name="keywords"
+        content="Tech Solutions Provider, Technology Consultancy Services, Software Development and Mentorship, IT Solutions for Businesses, Mentorship Programs for Technology Enthusiasts, Cloud Computing and IT Solutions, Data Analytics and Digital Insights, Custom Software and App Development, Cybersecurity and Digital Protection Services, AI-Powered Tech Solutions">
+    <meta name="author" content="Chukwu Leo G.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Taj-Network Africa">
+    <meta property="og:description"
+        content="Providing cutting-edge technological solutions and professional mentorship to empower businesses and individuals.">
+    <meta property="og:image" content="assets/images/favicons/favicon.png">
+    <meta property="og:url" content="https://tajnetworkafrica.com/">
+    <meta property="og:type" content="website">
+
+    <!-- CRITICAL CSS - Loads BEFORE Angular, prevents white flash -->
+    <style>
+        /* === FOUC PREVENTION - MOST CRITICAL === */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Initial state: Content is transparent, but body is NOT hidden (to allow preloader) */
+        body {
+            background-color: var(--bg-preloader);
+            color: var(--text-preloader);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Gate: Hide root until Angular starts hydration */
+        app-root:empty {
+            display: none !important;
+        }
+
+        /* Standardized Transitions */
+        .preloader-backdrop,
+        .app-container {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* Hide content container until Angular reveals it via app-loaded class on body */
+        .app-container {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Reveal content only after app-loaded class is added */
+        body.app-loaded .app-container {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Disable ALL animations/transitions until app is loaded */
+        body:not(.app-loaded) * {
+            animation-duration: 0s !important;
+            transition-duration: 0s !important;
+        }
+
+        /* Fallback Preloader - ALWAYS visible until Angular takes over */
+        .preloader-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-preloader);
+            z-index: 99998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .preloader-backdrop.fade-out {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        .radial-spinner {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(0, 102, 255, 0.1);
+            border-top: 3px solid #0066ff;
+            border-radius: 50%;
+            animation: ringRotate 1s linear infinite !important;
+        }
+
+        @keyframes ringRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Essential preloader component styles - synchronized with component */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: var(--bg-preloader);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .preloader-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .radial-ring {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+        }
+
+        .dots-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .dot {
+            fill: rgba(255, 255, 255, 0.1);
+        }
+
+        .dot.active {
+            fill: #0066ff;
+        }
+    </style>
+
+    <!-- External stylesheets load AFTER critical CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Fallback Preloader - Shows IMMEDIATELY -->
+    <div class="preloader-backdrop">
+        <div class="radial-spinner"></div>
+    </div>
+
+    <app-root></app-root>
+
+</body>
+
+</html>

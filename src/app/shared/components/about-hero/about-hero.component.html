@@ -1,0 +1,67 @@
+<section class="about-hero">
+    <div class="container">
+        <!-- Decoration Removed Per User Request -->
+
+        <div class="hero-header">
+            <div class="header-left">
+                <h1 class="hero-title">
+                    Innovating Africa's <br>
+                    Digital Future Together.
+                </h1>
+            </div>
+
+            <div class="header-right">
+                <div class="tab-list">
+                    <div *ngFor="let tab of tabs" class="tab-item" [class.active]="tab.active"
+                        (click)="setActiveTab(tab)">
+                        <div class="tab-main">
+                            <span class="tab-num">{{ tab.num }}</span>
+                            <div class="tab-content">
+                                <h3 class="tab-title">{{ tab.title }}</h3>
+                                <p class="tab-desc" *ngIf="tab.active">{{ tab.desc }}</p>
+                            </div>
+                        </div>
+                        <div class="tab-icon">
+                            <i class="fas fa-plus" *ngIf="!tab.active"></i>
+                            <i class="fas fa-minus" *ngIf="tab.active"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-left">
+                <div class="img-wrapper building-img">
+                    <img src="assets/images/taj/Taj Team/taj-podcast.jpeg" alt="Our Headquarters">
+
+                    <!-- Award Badge -->
+                    <div class="award-badge">
+                        <div class="badge-text">
+                            <svg viewBox="0 0 100 100" width="100" height="100">
+                                <defs>
+                                    <path id="circlePath"
+                                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                                </defs>
+                                <text font-size="10" font-weight="700">
+                                    <textPath xlink:href="#circlePath">
+                                        BEST AWARD WINNER • BEST AWARD WINNER •
+                                    </textPath>
+                                </text>
+                            </svg>
+                        </div>
+                        <div class="badge-center">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-right">
+                <div class="img-wrapper team-img">
+                    <img src="assets/images/taj/Taj Team/team-group.jpeg" alt="Our Team Collaboration">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

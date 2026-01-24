@@ -1,0 +1,98 @@
+import { Injectable, Inject, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+export type ThemeMode = 'dark' | 'light';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ThemeService {
+    private isBrowser: boolean;
+    private readonly STORAGE_KEY = 'taj-theme-mode';
+    private isInitialLoad = true;
+
+    // Reactive signal for theme state
+    currentTheme = signal<ThemeMode>('dark');
+
+    constructor(@Inject(PLATFORM_ID) platformId: Object) {
+        this.isBrowser = isPlatformBrowser(platformId);
+
+        if (this.isBrowser) {
+            this.initTheme();
+        }
+    }
+
+    private initTheme(): void {
+        // Check for saved preference
+        const savedTheme = localStorage.getItem(this.STORAGE_KEY) as ThemeMode;
+
+        if (savedTheme) {
+            this.applyThemeInstantly(savedTheme);
+        } else {
+            // Check system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            this.applyThemeInstantly(prefersDark ? 'dark' : 'light');
+        }
+
+        // Re-enable transitions after first paint
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                this.isInitialLoad = false;
+                document.body.style.transition = 'background 0.3s ease, color 0.3s ease';
+            });
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem(this.STORAGE_KEY)) {
+                this.setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+
+    /** Apply theme WITHOUT transition (for initial load) */
+    private applyThemeInstantly(theme: ThemeMode): void {
+        this.currentTheme.set(theme);
+
+        // Ensure no transition
+        document.body.style.transition = 'none';
+
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(this.STORAGE_KEY, theme);
+
+        // Apply theme class to body
+        document.body.classList.remove('theme-dark', 'theme-light');
+        document.body.classList.add(`theme-${theme}`);
+    }
+
+    /** Apply theme WITH transition (for user-triggered changes) */
+    private applyThemeWithTransition(theme: ThemeMode): void {
+        this.currentTheme.set(theme);
+
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(this.STORAGE_KEY, theme);
+
+        // Apply theme class to body
+        document.body.classList.remove('theme-dark', 'theme-light');
+        document.body.classList.add(`theme-${theme}`);
+    }
+
+    setTheme(theme: ThemeMode): void {
+        if (this.isBrowser) {
+            if (this.isInitialLoad) {
+                this.applyThemeInstantly(theme);
+            } else {
+                this.applyThemeWithTransition(theme);
+            }
+        }
+    }
+
+    toggleTheme(): void {
+        const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
+        this.setTheme(newTheme);
+    }
+
+    isDarkMode(): boolean {
+        return this.currentTheme() === 'dark';
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "colors": {
+        "primary": {
+            "dark": "#0f1419",
+            "light": "#1a1f2e"
+        },
+        "accent": {
+            "emerald": "#00d084",
+            "gold": "#d4a574",
+            "blue": "#0066ff",
+            "purple": "#6f42c1"
+        },
+        "neutral": {
+            "white": "#ffffff",
+            "lightGray": "#f5f7fa",
+            "mediumGray": "#d0d5dd",
+            "darkGray": "#6b7280"
+        }
+    },
+    "typography": {
+        "fonts": {
+            "heading": "Poppins, Inter",
+            "body": "Inter, Segoe UI"
+        },
+        "sizes": {
+            "h1": {
+                "desktop": "3.5rem",
+                "mobile": "2.5rem"
+            },
+            "h2": {
+                "desktop": "2.5rem",
+                "mobile": "1.875rem"
+            },
+            "h3": "1.875rem",
+            "body": "1rem",
+            "small": "0.875rem"
+        }
+    },
+    "spacing": {
+        "xs": "0.5rem",
+        "sm": "1rem",
+        "md": "1.5rem",
+        "lg": "2rem",
+        "xl": "3rem"
+    },
+    "breakpoints": {
+        "mobile": "320px",
+        "tablet": "768px",
+        "desktop": "1024px",
+        "wide": "1440px"
+    },
+    "animations": {
+        "fadeIn": {
+            "duration": "0.6s",
+            "easing": "ease-in-out"
+        },
+        "slideUp": {
+            "duration": "0.6s",
+            "easing": "ease-out"
+        },
+        "scaleHover": {
+            "duration": "0.3s",
+            "easing": "ease-in-out"
+        }
+    }
+}

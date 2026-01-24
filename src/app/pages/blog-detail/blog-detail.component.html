@@ -1,0 +1,104 @@
+<ng-template ngIf="blogContent">
+    <!--Page Header Start -->
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url(assets/images/taj/homeslider/slider10.jpg);">
+        </div>
+        <div class="page-header-shape-1"></div>
+        <div class="page-header-shape-2"></div>
+        <div class="page-header-shape-3"></div>
+        <div class="page-header__overly"></div>
+        <div class="container">
+            <div class="page-header__inner">
+                <h2>Blog Details</h2>
+            </div>
+        </div>
+    </section>
+    <!--Page Header End -->
+
+    <!--News Details Start-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="news-details__left">
+                        <div class="news-details__img">
+                            <img src="{{blogContent.img}}" alt="">
+                        </div>
+                        <div class="news-details__meta">
+                            <p><span class="far fa-user-circle"></span>{{blogContent.author}}</p>
+                            <p><span class="far fa-calendar"></span>{{blogContent.date}}</p>
+                            <p><span class="far fa-comments"></span>0 comments</p>
+                        </div>
+                        <h2 class="news-details__title-1">{{blogContent.caption}}</h2>
+                        <p class="news-details__text-1">{{blogContent.title}}</p>
+                        <p class="news-details__text-2">{{blogContent.text1}}</p>
+                        <p class="news-details__text-3">{{blogContent.text2}}</p>
+
+                        <p class="news-details__text-8">{{blogContent.text3}}</p>
+
+
+                    </div>
+
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="sidebar">
+                        <div class="sidebar__single sidebar__search">
+                            <div class="sidebar__title-box">
+                                <h4 class="sidebar__title">Search Here</h4>
+                            </div>
+                            <form action="#" class="sidebar__search-form">
+                                <input type="search" placeholder="Enter Keyword">
+                                <button type="submit"><i class="icon-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                        <div class="sidebar__single sidebar__category">
+                            <div class="sidebar__title-box">
+                                <h4 class="sidebar__title">Categories</h4>
+                            </div>
+                            <ul class="sidebar__category-list list-unstyled">
+                                <li>
+                                    <a href="#">AI <span class="icon-right-arrow-5"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Technology<span class="icon-right-arrow-5"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Innovation<span class="icon-right-arrow-5"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Technology Company<span class="icon-right-arrow-5"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Machine<span class="icon-right-arrow-5"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Advancement<span class="icon-right-arrow-5"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar__single sidebar__post">
+                            <div class="sidebar__title-box">
+                                <h4 class="sidebar__title">Recent Post</h4>
+                            </div>
+                            <ul class="sidebar__post-list list-unstyled">
+                                <li *ngFor="let item of blogData">
+                                    <div class="sidebar__post-image">
+                                        <img src="{{item.img}}" alt="">
+                                    </div>
+                                    <div class="sidebar__post-content">
+                                        <h5 class="sidebar__post-title"><a href="#">{{item.caption}}</a></h5>
+                                        <p class="sidebar__post-date"><span class="far fa-clock"></span>{{item.date}}
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--News Details End-->
+
+
+</ng-template>

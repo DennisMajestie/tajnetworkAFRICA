@@ -1,0 +1,60 @@
+{
+    "main": [
+        {
+            "text": "Home",
+            "url": "/"
+        },
+        {
+            "text": "About",
+            "url": "/about"
+        },
+        {
+            "text": "Services",
+            "url": "/services"
+        },
+        {
+            "text": "Training",
+            "url": "/training"
+        },
+        {
+            "text": "Portfolio",
+            "url": "/portfolio"
+        },
+        {
+            "text": "Contact",
+            "url": "/contact"
+        }
+    ],
+    "cta": {
+        "text": "Get Consultant",
+        "url": "/contact",
+        "style": "primary"
+    },
+    "social": [
+        {
+            "platform": "X",
+            "url": "https://x.com/Taj_Network",
+            "icon": "fab fa-x-twitter"
+        },
+        {
+            "platform": "Facebook",
+            "url": "https://web.facebook.com/profile.php?id=100089005366319",
+            "icon": "fab fa-facebook"
+        },
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/company/tajnetworkafrica/",
+            "icon": "fab fa-linkedin-in"
+        },
+        {
+            "platform": "Instagram",
+            "url": "https://www.instagram.com/tajnetworkafrica/",
+            "icon": "fab fa-instagram"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@tajnetworkafrica",
+            "icon": "fab fa-tiktok"
+        }
+    ]
+}

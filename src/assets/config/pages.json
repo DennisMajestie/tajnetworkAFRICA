@@ -1,0 +1,443 @@
+{
+    "pages": [
+        {
+            "id": "home",
+            "title": "Taj Network Africa | Premium Software Development",
+            "slug": "home",
+            "route": "/",
+            "meta": {
+                "description": "Transform your business with premium software solutions from Taj Network Africa",
+                "keywords": "software development, IT consultancy, cloud computing, Africa",
+                "image": "/assets/og/home.jpg"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "hero-main",
+                    "animation": true,
+                    "data": {
+                        "tag": "Premium Software Solutions",
+                        "headline": "We Build Digital Experiences That Drive Growth",
+                        "subheadline": "Trusted by 30+ businesses across Africa. We deliver world-class software solutions, web applications, and digital transformation that scales with your ambition.",
+                        "ctaButtons": [
+                            {
+                                "text": "Our Services",
+                                "url": "/services",
+                                "style": "primary"
+                            },
+                            {
+                                "text": "Contact Us",
+                                "url": "/contact",
+                                "style": "secondary"
+                            }
+                        ],
+                        "backgroundImage": "assets/images/taj/homeslider/slider1.jpg",
+                        "stats": [
+                            {
+                                "value": "400+",
+                                "label": "Projects Delivered"
+                            },
+                            {
+                                "value": "350+",
+                                "label": "Happy Clients"
+                            },
+                            {
+                                "value": "15+",
+                                "label": "Years Experience"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "services",
+                    "id": "our-services",
+                    "animation": true,
+                    "data": {
+                        "tag": "Our Services",
+                        "title": "Elite Software Solutions for Modern Businesses",
+                        "subtitle": "Discover our range of services designed to accelerate digital transformation and drive business excellence"
+                    }
+                },
+                {
+                    "type": "cta",
+                    "id": "cta-consultation",
+                    "data": {
+                        "heading": "Ready to Transform Your Business?",
+                        "subheading": "Let's discuss how we can help you achieve your goals",
+                        "buttons": [
+                            {
+                                "text": "Schedule Consultation",
+                                "url": "/contact",
+                                "style": "primary"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "blog-preview",
+                    "animation": true,
+                    "data": {
+                        "title": "News & Insights",
+                        "subtitle": "Stay updated with our latest blog posts",
+                        "contentRef": "blogPosts",
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "services",
+            "title": "Services | Taj Network Africa",
+            "slug": "services",
+            "route": "/services",
+            "meta": {
+                "description": "Our comprehensive tech services",
+                "keywords": "software development, cloud, cybersecurity, CRM, ERP"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "services-hero",
+                    "data": {
+                        "headline": "Our Services",
+                        "subheadline": "We Provide Best Service"
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "services-full",
+                    "data": {
+                        "contentRef": "services",
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "about",
+            "title": "About | Taj Network Africa",
+            "slug": "about",
+            "route": "/about",
+            "meta": {
+                "description": "About Taj Network Africa - Building Software Solutions Since 2010",
+                "keywords": "about us, software company, Africa tech"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "about-hero",
+                    "data": {
+                        "headline": "About Us",
+                        "subheadline": "Building Software Solutions That Stand the Test of Time"
+                    }
+                },
+                {
+                    "type": "content",
+                    "id": "about-content",
+                    "data": {
+                        "contentRef": "aboutContent"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "training",
+            "title": "Training | Taj Network Africa",
+            "slug": "training",
+            "route": "/training",
+            "meta": {
+                "description": "Professional training courses in software development and digital skills",
+                "keywords": "training, courses, mentorship, frontend, backend, UI/UX"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "training-hero",
+                    "data": {
+                        "headline": "Training Programs",
+                        "subheadline": "Empowering aspiring tech professionals with expert guidance"
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "training-courses",
+                    "data": {
+                        "contentRef": "trainingCourses",
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "blog",
+            "title": "Blog | Taj Network Africa",
+            "slug": "blog",
+            "route": "/blog",
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "blog-hero",
+                    "data": {
+                        "headline": "Resources & Insights"
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "blog-posts",
+                    "data": {
+                        "contentRef": "blogPosts",
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "contact",
+            "title": "Contact | Taj Network Africa",
+            "slug": "contact",
+            "route": "/contact",
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "contact-hero",
+                    "data": {
+                        "headline": "Get In Touch",
+                        "subheadline": "Let's Build Your Digital Future Together"
+                    }
+                },
+                {
+                    "type": "form",
+                    "id": "contact-form",
+                    "data": {
+                        "formRef": "contactForm",
+                        "columns": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "content": {
+        "services": [
+            {
+                "id": "1",
+                "title": "CRM & ERP Implementation",
+                "description": "Optimize your business operations with our CRM & ERP solutions.",
+                "image": "assets/images/taj/service-details/erp2.jpg",
+                "url": "/service-detail/1"
+            },
+            {
+                "id": "2",
+                "title": "Chatbot Development",
+                "description": "Enhance customer engagement with responsive chatbots.",
+                "image": "assets/images/taj/service-details/chatbot.jpg",
+                "url": "/service-detail/2"
+            },
+            {
+                "id": "3",
+                "title": "Software Development",
+                "description": "Custom software designed for your unique business needs.",
+                "image": "assets/images/taj/service-details/SD2.jpg",
+                "url": "/service-detail/3"
+            },
+            {
+                "id": "4",
+                "title": "Mentorship Program",
+                "description": "Empowering aspiring tech professionals with expert guidance.",
+                "image": "assets/images/taj/service-details/mentorship2.jpg",
+                "url": "/service-detail/4"
+            },
+            {
+                "id": "5",
+                "title": "Website Development",
+                "description": "Create stunning websites that elevate your brand.",
+                "image": "assets/images/taj/service-details/web-development2.jpg",
+                "url": "/service-detail/5"
+            },
+            {
+                "id": "6",
+                "title": "IT Consultancy",
+                "description": "Strategic guidance for digital transformation.",
+                "image": "assets/images/taj/service-details/Consultancy2.jpg",
+                "url": "/service-detail/6"
+            },
+            {
+                "id": "7",
+                "title": "SEO Optimization",
+                "description": "Boost your online visibility and traffic.",
+                "image": "assets/images/taj/service-details/seo2.jpg",
+                "url": "/service-detail/7"
+            },
+            {
+                "id": "8",
+                "title": "Data Analysis & Insights",
+                "description": "Unlock actionable insights from your data.",
+                "image": "assets/images/taj/service-details/Data_Analytics2.jpg",
+                "url": "/service-detail/8"
+            },
+            {
+                "id": "9",
+                "title": "Cyber Security",
+                "description": "Protect your assets with robust cybersecurity solutions.",
+                "image": "assets/images/taj/service-details/Cybersecurity2.jpg",
+                "url": "/service-detail/9"
+            },
+            {
+                "id": "10",
+                "title": "Mobile App Development",
+                "description": "Develop intuitive mobile apps for any platform.",
+                "image": "assets/images/taj/service-details/mobile2.jpg",
+                "url": "/service-detail/10"
+            },
+            {
+                "id": "11",
+                "title": "Web App Development",
+                "description": "Web apps built for performance and scalability.",
+                "image": "assets/images/taj/service-details/web2.jpg",
+                "url": "/service-detail/11"
+            },
+            {
+                "id": "12",
+                "title": "Digital Marketing",
+                "description": "Reach your audience with effective marketing strategies.",
+                "image": "assets/images/taj/service-details/digital2.jpg",
+                "url": "/service-detail/12"
+            }
+        ],
+        "trainingCourses": [
+            {
+                "id": "1",
+                "title": "Frontend Development",
+                "description": "Crafting visually appealing and responsive websites.",
+                "image": "assets/images/courses/frontend.jpg",
+                "url": "/training-detail/1"
+            },
+            {
+                "id": "2",
+                "title": "Backend Development",
+                "description": "Building robust server-side applications.",
+                "image": "assets/images/courses/backend.jpg",
+                "url": "/training-detail/2"
+            },
+            {
+                "id": "3",
+                "title": "UI/UX Design",
+                "description": "Designing intuitive, user-friendly interfaces.",
+                "image": "assets/images/courses/uiux.jpg",
+                "url": "/training-detail/3"
+            },
+            {
+                "id": "4",
+                "title": "Data Science",
+                "description": "Analyzing complex data for smarter decisions.",
+                "image": "assets/images/courses/data-science.jpg",
+                "url": "/training-detail/4"
+            },
+            {
+                "id": "5",
+                "title": "Cyber Security",
+                "description": "Protecting digital assets against threats.",
+                "image": "assets/images/courses/cyber-security.jpg",
+                "url": "/training-detail/5"
+            },
+            {
+                "id": "6",
+                "title": "Digital Marketing",
+                "description": "Grow brand presence and drive conversions.",
+                "image": "assets/images/courses/digital-marketing.jpg",
+                "url": "/training-detail/6"
+            }
+        ],
+        "blogPosts": [
+            {
+                "id": "1",
+                "title": "Meta's AI Research Lab Introduces Revolutionary Image Generation Model",
+                "description": "Meta unveils advanced AI model.",
+                "author": "TechCrunch",
+                "image": "assets/images/blog/meta.jpg",
+                "url": "/blog-detail/1"
+            },
+            {
+                "id": "2",
+                "title": "European AI Specialist Helsing Unveils First Attack Drone",
+                "description": "Helsing launches new AI drone.",
+                "author": "Financial Times",
+                "image": "assets/images/blog/drone.jpg",
+                "url": "/blog-detail/2"
+            },
+            {
+                "id": "3",
+                "title": "Amazon Cyber Monday is Here",
+                "description": "Amazon Cyber Monday sales soar.",
+                "author": "New York Post",
+                "image": "assets/images/blog/amazon.jpg",
+                "url": "/blog-detail/3"
+            }
+        ],
+        "aboutContent": {
+            "headline": "Building Software Solutions That Stand the Test of Time",
+            "since": "2010",
+            "vision": "To become a leader in software development, known for quality, innovation, speed, optimization, and user-centric designs.",
+            "mission": "To develop cutting-edge software solutions that solve complex problems and add value to our client's business goal and their customers.",
+            "stats": [
+                {
+                    "value": "20+",
+                    "label": "Active Projects"
+                },
+                {
+                    "value": "30+",
+                    "label": "Active Clients"
+                },
+                {
+                    "value": "10+",
+                    "label": "Partners"
+                },
+                {
+                    "value": "100+",
+                    "label": "Projects Delivered"
+                }
+            ]
+        },
+        "forms": {
+            "contactForm": [
+                {
+                    "name": "fullName",
+                    "type": "text",
+                    "label": "Full Name",
+                    "placeholder": "Your name",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "label": "Email",
+                    "required": true
+                },
+                {
+                    "name": "phone",
+                    "type": "text",
+                    "label": "Phone Number"
+                },
+                {
+                    "name": "service",
+                    "type": "select",
+                    "label": "Service Interested In",
+                    "options": [
+                        "CRM & ERP",
+                        "Software Development",
+                        "Web Development",
+                        "IT Consultancy",
+                        "Cyber Security",
+                        "Training"
+                    ]
+                },
+                {
+                    "name": "message",
+                    "type": "textarea",
+                    "label": "Message",
+                    "rows": 5
+                }
+            ]
+        }
+    }
+}
