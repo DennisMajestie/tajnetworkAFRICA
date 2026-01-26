@@ -35,18 +35,12 @@ import { RouterModule } from '@angular/router';
       position: relative;
       display: flex;
       align-items: center;
-      padding-top: 240px;
-      padding-bottom: 120px;
-      min-height: 480px;
+      padding-top: clamp(140px, 20vh, 240px);
+      padding-bottom: clamp(60px, 10vh, 120px);
+      min-height: clamp(350px, 50vh, 480px);
       overflow: hidden;
       z-index: 1;
       background: var(--color-primary-dark, #0f1419);
-
-      @media (max-width: 768px) {
-        padding-top: 140px;
-        padding-bottom: 80px;
-        min-height: 350px;
-      }
     }
 
     .page-header__bg {

@@ -222,7 +222,7 @@ import { CommonModule } from '@angular/common';
 
     .value-card {
       position: relative;
-      padding: 35px;
+      padding: clamp(24px, 5vw, 35px);
       border-radius: 30px;
       overflow: hidden;
       cursor: pointer;

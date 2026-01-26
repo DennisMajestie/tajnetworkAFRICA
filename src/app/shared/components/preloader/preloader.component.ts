@@ -151,10 +151,10 @@ import { CommonModule } from '@angular/common';
 
     @media (max-width: 768px) {
       .radial-ring {
-        width: 200px;
-        height: 200px;
+        width: clamp(160px, 45vw, 200px);
+        height: clamp(160px, 45vw, 200px);
       }
-      .pulse-logo { width: 60px; }
+      .pulse-logo { width: clamp(45px, 12vw, 60px); }
     }
   `]
 })

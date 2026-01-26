@@ -43,7 +43,7 @@ import { RouterModule } from '@angular/router';
       background: var(--color-primary-dark, #0f1419);
 
       @media (max-width: 768px) {
-        padding: 160px 0 80px;
+        padding: clamp(120px, 15vh, 160px) 0 80px;
         min-height: 350px;
       }
     }
@@ -163,9 +163,9 @@ import { RouterModule } from '@angular/router';
 
     .services-intro__title {
       color: #fff !important;
-      font-size: clamp(3.2rem, 8vw, 4.5rem);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
       font-weight: 700;
-      line-height: 1;
+      line-height: 1.1;
       margin: 0 0 20px;
       letter-spacing: -0.05em;
       text-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);

@@ -38,7 +38,7 @@ import { RouterModule } from '@angular/router';
       // background: #0a0f14;
 
       @media (max-width: 768px) {
-        padding: 80px 0;
+        padding: clamp(60px, 12vw, 80px) 0;
       }
     }
 
@@ -52,8 +52,8 @@ import { RouterModule } from '@angular/router';
       border: 1px solid rgba(0, 102, 255, 0.1);
 
       @media (max-width: 768px) {
-        inset: 0 15px;
-        border-radius: 24px;
+        inset: 0 10px;
+        border-radius: 20px;
       }
       
       &::before {

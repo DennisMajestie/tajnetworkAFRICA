@@ -214,7 +214,7 @@ import { HeroData } from '../../../core/models/types';
 
       /* Mobile Responsiveness for Padding */
       @media (max-width: 768px) {
-        padding: 140px 0 80px;
+        padding: clamp(120px, 15vh, 140px) 0 clamp(60px, 10vh, 80px);
       }
 
       &--left {
@@ -526,10 +526,26 @@ import { HeroData } from '../../../core/models/types';
     @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
 
     .hero-subheadline { font-size: 1.25rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 3rem; line-height: 1.8; }
-    .hero-actions { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 4rem; }
+    .hero-actions { 
+      display: flex; 
+      gap: 1.5rem; 
+      justify-content: center; 
+      margin-bottom: 4rem; 
+
+      @media (max-width: 640px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 0 20px;
+      }
+    }
 
     .btn-primary, .btn-secondary {
-      padding: 16px 32px; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; display: flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px;
+      
+      @media (max-width: 640px) {
+        width: 100%;
+      }
     }
 
     .btn-primary { background: #6366f1; color: #fff; &:hover { background: #4f46e5; transform: translateY(-2px); } }

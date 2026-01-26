@@ -242,12 +242,12 @@ import { filter } from 'rxjs/operators';
     }
 
     .navbar__logo-img {
-      height: 40px; /* Reduced from 44px for mobile */
+      height: clamp(32px, 5vw, 40px);
       width: auto;
       transition: transform 0.3s ease;
       
       @media (min-width: 769px) {
-        height: 65px;
+        height: clamp(50px, 6vw, 65px);
       }
       
       &:hover {

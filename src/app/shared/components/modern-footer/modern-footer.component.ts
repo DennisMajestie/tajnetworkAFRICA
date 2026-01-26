@@ -176,7 +176,7 @@ import { NavigationConfig } from '../../../core/models/types';
 
     .newsletter-title {
       font-family: var(--font-heading);
-      font-size: 2.25rem;
+      font-size: clamp(1.75rem, 5vw, 2.25rem);
       font-weight: 700;
       margin-bottom: 0.5rem;
       background: linear-gradient(135deg, #fff, var(--color-neutral-mediumGray));
@@ -246,8 +246,8 @@ import { NavigationConfig } from '../../../core/models/types';
 
     .footer__grid {
       display: grid;
-      gap: 3rem;
-      padding: 4rem 0;
+      gap: clamp(2rem, 5vw, 3rem);
+      padding: clamp(3rem, 8vw, 4rem) 0;
 
       @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
       @media (min-width: 1024px) { grid-template-columns: 2fr 1fr 1fr 1.5fr; }

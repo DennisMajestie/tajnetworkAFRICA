@@ -218,7 +218,7 @@ import { RouterModule } from '@angular/router';
       50% { transform: rotate(180deg) translateY(-30px); opacity: 0.6; }
     }
 
-    .container--wide { max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 10; @media (max-width: 768px) { padding: 0 20px; } }
+    .container--wide { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); position: relative; z-index: 10; }
 
     .contact-layout {
       display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: start;
@@ -255,8 +255,8 @@ import { RouterModule } from '@angular/router';
     .trust-label { display: block; font-size: 0.8rem; font-weight: 800; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1.5px; }
 
     .crystalline-container {
-      background: rgba(2, 12, 24, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; padding: 60px; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden;
-      @media (max-width: 768px) { padding: 40px 24px; border-radius: 30px; }
+      background: rgba(2, 12, 24, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; padding: clamp(24px, 8vw, 60px); box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden;
+      @media (max-width: 768px) { border-radius: 30px; }
     }
 
     .header-decoration { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 25px; }

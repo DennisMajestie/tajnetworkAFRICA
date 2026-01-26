@@ -102,11 +102,11 @@ import { PageConfig, SectionConfig } from '../../core/models/types';
     }
 
     .status-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 25px;
+      font-size: clamp(2.2rem, 8.5vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 25px;
       .highlight { color: #ef4444; }
     }
 
-    .status-desc { font-size: 1.15rem; color: rgba(255, 255, 255, 0.5); line-height: 1.6; margin-bottom: 45px; }
+    .status-desc { font-size: clamp(1rem, 4.5vw, 1.15rem); color: rgba(255, 255, 255, 0.5); line-height: 1.6; margin-bottom: 45px; }
 
     .status-actions { display: flex; justify-content: center; gap: 20px; }
 

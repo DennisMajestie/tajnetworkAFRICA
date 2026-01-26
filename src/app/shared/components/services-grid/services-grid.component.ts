@@ -160,10 +160,9 @@ const SERVICE_ICONS: { [key: string]: string } = {
 
     /* Section Header */
     .section-header {
-     text-align: center;
-     margin-bottom: 80px;
-     margin-left: 250px;
-     max-width: 1000px;
+      text-align: center;
+      margin: 0 auto 80px;
+      max-width: 800px;
     }
 
     .section-tag {
@@ -201,8 +200,13 @@ const SERVICE_ICONS: { [key: string]: string } = {
     /* Services Grid - 3 columns */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
       gap: 40px 30px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
     }
 
     /* Service Card Decorative */

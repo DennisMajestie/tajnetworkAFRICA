@@ -88,14 +88,7 @@
 }
 
 .sd-article-body {
-  padding: 100px 80px;
-
-  @media (max-width: 992px) {
-    padding: 60px 40px;
-  }
-  @media (max-width: 768px) {
-    padding: 50px 25px;
-  }
+  padding: clamp(40px, 8vw, 100px) clamp(20px, 6vw, 80px);
 }
 
 /* Header & Typography Overhaul */
@@ -138,20 +131,15 @@
 
   .sd-title {
     font-family: var(--font-heading);
-    font-size: 53px;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
     font-weight: 1000;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.04em;
     margin-bottom: 30px;
-    /* High-vibrancy Taj Brand Gradient Title */
     background: linear-gradient(135deg, var(--color-accent-emerald), #0076f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    
-    @media (max-width: 768px) {
-      font-size: 38px;
-    }
   }
 
   .title-accent {
@@ -167,12 +155,12 @@
 
   /* Large, bold intro text in vibrant Taj Emerald to anchor the page */
   .text-lead {
-    font-size: 28px;
+    font-size: clamp(1.2rem, 4vw, 1.75rem);
     line-height: 1.6;
-    color: var(--color-accent-emerald); /* Vibrant Taj Emerald */
+    color: var(--color-accent-emerald);
     font-weight: 800;
     margin-bottom: 50px;
-    padding-left: 45px;
+    padding-left: clamp(20px, 5vw, 45px);
     position: relative;
     
     &::before {
@@ -184,25 +172,16 @@
       width: 8px;
       background: var(--gradient-primary);
       border-radius: 12px;
-    box-shadow: 0 0 30px rgb(2 91 137 / 74%);    }
-
-    @media (max-width: 768px) {
-      font-size: 22px;
-      padding-left: 25px;
+      box-shadow: 0 0 30px rgb(2 91 137 / 74%);
     }
   }
 
   .text-base {
-    font-size: 21px;
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
     line-height: 1.9;
-    color: #0f172a; /* Deep, high-contrast dark */
-    padding-left: 45px;
-    font-weight: 600; /* Slightly heavier for more life */
-    
-    @media (max-width: 768px) {
-      padding-left: 25px;
-      font-size: 18px;
-    }
+    color: #0f172a;
+    padding-left: clamp(20px, 5vw, 45px);
+    font-weight: 600;
   }
 }
 
@@ -249,8 +228,8 @@
 
   .curriculum-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(20px, 4vw, 30px);
     position: relative;
     z-index: 2;
   }
