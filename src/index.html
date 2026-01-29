@@ -15,19 +15,6 @@
             root.style.setProperty('--bg-preloader', '#eef2ff');
             root.style.setProperty('--text-preloader', '#0c152a');
             root.style.backgroundColor = '#eef2ff';
-
-            // FORCE GLOBAL ZOOM (67%)
-            // Apply only to desktop/tablet landscape
-            if (window.innerWidth >= 1024) {
-                root.style.zoom = "0.67";
-                // Firefox scale fallback
-                if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-                    root.style.transform = "scale(0.67)";
-                    root.style.transformOrigin = "top center";
-                    root.style.width = "149.25%";
-                    root.style.height = "149.25%";
-                }
-            }
         })();
     </script>
 
@@ -145,6 +132,24 @@
 
     <!-- External stylesheets load AFTER critical CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Option B: Inline Critical CSS for Global Scaling (Angular 19/Vercel Highly Reliable) -->
+    <style>
+        @media screen and (min-width: 1024px) {
+            html {
+                transform: scale(0.67);
+                transform-origin: top center;
+                width: 149.25% !important;
+                /* 100 / 0.67 */
+                height: 149.25vh !important;
+            }
+
+            body {
+                margin: 0;
+                overflow-x: hidden;
+            }
+        }
+    </style>
 
 </head>
 

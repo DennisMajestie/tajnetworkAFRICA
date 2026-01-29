@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/swiper/swiper-bundle.min.css",
               "public/assets/css/bootstrap.min.css"
             ],
             "scripts": []
@@ -43,7 +44,7 @@
                 "scripts": true,
                 "styles": {
                   "minify": true,
-                  "inlineCritical": true
+                  "inlineCritical": false
                 },
                 "fonts": true
               },
