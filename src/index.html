@@ -132,6 +132,26 @@
 
     <!-- External stylesheets load AFTER critical CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- FORCE GLOBAL ZOOM: Inline to bypass build stripping -->
+    <style>
+        @media screen and (min-width: 1024px) {
+            html {
+                zoom: 0.67 !important;
+            }
+
+            /* Firefox Fallback */
+            @supports not (zoom: 1) {
+                html {
+                    transform: scale(0.67);
+                    transform-origin: top center;
+                    width: 149.25%;
+                    height: 149.25%;
+                    overflow-x: hidden;
+                }
+            }
+        }
+    </style>
 </head>
 
 <body>

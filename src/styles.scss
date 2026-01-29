@@ -78,28 +78,6 @@
   color-scheme: dark light;
 }
 
-/* GLOBAL SCALING - Applied to HTML to ensure full page and viewport calculation consistency */
-html {
-  zoom: 0.67; /* Primary for Chrome/Edge/Safari */
-  
-  /* Fallback for Firefox and others */
-  @supports not (zoom: 1) {
-    transform: scale(0.67);
-    transform-origin: top center;
-    width: 149.25%; /* 100 / 0.67 */
-    height: 149.25%;
-    overflow-x: hidden; 
-  }
-}
-
-body {
-  opacity: 1 !important;
-  visibility: visible !important;
-  background-color: var(--bg-preloader);
-  width: 100%;
-  min-height: 100%;
-}
-
 /* App Container Visibility Flow */
 .app-container {
   opacity: 0;
