@@ -86,27 +86,33 @@ export class ScrollAnimationService {
         });
 
         // Background orbs parallax
-        gsap.to('.orb-1', {
-            y: -200,
-            x: 50,
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 2
-            }
-        });
+        const orb1 = document.querySelector('.orb-1');
+        if (orb1) {
+            gsap.to(orb1, {
+                y: -200,
+                x: 50,
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 2
+                }
+            });
+        }
 
-        gsap.to('.orb-2', {
-            y: 150,
-            x: -30,
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 3
-            }
-        });
+        const orb2 = document.querySelector('.orb-2');
+        if (orb2) {
+            gsap.to(orb2, {
+                y: 150,
+                x: -30,
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 3
+                }
+            });
+        }
     }
 
     private initTextAnimations(): void {
