@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { TypewriterDirective } from '../../directives/typewriter.directive';
 import { ParallaxDirective } from '../../directives/parallax.directive';
 import { HeroData } from '../../../core/models/types';
-import { register } from 'swiper/element/bundle';
+// Swiper register is now handled globally in main.ts
 
 @Component({
   selector: 'app-hero-block',
@@ -681,8 +681,7 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('HeroBlockComponent: ngOnInit');
-    // Register Swiper custom elements
-    register();
+    // Swiper register is now handled globally in main.ts
     // Disable mouse parallax on mobile
     this.isMouseParallaxEnabled = window.innerWidth > 768;
 
@@ -751,7 +750,8 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
       },
       loop: true,
       speed: 1500,
-      pagination: true, // Let's add pagination to see if it shows up
+      pagination: true,
+      navigation: true, // Ensure navigation is in params
       injectStyles: [
         `
         :host {
@@ -764,6 +764,9 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
         .swiper-pagination-bullet-active {
           background: #004a78;
           opacity: 1;
+        }
+        .swiper-button-next, .swiper-button-prev {
+          color: #fff;
         }
         `
       ],
