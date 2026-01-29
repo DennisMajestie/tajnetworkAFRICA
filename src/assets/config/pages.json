@@ -31,22 +31,18 @@
                                 "style": "secondary"
                             }
                         ],
-                        "backgroundImage": "assets/images/taj/homeslider/slider1.jpg",
-                        "stats": [
-                            {
-                                "value": "400+",
-                                "label": "Projects Delivered"
-                            },
-                            {
-                                "value": "350+",
-                                "label": "Happy Clients"
-                            },
-                            {
-                                "value": "15+",
-                                "label": "Years Experience"
-                            }
-                        ]
+                        "backgroundImage": ""
                     }
+                },
+                {
+                    "type": "why-choose-us",
+                    "id": "why-choose-us-section",
+                    "data": {}
+                },
+                {
+                    "type": "home-about",
+                    "id": "home-about-section",
+                    "data": {}
                 },
                 {
                     "type": "services",
@@ -54,8 +50,23 @@
                     "animation": true,
                     "data": {
                         "tag": "Our Services",
-                        "title": "Elite Software Solutions for Modern Businesses",
-                        "subtitle": "Discover our range of services designed to accelerate digital transformation and drive business excellence"
+                        "title": "Elite Software Solutions",
+                        "subtitle": "Accelerate your digital transformation with our specialized tech stacks and industry expertise.",
+                        "limit": 6
+                    }
+                },
+                {
+                    "type": "tech-slider",
+                    "id": "home-tech-slider",
+                    "data": {}
+                },
+                {
+                    "type": "portfolio",
+                    "id": "home-portfolio-showcase",
+                    "data": {
+                        "tag": "Our Portfolio",
+                        "title": "Recent Projects",
+                        "subtitle": "A glimpse into how we've helped businesses across the continent evolve digitally."
                     }
                 },
                 {
@@ -63,7 +74,7 @@
                     "id": "cta-consultation",
                     "data": {
                         "heading": "Ready to Transform Your Business?",
-                        "subheading": "Let's discuss how we can help you achieve your goals",
+                        "subheading": "At Taj Network Africa, technology is engineered to solve problems, scale with purpose, and drive results. Let's discuss how we can achieve your goals together.",
                         "buttons": [
                             {
                                 "text": "Schedule Consultation",
@@ -71,17 +82,6 @@
                                 "style": "primary"
                             }
                         ]
-                    }
-                },
-                {
-                    "type": "grid",
-                    "id": "blog-preview",
-                    "animation": true,
-                    "data": {
-                        "title": "News & Insights",
-                        "subtitle": "Stay updated with our latest blog posts",
-                        "contentRef": "blogPosts",
-                        "columns": 3
                     }
                 }
             ]
@@ -131,6 +131,11 @@
                         "headline": "About Us",
                         "subheadline": "Building Software Solutions That Stand the Test of Time"
                     }
+                },
+                {
+                    "type": "about-founder",
+                    "id": "about-founder",
+                    "data": {}
                 },
                 {
                     "type": "content",

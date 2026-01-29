@@ -15,12 +15,12 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="team-rows-container">
-          <!-- Row 1: 2 members (CEO/Manager with badges) -->
-          <div class="team-row row-2-cols">
+          <!-- Row 1: 4 members -->
+          <div class="team-row row-4-cols">
             <div class="team-card animate-on-scroll" 
                  *ngFor="let member of row1" 
                  [class.is-ceo]="member.type === 'ceo'"
-                 [class.is-manager]="member.type === 'manager'">
+                 [class.is-manager]="member.type === 'manager' || member.badge === 'Lead' || member.badge === 'Admin'">
               <div class="team-card__badge" *ngIf="member.badge">{{ member.badge }}</div>
               <div class="team-card__image-wrapper">
                 <div class="image-inner">
@@ -36,15 +36,17 @@ import { CommonModule } from '@angular/common';
                 <h3 class="team-card__name">{{ member.name }}</h3>
                 <p class="team-card__role">{{ member.role }}</p>
                 <p class="team-card__bio">{{ member.bio }}</p>
+                <p class="team-card__tagline" *ngIf="member.tagline"><em>{{ member.tagline }}</em></p>
               </div>
             </div>
           </div>
 
-          <!-- Row 2: 3 members -->
-          <div class="team-row row-3-cols">
+          <!-- Row 2: 4 members -->
+          <div class="team-row row-4-cols">
             <div class="team-card animate-on-scroll" 
                  *ngFor="let member of row2" 
-                 [class.is-manager]="member.type !== 'ceo'">
+                 [class.is-ceo]="member.type === 'ceo'"
+                 [class.is-manager]="member.type === 'manager' || member.badge === 'Lead' || member.badge === 'Admin'">
               <div class="team-card__badge" *ngIf="member.badge">{{ member.badge }}</div>
               <div class="team-card__image-wrapper">
                 <div class="image-inner">
@@ -64,11 +66,12 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
 
-          <!-- Row 3: 3 members -->
-          <div class="team-row row-3-cols">
+          <!-- Row 3: 4 members (Optional Spare) -->
+          <div class="team-row row-4-cols" *ngIf="row3 && row3.length > 0">
             <div class="team-card animate-on-scroll" 
                  *ngFor="let member of row3"
-                 [class.is-manager]="member.type !== 'ceo'">
+                 [class.is-ceo]="member.type === 'ceo'"
+                 [class.is-manager]="member.type === 'manager' || member.badge === 'Lead' || member.badge === 'Admin'">
               <div class="team-card__badge" *ngIf="member.badge">{{ member.badge }}</div>
               <div class="team-card__image-wrapper">
                 <div class="image-inner">
@@ -94,13 +97,21 @@ import { CommonModule } from '@angular/common';
   styles: [`
     .team-section {
       padding: 120px 0;
-      // background: transparent;
+      background: #020c18;
       
-    background: linear-gradient(rgb(248, 250, 255) 0%, rgb(238, 242, 255) 100%);
+      :host-context(.theme-light) & { 
+        background: linear-gradient(#f8faff 0%, #eef2ff 100%); 
+      }
 
       @media (max-width: 768px) {
         padding: 60px 0;
       }
+    }
+
+    .container {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 40px;
     }
 
     .section-header {
@@ -124,8 +135,8 @@ import { CommonModule } from '@angular/common';
     }
 
     .section-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 900;
+      font-size: clamp(2.25rem, 5vw, 3.8rem);
+      font-weight: 800;
       color: #fff;
       margin-bottom: 20px;
       letter-spacing: -0.02em;
@@ -167,6 +178,18 @@ import { CommonModule } from '@angular/common';
       grid-template-columns: repeat(3, minmax(280px, 400px));
       
       @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (max-width: 650px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .row-4-cols {
+      grid-template-columns: repeat(4, minmax(280px, 400px));
+      
+      @media (max-width: 1200px) {
         grid-template-columns: repeat(2, 1fr);
       }
       
@@ -314,7 +337,7 @@ import { CommonModule } from '@angular/common';
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0c152a;
+      color: #004a78;
       font-size: 1rem;
       transition: all 0.3s ease;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -347,14 +370,21 @@ import { CommonModule } from '@angular/common';
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.5);
       line-height: 1.7;
-      margin: 0;
+      margin: 0 0 15px;
+    }
+
+    .team-card__tagline {
+      font-size: 0.85rem;
+      color: var(--color-accent-blue, #0066ff);
+      font-weight: 500;
+      opacity: 0.8;
     }
 
     /* ================================
        LIGHT MODE OVERRIDES
        ================================ */
     :host-context(.theme-light) {
-      .section-title { color: #0c152a; }
+      .section-title { color: #004a78; }
       .section-subtitle { color: #3f5175; }
       
       .team-card {
@@ -376,7 +406,7 @@ import { CommonModule } from '@angular/common';
         }
       }
 
-      .team-card__name { color: #0c152a; }
+      .team-card__name { color: #1a2332; }
       .team-card__bio { color: #3f5175; }
       
       .image-inner {
@@ -400,18 +430,6 @@ import { CommonModule } from '@angular/common';
 export class TeamSectionComponent implements OnInit {
   team = [
     {
-      name: "Akibul Ismail",
-      role: "CEO & Founder",
-      type: "ceo",
-      badge: "Visionary",
-      bio: "Strategic visionary driving Taj Network's mission to bridge the digital divide in Africa with over a decade of leadership experience.",
-      image: "assets/images/taj/Taj Team/Akibul Ismail.JPG",
-      socials: [
-        { icon: "fab fa-linkedin", url: "#" },
-        { icon: "fab fa-twitter", url: "#" }
-      ]
-    },
-    {
       name: "Leo Chukwu",
       role: "Software Engineer (Manager)",
       type: "manager",
@@ -424,31 +442,20 @@ export class TeamSectionComponent implements OnInit {
       ]
     },
     {
-      name: "Dennis Majesty",
-      role: "Software Engineer",
-      type: "staff",
-      bio: "A Creative Software Engineer dedicated to building cutting-edge digital products and meaningful experiences that improve everyday life.",
-      image: "assets/images/taj/Taj Team/Dennis Majesty.JPG",
+      name: "Nasira",
+      role: "Product Designer",
+      type: "manager",
+      bio: "Creative thinker focused on building user-centric digital experiences through meticulous research and collaborative design.",
+      image: "assets/images/taj/Taj Team/Nasira.jpeg", // Updated photo
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
-        { icon: "fab fa-github", url: "#" }
-      ]
-    },
-    {
-      name: "Praise Daniel",
-      role: "Creative Director & Social Media",
-      type: "staff",
-      bio: "Storyteller and strategist bridging the gap between brand identity and audience connection through creative digital narratives.",
-      image: "assets/images/taj/Taj Team/Praise Daniel.JPG",
-      socials: [
-        { icon: "fab fa-instagram", url: "#" },
-        { icon: "fab fa-behance", url: "#" }
+        { icon: "fab fa-dribbble", url: "#" }
       ]
     },
     {
       name: "Isaac Ayodejiariyo",
       role: "Mobile App Developer",
-      type: "staff",
+      type: "manager",
       bio: "Crafting high-performance mobile experiences with a focus on fluid UX and innovative cross-platform solutions.",
       image: "assets/images/taj/Taj Team/Isaac Ayodejiariyo.JPG",
       socials: [
@@ -457,9 +464,20 @@ export class TeamSectionComponent implements OnInit {
       ]
     },
     {
+      name: "Praise Daniel",
+      role: "Creative Director & Social Media",
+      type: "manager",
+      bio: "Storyteller and strategist bridging the gap between brand identity and audience connection through creative digital narratives.",
+      image: "assets/images/taj/Taj Team/Praise Daniel.JPG",
+      socials: [
+        { icon: "fab fa-instagram", url: "#" },
+        { icon: "fab fa-behance", url: "#" }
+      ]
+    },
+    {
       name: "Judith Yakubu",
       role: "Product Designer",
-      type: "staff",
+      type: "manager",
       bio: "Human-centric designer dedicated to creating beautiful, intuitive interfaces that tell a story and drive user engagement.",
       image: "assets/images/taj/Taj Team/Judith Yakubu.JPG",
       socials: [
@@ -470,7 +488,7 @@ export class TeamSectionComponent implements OnInit {
     {
       name: "Hemdinachi Emem",
       role: "Software Engineer",
-      type: "staff",
+      type: "manager",
       bio: "With a background in mechanical engineering, Hemdinachi builds methodical, reliable, and efficient systems with a focus on maintainability.",
       image: "assets/images/taj/Taj Team/Hemdinachi Emem.JPG",
       socials: [
@@ -489,6 +507,17 @@ export class TeamSectionComponent implements OnInit {
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "far fa-envelope", url: "mailto:admin@tajnetworkafrica.com" }
       ]
+    },
+    {
+      name: "Dennis Majesty",
+      role: "Software Engineer",
+      type: "manager",
+      bio: "A Creative Software Engineer dedicated to building cutting-edge digital products and meaningful experiences that improve everyday life.",
+      image: "assets/images/taj/Taj Team/Dennis Majesty.JPG",
+      socials: [
+        { icon: "fab fa-linkedin", url: "#" },
+        { icon: "fab fa-github", url: "#" }
+      ]
     }
   ];
 
@@ -497,9 +526,9 @@ export class TeamSectionComponent implements OnInit {
   row3: any[] = [];
 
   ngOnInit() {
-    // 2-3-3 Formation for 8 members
-    this.row1 = this.team.slice(0, 2); // Top 2
-    this.row2 = this.team.slice(2, 5); // Middle 3
-    this.row3 = this.team.slice(5, 8); // Bottom 3
+    // 4-4 Formation for 8 members (uniform grid)
+    this.row1 = this.team.slice(0, 4); // Top 4
+    this.row2 = this.team.slice(4, 8); // Bottom 4
+    this.row3 = []; // Empty row
   }
 }

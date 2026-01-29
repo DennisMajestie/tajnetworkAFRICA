@@ -9,7 +9,7 @@ import { ServicesIntroComponent } from '../../shared/components/services-intro/s
   standalone: true,
   imports: [CommonModule, RouterModule, ServicesIntroComponent],
   templateUrl: './blog.component.html',
-  styleUrl: './blog.component.scss'
+  styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent {
 

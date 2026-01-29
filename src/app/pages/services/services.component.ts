@@ -15,7 +15,7 @@ import { BlogDataService } from '../../services/blog-data.service';
     ServicesCtaComponent
   ],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.scss'
+  styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent implements OnInit, AfterViewInit {
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingDataService } from '../../services/training-data.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
+import Swal from 'sweetalert2';
 
 import { ServicesIntroComponent } from '../../shared/components/services-intro/services-intro.component';
 
@@ -13,7 +14,7 @@ import { ServicesIntroComponent } from '../../shared/components/services-intro/s
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ServicesIntroComponent],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   bgImage = "assets/images/taj/homeslider/slider2.jpg";
@@ -33,7 +34,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private trainingService: TrainingDataService,
     private alert: AlertService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.courseData = this.trainingService.courses;
   }
@@ -52,13 +54,8 @@ export class RegisterComponent implements OnInit {
         if (training) {
           this.selectedCourseName = training.title;
 
-          // Find the matching course value in the dropdown data
-          const courseOption = this.courseData.find(
-            (c: any) => c.label.toLowerCase().includes(training.title.toLowerCase().split(' ')[0])
-          );
-
-          if (courseOption) {
-            this.contactForm.patchValue({ course: courseOption.value });
+          if (training.courseValue) {
+            this.contactForm.patchValue({ course: training.courseValue });
           }
         }
       }
@@ -66,9 +63,30 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.contactForm.value);
-    this.alert.alert('Enrollment Submitted Successfully! We will contact you shortly.');
-    this.contactForm.reset();
+    if (this.contactForm.valid) {
+      console.log('Registration Form Payload:', this.contactForm.value);
+
+      Swal.fire({
+        title: 'Enrollment Successful!',
+        text: 'Your registration has been received. Redirecting to home...',
+        icon: 'success',
+        iconColor: '#00d084',
+        background: '#ffffff',
+        confirmButtonColor: '#004a78',
+        customClass: {
+          popup: 'swal-taj-popup',
+          title: 'swal-taj-title'
+        },
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        willClose: () => {
+          this.router.navigate(['/']);
+        }
+      });
+
+      this.contactForm.reset();
+    }
   }
 
   _search(e: any) {

@@ -67,8 +67,21 @@ export class ThemeService {
 
     /** Apply theme WITH transition (for user-triggered changes) */
     private applyThemeWithTransition(theme: ThemeMode): void {
-        this.currentTheme.set(theme);
+        const doc = document as any;
 
+        // Use View Transitions API if available
+        if (doc.startViewTransition) {
+            doc.startViewTransition(() => {
+                this.executeThemeChange(theme);
+            });
+        } else {
+            // Fallback for older browsers
+            this.executeThemeChange(theme);
+        }
+    }
+
+    private executeThemeChange(theme: ThemeMode): void {
+        this.currentTheme.set(theme);
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem(this.STORAGE_KEY, theme);
 

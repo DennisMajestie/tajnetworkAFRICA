@@ -8,34 +8,42 @@ import { CommonModule } from '@angular/common';
   template: `
     <section class="contact-map">
       <div class="container--wide">
-        <div class="map-card">
-          <iframe 
-            class="map-iframe"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.536294747!2d7.3683955!3d8.995006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7127163f9d51%3A0x6e8a4a5840d4f9b!2sLugbe%2C%20Abuja!5e0!3m2!1sen!2sng!4v1705161453253!5m2!1sen!2sng"
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Block+1+Flat+2+Philcruz+Estate+Lugbe+Airport+Road+Abuja" 
-             target="_blank" 
-             class="map-tag">
-            <i class="fas fa-location-arrow"></i>
-            <span>Get Directions</span>
-          </a>
+        <!-- Map Section -->
+        <div class="map-stack">
+          <!-- Labels Row (Removed as it is now in ContactInfoComponent) -->
 
-          <!-- Real-time Location Pin -->
-          <div class="location-pin-container">
-            <div class="location-pin">
-              <div class="pin-pulse"></div>
-              <div class="pin-dot"></div>
-            </div>
-            <div class="location-card">
-              <h4 class="location-name">Taj Network Africa</h4>
-              <p class="location-addr">Block 1, Flat 2, Philcruz Estate</p>
+          <!-- Bottom: Map Section -->
+          <div class="map-container-main">
+            <div class="map-card">
+              <iframe 
+                class="map-iframe"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.536294747!2d7.3683955!3d8.995006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7127163f9d51%3A0x6e8a4a5840d4f9b!2sLugbe%2C%20Abuja!5e0!3m2!1sen!2sng!4v1705161453253!5m2!1sen!2sng"
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Block+1+Flat+2+Philcruz+Estate+Lugbe+Airport+Road+Abuja" 
+                 target="_blank" 
+                 class="map-tag">
+                <i class="fas fa-location-arrow"></i>
+                <span>Get Directions</span>
+              </a>
+
+              <!-- Real-time Location Pin -->
+              <div class="location-pin-container">
+                <div class="location-pin">
+                  <div class="pin-pulse"></div>
+                  <div class="pin-dot"></div>
+                </div>
+                <div class="location-card">
+                  <h4 class="location-name">Taj Network Africa</h4>
+                  <p class="location-addr">Block 1, Flat 2, Philcruz Estate</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -44,21 +52,98 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .contact-map {
-      padding: 100px;
-      background: linear-gradient(180deg, #f8faff 0%, #eef2ff 100%);
+      padding: 0 0 120px;
+      background: #020c18;
 
-      @media (max-width: 768px) {
+      @media (max-width: 991px) {
         padding: 0 0 60px;
       }
     }
 
-    // .container--wide {
-    //   max-width: 2000px;
-    // }
+    :host-context(.theme-light) .contact-map { background: #f8faff; }
+
+    .container--wide {
+      max-width: 2000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .map-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .contact-labels-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+
+      @media (max-width: 991px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .contact-card-v3 {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 30px;
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid rgba(0, 102, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 74, 120, 0.05);
+      transition: all 0.4s ease;
+      height: 100%;
+
+      &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 102, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 74, 120, 0.1);
+
+        .card-icon {
+          background: #0066ff;
+          color: #fff;
+        }
+      }
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(0, 102, 255, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #0066ff;
+      transition: all 0.4s ease;
+      flex-shrink: 0;
+    }
+
+    .card-label {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0c152a;
+      margin-bottom: 5px;
+    }
+
+    .card-detail {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .map-container-main {
+      position: relative;
+    }
 
     .map-card {
       width: 100%;
-      height: 600px;
+      height: 550px;
       position: relative;
       border-radius: 32px;
       overflow: hidden;
@@ -80,17 +165,17 @@ import { CommonModule } from '@angular/common';
 
     .map-tag {
       position: absolute;
-      bottom: 40px;
-      right: 40px;
+      bottom: 30px;
+      right: 30px;
       background: #0066ff;
       color: #fff;
-      padding: 14px 30px;
+      padding: 12px 24px;
       border-radius: 100px;
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
+      letter-spacing: 0.1em;
+      box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -99,44 +184,26 @@ import { CommonModule } from '@angular/common';
       transition: all 0.3s ease;
 
       &:hover {
-        background: #004a78;
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 20px 40px rgba(0, 74, 120, 0.4);
-        color: #fff;
+        background: linear-gradient(135deg, #004a78 0%, #003355 100%); /* Changed to gradient */
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 74, 120, 0.3);
       }
 
       @media (max-width: 768px) {
         bottom: 20px;
         right: 20px;
         padding: 10px 20px;
-        font-size: 0.7rem;
-      }
-      
-      &::before {
-        content: "\\f3c5";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
       }
     }
 
-    /* Dark Mode Overrides */
-    :host-context(.theme-dark) .contact-map {
-      background: #020c18;
-      padding: 100px;
-    }
-
-    :host-context(.theme-dark) .map-card {
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
-      border-color: rgba(255, 255, 255, 0.05);
-    }
-
-    :host-context(.theme-dark) .map-iframe {
-      filter: grayscale(0.8) invert(0.9) contrast(1.2);
-      opacity: 0.8;
-      
-      &:hover {
-        opacity: 1;
-      }
+    :host-context(.theme-dark) {
+      .contact-map { background: #020c18; }
+      .contact-card-v3 { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.05); }
+      .card-label { color: #fff; }
+      .card-detail { color: #94a3b8; }
+      .map-card { border-color: rgba(255, 255, 255, 0.05); box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2); }
+      .map-iframe { filter: grayscale(0.8) invert(0.9) contrast(1.2); opacity: 0.8; }
+      .location-card { background: #1a1f2e; border-color: rgba(255, 255, 255, 0.1); .location-name { color: #fff; } }
     }
 
     /* Floating Real-time Pin */
@@ -215,14 +282,24 @@ import { CommonModule } from '@angular/common';
       margin: 0;
       white-space: nowrap;
     }
-
-    :host-context(.theme-dark) .location-card {
-      background: #1a1f2e;
-      border-color: rgba(255, 255, 255, 0.1);
-      
-      .location-name { color: #fff; }
-      .location-addr { color: #94a3b8; }
-    }
   `]
 })
-export class ContactMapComponent { }
+export class ContactMapComponent {
+  contactItems = [
+    {
+      icon: 'fas fa-phone',
+      label: 'Phone',
+      detail: '+234 802 982 4786'
+    },
+    {
+      icon: 'fas fa-envelope',
+      label: 'Email',
+      detail: 'info@tajnetworkafrica.com'
+    },
+    {
+      icon: 'fas fa-location-arrow',
+      label: 'Location',
+      detail: 'Block 1, Flat 2, Philcruz Estate,<br>Lugbe Airport Road, Abuja'
+    }
+  ];
+}

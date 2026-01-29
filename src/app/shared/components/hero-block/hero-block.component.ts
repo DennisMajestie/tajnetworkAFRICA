@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { TypewriterDirective } from '../../directives/typewriter.directive';
@@ -10,7 +10,13 @@ import { HeroData } from '../../../core/models/types';
   standalone: true,
   imports: [CommonModule, TypewriterDirective, ParallaxDirective],
   template: `
-    <div class="hero" [class]="'hero--' + (data.layout || 'centered')">
+    <div class="hero" [class]="'hero--' + (data.layout || 'centered')" #container>
+      <!-- 3D Background Canvas Disabled to remove tint -->
+      <!-- <canvas #canvas class="three-canvas"></canvas> -->
+
+      <!-- TAJ Grid Overlay -->
+      <div class="taj-grid-overlay"></div>
+
       <!-- Decorative Shapes Background Layer -->
       <div class="hero-shapes">
         <img src="assets/images/shapes/main-slider-shape-2.png" 
@@ -23,30 +29,18 @@ import { HeroData } from '../../../core/models/types';
              alt="" class="shape shape-4" appParallax [parallaxSpeed]="-0.1">
       </div>
 
-      <!-- Animated Background Orbs -->
-      <div class="bg-orbs">
-        <div class="orb orb-1" appParallax [parallaxSpeed]="0.2"></div>
-        <div class="orb orb-2" appParallax [parallaxSpeed]="-0.3"></div>
-        <div class="orb orb-3" appParallax [parallaxSpeed]="0.15"></div>
-      </div>
-
-      <!-- Accent Circles -->
-      <div class="accent-circles">
-        <div class="accent-circle accent-circle-1"></div>
-        <div class="accent-circle accent-circle-2"></div>
-        <div class="accent-circle accent-circle-3"></div>
-      </div>
-      
+      <!-- Orbs and Circles Disabled to remove tint -->
+      <!-- <div class="bg-orbs">...</div> -->
+      <!-- <div class="accent-circles">...</div> -->
       <!-- Video/Image Background -->
       <div class="hero__bg">
         <video *ngIf="data.backgroundVideo" 
                [src]="data.backgroundVideo" 
                autoplay muted loop playsinline 
                class="hero__video"></video>
-        <img *ngIf="!data.backgroundVideo" 
-             [src]="data.backgroundImage || 'assets/images/backgrounds/slider-1-1.jpg'" 
+        <img *ngIf="!data.backgroundVideo && data.backgroundImage" 
+             [src]="data.backgroundImage" 
              alt="" class="hero__img">
-        <div class="hero__overlay"></div>
       </div>
 
       <!-- Grid Pattern -->
@@ -54,16 +48,15 @@ import { HeroData } from '../../../core/models/types';
 
       <!-- Africa Map Background -->
       <div class="africa-map-bg">
-        <img src="assets/images/backgrounds/africa-map.png" alt="" class="africa-map-img">
+        <img src="assets/images/taj/map-bg2.jpg" alt="" class="africa-map-img">
       </div>
 
-      <!-- Africa Web Sketch Background (Light Mode) -->
-      <div class="africa-web-sketch">
-        <img src="assets/images/backgrounds/africa-web-sketch.png" alt="" class="africa-web-sketch-img">
-      </div>
+      <!-- Main Dark Overlay for Text Visibility -->
+      <div class="hero__overlay--v2"></div>
 
-      <!-- Gradient Mesh Overlay -->
-      <div class="gradient-mesh"></div>
+
+
+      <!-- No Overlay -->
 
       <!-- Floating Code Cards (Terminal Style) -->
       <div class="floating-code">
@@ -71,7 +64,7 @@ import { HeroData } from '../../../core/models/types';
           <div class="code-card__header">
             <span class="code-card__dot code-card__dot--red"></span>
             <span class="code-card__dot code-card__dot--yellow"></span>
-            <span class="code-card__dot code-card__dot--green"></span>
+            <span class="code-card__dot code-card__dot--purple"></span>
             <span class="code-card__title">terminal</span>
           </div>
           <code class="code-card__content">const <span class="code-highlight">innovation</span> = (idea) => reality;</code>
@@ -80,7 +73,7 @@ import { HeroData } from '../../../core/models/types';
           <div class="code-card__header">
             <span class="code-card__dot code-card__dot--red"></span>
             <span class="code-card__dot code-card__dot--yellow"></span>
-            <span class="code-card__dot code-card__dot--green"></span>
+            <span class="code-card__dot code-card__dot--purple"></span>
             <span class="code-card__title">app.ts</span>
           </div>
           <code class="code-card__content">await <span class="code-highlight">deploy</span>(client.vision);</code>
@@ -89,7 +82,7 @@ import { HeroData } from '../../../core/models/types';
           <div class="code-card__header">
             <span class="code-card__dot code-card__dot--red"></span>
             <span class="code-card__dot code-card__dot--yellow"></span>
-            <span class="code-card__dot code-card__dot--green"></span>
+            <span class="code-card__dot code-card__dot--purple"></span>
             <span class="code-card__title">success.js</span>
           </div>
           <code class="code-card__content"><span class="code-comment">// Building Africa's Digital Future</span></code>
@@ -157,29 +150,28 @@ import { HeroData } from '../../../core/models/types';
           <!-- Tech Badges -->
           <div class="tech-badges" *ngIf="data.layout === 'centered'">
              <div class="tech-badges__list">
-                <div class="tech-badge">
+                <div class="tech-badge taj-floating">
                    <img src="assets/images/brand/angular.png" alt="Angular">
                 </div>
-                <div class="tech-badge">
+                <div class="tech-badge taj-floating" style="animation-delay: -1s">
                    <img src="assets/images/brand/typescript.png" alt="TypeScript">
                 </div>
-                <div class="tech-badge">
+                <div class="tech-badge taj-floating" style="animation-delay: -2s">
                    <img src="assets/images/brand/node.png" alt="Node.js">
                 </div>
-                <div class="tech-badge">
+                <div class="tech-badge taj-floating" style="animation-delay: -3s">
                    <img src="assets/images/brand/python.png" alt="Python">
                 </div>
-                <div class="tech-badge">
+                <div class="tech-badge taj-floating" style="animation-delay: -4s">
                    <img src="assets/images/brand/php.png" alt="PHP">
                 </div>
-                <div class="tech-badge">
+                <div class="tech-badge taj-badge taj-floating" style="animation-delay: -5s">
                    <img src="assets/images/brand/firebase.png" alt="Firebase">
                 </div>
              </div>
           </div>
         </div>
       </div>
-    </div>
   `,
   styles: [`
     .hero {
@@ -188,28 +180,24 @@ import { HeroData } from '../../../core/models/types';
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 450px 0 100px; /* Restored original asymmetrical padding */
+      padding: 550px 20px 150px; /* Enhanced top/bottom and side padding */
       overflow: hidden;
-      
       /* Reverted background logic */
       :host-context(.theme-light) & {
-        background: #f8faff;
+        background: transparent;
       }
 
-      :host-context(.theme-light) .hero__overlay {
-        background: radial-gradient(circle at 50% 50%, rgba(248, 250, 255, 0.1) 0%, rgba(248, 250, 255, 0.95) 100%);
+      .three-canvas {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
       }
 
-      :host-context(.theme-light) .hero-subheadline { color: #475569; }
-      :host-context(.theme-light) .stat-value { color: var(--color-accent-blue); }
-      :host-context(.theme-light) .stat-label { color: #64748b; }
-      :host-context(.theme-light) .hero-stats { background: rgba(0, 102, 255, 0.03); border-color: rgba(0, 102, 255, 0.1); }
-      :host-context(.theme-light) .trusted-label { color: #64748b; }
-      :host-context(.theme-light) .trusted-logos { filter: grayscale(1) opacity(0.6); }
-      :host-context(.theme-light) .hero-tag { background: rgba(0, 102, 255, 0.08); color: var(--color-accent-blue); border-color: rgba(0, 102, 255, 0.2); }
-      :host-context(.theme-light) .tag-dot { background: var(--color-accent-blue); box-shadow: 0 0 10px rgba(0, 102, 255, 0.4); }
-      :host-context(.theme-light) .shape { opacity: 0.05; }
-      :host-context(.theme-light) .africa-web-sketch { opacity: 0.3; }
+      :host-context(.theme-light) .hero__overlay--v2 {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(2, 12, 24, 0.9) 100%);
+      }
+      :host-context(.theme-light) .africa-map-img { opacity: 0.7; }
       :host-context(.theme-light) .btn-secondary { background: #ffffff; color: var(--color-accent-blue); border-color: #e2e8f0; &:hover { background: #f8faff; } }
 
       /* Mobile Responsiveness for Padding */
@@ -224,9 +212,7 @@ import { HeroData } from '../../../core/models/types';
         .hero-actions { justify-content: flex-start; }
         .hero-stats { justify-content: flex-start; }
       }
-    }
-
-    /* Decorative Shapes */
+    }    /* Decorative Shapes */
     .hero-shapes {
       position: absolute;
       inset: 0;
@@ -296,9 +282,9 @@ import { HeroData } from '../../../core/models/types';
       filter: blur(80px);
     }
 
-    .orb-1 { width: 400px; height: 400px; background: rgba(99, 102, 241, 0.3); top: 10%; left: 15%; }
-    .orb-2 { width: 350px; height: 350px; background: rgba(0, 208, 132, 0.25); bottom: 20%; right: 10%; }
-    .orb-3 { width: 250px; height: 250px; background: rgba(59, 130, 246, 0.25); top: 50%; right: 30%; }
+    .orb-1 { width: 400px; height: 400px; background: rgba(0, 102, 255, 0.2); top: 10%; left: 15%; }
+    .orb-2 { width: 350px; height: 350px; background: rgba(0, 74, 120, 0.15); bottom: 20%; right: 10%; }
+    .orb-3 { width: 250px; height: 250px; background: rgba(0, 102, 255, 0.15); top: 50%; right: 30%; }
 
     /* Accent Circles */
     .accent-circles {
@@ -318,7 +304,7 @@ import { HeroData } from '../../../core/models/types';
     .accent-circle-1 {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
       top: -20%;
       right: -10%;
       animation-delay: 0s;
@@ -327,7 +313,7 @@ import { HeroData } from '../../../core/models/types';
     .accent-circle-2 {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(0, 208, 132, 0.2) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 74, 120, 0.1) 0%, transparent 70%);
       bottom: -15%;
       left: -5%;
       animation-delay: -3s;
@@ -336,7 +322,7 @@ import { HeroData } from '../../../core/models/types';
     .accent-circle-3 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
       top: 40%;
       left: 50%;
       transform: translateX(-50%);
@@ -347,8 +333,6 @@ import { HeroData } from '../../../core/models/types';
       0% { opacity: 0.4; transform: scale(1); }
       100% { opacity: 0.7; transform: scale(1.1); }
     }
-
-    /* Background Styles */
     .hero__bg {
       position: absolute;
       inset: 0;
@@ -361,58 +345,68 @@ import { HeroData } from '../../../core/models/types';
       object-fit: cover;
     }
 
-    .hero__overlay {
+    .hero__overlay--v2 {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(2, 12, 24, 0.4) 0%, rgba(2, 12, 24, 0.85) 100%);
-      z-index: 1;
+      background: linear-gradient(to bottom, 
+        rgba(2, 12, 24, 0.85) 0%, 
+        rgba(2, 12, 24, 0.95) 50%, 
+        rgba(2, 12, 24, 0.99) 100%
+      );
+      z-index: 5; /* Above map and background, below content */
+      pointer-events: none;
+    }
+    .bg-grid-overlay {
+      display: block;
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 102, 255, 0.05) 1px, transparent 1px);
+      background-size: 100% 3px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.3;
+      animation: scanline 10s linear infinite;
     }
 
-    /* Grid Overlay */
-    .bg-grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: 2;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 70%);
+    @keyframes scanline {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100%); }
     }
 
     /* Africa Map & Sketches */
-    .africa-map-bg, .africa-web-sketch {
+    .africa-map-bg {
       position: absolute;
       inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
       z-index: 1;
+      pointer-events: none;
       overflow: hidden;
     }
 
     .africa-map-img {
-      width: 70%;
-      opacity: 0.4;
-      mix-blend-mode: lighten;
-      filter: drop-shadow(0 0 80px rgba(99, 102, 241, 0.4));
-      animation: africa-pulse 8s ease-in-out infinite alternate;
-      :host-context(.theme-light) & { display: none; }
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1; /* Show true colors */
+      mix-blend-mode: normal;
+      filter: none;
+      animation: africa-pulse 12s ease-in-out infinite alternate;
+      
+      :host-context(.theme-light) & { 
+        opacity: 1;
+      }
     }
 
     .africa-web-sketch {
       display: none;
-      opacity: 0.6;
+      opacity: 0.8;
       :host-context(.theme-light) & { display: flex; }
     }
 
     .africa-web-sketch-img { width: 70%; filter: brightness(1.2); }
 
     @keyframes africa-pulse {
-      0% { opacity: 0.2; transform: scale(1); }
-      100% { opacity: 0.35; transform: scale(1.02); }
+      0% { opacity: 0.9; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.08); }
     }
 
     /* Floating Code Cards */
@@ -420,20 +414,22 @@ import { HeroData } from '../../../core/models/types';
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 3;
+      z-index: 15; /* Increased to stay above all overlays */
       overflow: hidden;
-      @media (max-width: 992px) { display: none; }
+      @media (max-width: 768px) { display: none; } /* Relaxed from 992px */
     }
 
     .code-card {
       position: absolute;
-      background: rgba(15, 20, 30, 0.95);
-      border: 1px solid rgba(99, 102, 241, 0.3);
+      background: var(--taj-glass-bg);
+      border: 1px solid var(--taj-glass-border);
       border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(20px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 102, 255, 0.2); /* Enhanced glow */
+      backdrop-filter: blur(12px);
       animation: float-card 12s ease-in-out infinite;
       overflow: hidden;
+      background: rgba(15, 23, 42, 0.8) !important; /* Force visibility with slightly lighter dark background */
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
 
     .code-card__header {
@@ -448,22 +444,31 @@ import { HeroData } from '../../../core/models/types';
       width: 10px; height: 10px; border-radius: 50%;
       &--red { background: #ff5f56; }
       &--yellow { background: #ffbd2e; }
-      &--green { background: #27ca40; }
+      &--purple { background: #6f42c1; }
     }
 
-    .code-card__title { margin-left: auto; font-size: 0.65rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; }
-    .code-card__content { display: block; padding: 16px 20px; font-family: monospace; font-size: 1rem; color: #e2e8f0; }
-    .code-highlight { color: #6366f1; font-weight: 700; }
-    .code-comment { color: #22c55e; font-style: italic; }
+    .code-card__title { margin-left: auto; font-size: 0.7rem; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; font-weight: 700; }
+    .code-card__content { 
+      display: block; 
+      padding: 16px 20px; 
+      font-family: 'JetBrains Mono', monospace; 
+      font-size: 1.05rem; 
+      color: #ffffff; 
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      letter-spacing: 0.02em;
+    }
+    .code-highlight { color: #00d4ff; font-weight: 800; text-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+    .code-comment { color: #64748b; font-style: italic; opacity: 0.8; }
 
-    .code-card-1 { top: 12%; left: 3%; animation-delay: 0s; }
-    .code-card-2 { top: 20%; right: 5%; animation-delay: -4s; }
-    .code-card-3 { bottom: 25%; left: 8%; animation-delay: -8s; }
+    .code-card-1 { top: 20%; left: 3%; animation-delay: 0s; }
+    .code-card-2 { top: 25%; right: 3%; animation-delay: -4s; }
+    .code-card-3 { bottom: 15%; left: 4%; animation-delay: -8s; }
 
     @keyframes float-card {
       0%, 100% { opacity: 0; transform: translateY(30px) scale(0.95); }
-      15%, 85% { opacity: 1; transform: translateY(0) scale(1); }
-      50% { opacity: 0.9; transform: translateY(-15px) scale(1.02); }
+      10%, 90% { opacity: 1; transform: translateY(0) scale(1); } /* Longer visible phase */
+      50% { opacity: 1; transform: translateY(-15px) scale(1.05); }
     }
 
     /* Content Styles */
@@ -480,52 +485,67 @@ import { HeroData } from '../../../core/models/types';
       align-items: center;
       gap: 10px;
       padding: 10px 24px;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.3);
+      background: rgba(255, 255, 255, 0.15); /* Lightened for contrast */
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 100px;
-      color: #818cf8;
+      color: #fff; /* Switched to white for best visibility */
       font-size: 0.875rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
     }
 
-    .tag-dot { width: 8px; height: 8px; background: #6366f1; border-radius: 50%; box-shadow: 0 0 10px #6366f1; }
+    .tag-dot { width: 8px; height: 8px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 10px #38bdf8; }
 
     .hero-headline {
       font-size: clamp(2.5rem, 8vw, 6rem);
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.1;
       margin-bottom: 2rem;
       letter-spacing: -0.02em;
       color: #fff;
+      font-family: var(--font-heading);
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .headline-wrapper { position: relative; display: inline-block; }
-    .placeholder-text { opacity: 0; visibility: hidden; white-space: pre-wrap; font-family: 'JetBrains Mono', 'Fira Code', monospace !important; font-weight: 800 !important; }
+    .placeholder-text { opacity: 0; visibility: hidden; white-space: pre-wrap; font-family: 'JetBrains Mono', 'Fira Code', monospace !important; font-weight: 900 !important; }
     .typewriter-container { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; }
 
     .gradient-text {
-      font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace !important;
+      font-family: var(--font-heading) !important;
       font-weight: 800 !important;
-      background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+      background: linear-gradient(to bottom, #fff 50%, #e2e8f0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
+      filter: drop-shadow(0 0 30px rgba(0, 74, 120, 0.5));
+      
+      /* Overriding light mode text to keep it white/readable on the map */
       :host-context(.theme-light) & { 
-        background: linear-gradient(135deg, #004a77 0%, #0066a5 100%); 
+        background: linear-gradient(to bottom, #fff 50%, #e2e8f0 100%); 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: none; 
+        filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.3));
       }
     }
 
     .headline-cursor { width: 3px; height: 1.1em; background: #38bdf8; display: inline-block; margin-left: 4px; animation: blink 1s step-end infinite; vertical-align: middle; }
     @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
 
-    .hero-subheadline { font-size: 1.25rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 3rem; line-height: 1.8; }
+    .hero-subheadline { 
+      font-size: 1.25rem; 
+      color: rgba(255, 255, 255, 0.9); /* Increased contrast */
+      margin-bottom: 3rem; 
+      line-height: 1.8;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      
+      :host-context(.theme-light) & {
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
     .hero-actions { 
       display: flex; 
       gap: 1.5rem; 
@@ -548,8 +568,27 @@ import { HeroData } from '../../../core/models/types';
       }
     }
 
-    .btn-primary { background: #6366f1; color: #fff; &:hover { background: #4f46e5; transform: translateY(-2px); } }
-    .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); &:hover { background: rgba(255, 255, 255, 0.1); } }
+    .btn-primary { 
+      background: #004a78 !important; 
+      color: #ffffff !important; 
+      border: 1px solid #004a78 !important;
+      &:hover { 
+        background: #003a5e !important; 
+        transform: translateY(-2px); 
+        box-shadow: 0 10px 30px rgba(0, 74, 120, 0.3); 
+      } 
+    }
+
+    .btn-secondary { 
+      background: #ffffff !important; 
+      color: #004a78 !important; 
+      border: 1px solid #ffffff !important;
+      &:hover { 
+        background: #f8faff !important; 
+        transform: translateY(-2px); 
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); 
+      } 
+    }
 
     .hero-stats {
       display: flex; justify-content: center; gap: 4rem; padding: 3rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 2rem; backdrop-filter: blur(20px);
@@ -565,18 +604,29 @@ import { HeroData } from '../../../core/models/types';
     .tech-badge img { height: 30px; }
 
     .particle-field { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
-    .particle { position: absolute; width: 4px; height: 4px; background: #6366f1; border-radius: 50%; opacity: 0; animation: particle-float 10s infinite; }
+    .particle { position: absolute; width: 4px; height: 4px; background: #004a78; border-radius: 50%; opacity: 0; animation: particle-float 10s infinite; }
     @keyframes particle-float { 
       0% { transform: translate(0, 0); opacity: 0; }
       10% { opacity: 1; }
       90% { opacity: 1; }
       100% { transform: translate(100px, -100px); opacity: 0; }
     }
+
+    .w-full { width: 100%; }
+    .mt-3 { margin-top: 0.75rem; }
   `]
 })
-export class HeroBlockComponent implements AfterViewInit, OnInit {
+export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   @Input() data!: HeroData;
   @Input() animation: boolean = true;
+
+  @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('container') containerRef!: ElementRef<HTMLElement>;
+
+  private renderer?: any;
+  private scene?: any;
+  private camera?: any;
+  private animationFrameId?: number;
 
   // Mouse parallax tracking
   private mouseX = 0;
@@ -614,6 +664,9 @@ export class HeroBlockComponent implements AfterViewInit, OnInit {
     this.initializeGradientOrbAnimations(root);
     this.initializeMagneticButtons(root);
     this.initializeMouseParallax(root);
+
+    // Futuristic 3D Background
+    this.initThreeJs();
   }
 
   /**
@@ -789,5 +842,93 @@ export class HeroBlockComponent implements AfterViewInit, OnInit {
         }
       });
     });
+  }
+
+  /**
+   * Futuristic 3D Wireframe Background (Three.js)
+   */
+  private initThreeJs() {
+    // Only load Three.js if not already present
+    if ((window as any).THREE) {
+      this.setupScene();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    script.onload = () => this.setupScene();
+    document.head.appendChild(script);
+  }
+
+  private setupScene() {
+    const THREE = (window as any).THREE;
+    if (!THREE || !this.containerRef || !this.canvasRef) return;
+
+    const width = this.containerRef.nativeElement.clientWidth;
+    const height = this.containerRef.nativeElement.clientHeight;
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    this.camera.position.z = 5;
+
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvasRef.nativeElement,
+      alpha: true,
+      antialias: true
+    });
+    this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const cubes: any[] = [];
+
+    // Create floating wireframe cubes
+    for (let i = 0; i < 15; i++) {
+      const material = new THREE.MeshBasicMaterial({
+        color: 0x004a78,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.1
+      });
+      const cube = new THREE.Mesh(geometry, material);
+      cube.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 5
+      );
+      cube.rotation.set(Math.random(), Math.random(), 0);
+      this.scene.add(cube);
+      cubes.push(cube);
+    }
+
+    const animate = () => {
+      this.animationFrameId = requestAnimationFrame(animate);
+      cubes.forEach(c => {
+        c.rotation.x += 0.002;
+        c.rotation.y += 0.002;
+      });
+      this.renderer.render(this.scene, this.camera);
+    };
+    animate();
+
+    // Handle Resize
+    window.addEventListener('resize', () => this.onResize());
+  }
+
+
+
+  private onResize() {
+    if (!this.renderer || !this.camera || !this.containerRef) return;
+    const width = this.containerRef.nativeElement.clientWidth;
+    const height = this.containerRef.nativeElement.clientHeight;
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(width, height);
+  }
+
+  ngOnDestroy() {
+    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+    window.removeEventListener('resize', () => this.onResize());
   }
 }

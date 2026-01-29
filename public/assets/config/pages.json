@@ -21,65 +21,69 @@
                         "subheadline": "Trusted by 30+ businesses across Africa. We deliver world-class software solutions, web applications, and digital transformation that scales with your ambition.",
                         "ctaButtons": [
                             {
-                                "text": "Explore Services",
+                                "text": "Our Services",
                                 "url": "/services",
                                 "style": "primary"
                             },
                             {
-                                "text": "Get in Touch",
+                                "text": "Contact Us",
                                 "url": "/contact",
                                 "style": "secondary"
                             }
                         ],
-                        "stats": [
-                            {
-                                "value": "400+",
-                                "label": "Projects Delivered"
-                            },
-                            {
-                                "value": "350+",
-                                "label": "Happy Clients"
-                            },
-                            {
-                                "value": "15+",
-                                "label": "Years Experience"
-                            }
-                        ]
+                        "backgroundImage": "",
+                        "heroImage": "assets/images/hero/team-collaboration.jpg"
                     }
                 },
                 {
+                    "type": "why-choose-us",
+                    "id": "why-choose-us-section",
+                    "data": {}
+                },
+                {
                     "type": "tech-slider",
-                    "id": "tech-stack",
-                    "animation": true
+                    "id": "home-tech-slider",
+                    "data": {}
+                },
+                {
+                    "type": "home-about",
+                    "id": "home-about-section",
+                    "data": {}
                 },
                 {
                     "type": "services",
                     "id": "our-services",
+                    "animation": true,
                     "data": {
                         "tag": "Our Services",
-                        "title": "Elite Software Solutions for Modern Businesses",
-                        "subtitle": "Discover our range of premium services designed to accelerate your digital transformation and drive business excellence."
+                        "title": "Elite Software Solutions",
+                        "subtitle": "Accelerate your digital transformation with our specialized tech stacks and industry expertise.",
+                        "limit": 6
                     }
                 },
                 {
                     "type": "portfolio",
-                    "id": "portfolio-showcase",
+                    "id": "home-portfolio-showcase",
                     "data": {
                         "tag": "Our Portfolio",
-                        "title": "Products & Systems We've Built",
-                        "subtitle": "Explore our flagship products and enterprise solutions that are transforming businesses across Africa."
+                        "title": "Innovation in Action",
+                        "subtitle": "A glimpse into how we've helped businesses across the continent evolve digitally.",
+                        "limit": 4
                     }
                 },
                 {
-                    "type": "cta-banner",
-                    "id": "main-cta",
+                    "type": "cta",
+                    "id": "cta-consultation",
                     "data": {
-                        "title": "Ready to Transform Your Business?",
-                        "subtitle": "Get started today with our expert team. From consultation to deployment, we're here to help you succeed in the digital landscape.",
-                        "primaryText": "Get Started",
-                        "primaryLink": "/contact",
-                        "secondaryText": "Contact Us",
-                        "secondaryLink": "/contact"
+                        "heading": "Ready to Transform Your Business?",
+                        "subheading": "At Taj Network Africa, technology is engineered to solve problems, scale with purpose, and drive results. Let's discuss how we can achieve your goals together.",
+                        "buttons": [
+                            {
+                                "text": "Schedule Consultation",
+                                "url": "/contact",
+                                "style": "primary"
+                            }
+                        ]
                     }
                 }
             ]
@@ -98,18 +102,99 @@
                     "type": "hero",
                     "id": "services-hero",
                     "data": {
-                        "tag": "Our Expertise",
-                        "headline": "Services That Drive Growth",
-                        "subheadline": "Full-stack solutions for modern businesses"
+                        "headline": "Our Services",
+                        "subheadline": "We Provide Best Service"
                     }
                 },
                 {
                     "type": "grid",
-                    "id": "services-accordion",
+                    "id": "services-full",
                     "data": {
-                        "title": "Service Catalog",
                         "contentRef": "services",
-                        "layout": "accordion"
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "about",
+            "title": "About | Taj Network Africa",
+            "slug": "about",
+            "route": "/about",
+            "meta": {
+                "description": "About Taj Network Africa - Building Software Solutions Since 2010",
+                "keywords": "about us, software company, Africa tech"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "about-hero",
+                    "data": {
+                        "headline": "About Us",
+                        "subheadline": "Building Software Solutions That Stand the Test of Time"
+                    }
+                },
+                {
+                    "type": "about-founder",
+                    "id": "about-founder",
+                    "data": {}
+                },
+                {
+                    "type": "content",
+                    "id": "about-content",
+                    "data": {
+                        "contentRef": "aboutContent"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "training",
+            "title": "Training | Taj Network Africa",
+            "slug": "training",
+            "route": "/training",
+            "meta": {
+                "description": "Professional training courses in software development and digital skills",
+                "keywords": "training, courses, mentorship, frontend, backend, UI/UX"
+            },
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "training-hero",
+                    "data": {
+                        "headline": "Training Programs",
+                        "subheadline": "Empowering aspiring tech professionals with expert guidance"
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "training-courses",
+                    "data": {
+                        "contentRef": "trainingCourses",
+                        "columns": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "blog",
+            "title": "Blog | Taj Network Africa",
+            "slug": "blog",
+            "route": "/blog",
+            "sections": [
+                {
+                    "type": "hero",
+                    "id": "blog-hero",
+                    "data": {
+                        "headline": "Resources & Insights"
+                    }
+                },
+                {
+                    "type": "grid",
+                    "id": "blog-posts",
+                    "data": {
+                        "contentRef": "blogPosts",
+                        "columns": 3
                     }
                 }
             ]
@@ -124,20 +209,16 @@
                     "type": "hero",
                     "id": "contact-hero",
                     "data": {
-                        "tag": "Let's Connect",
-                        "headline": "Start a Conversation",
-                        "subheadline": "Tell us about your project and we'll get back to you within 24 hours"
+                        "headline": "Get In Touch",
+                        "subheadline": "Let's Build Your Digital Future Together"
                     }
                 },
                 {
                     "type": "form",
                     "id": "contact-form",
                     "data": {
-                        "title": "Send a Message",
-                        "description": "Fill out the form below and our team will be in touch shortly.",
                         "formRef": "contactForm",
-                        "submitText": "Send Proposal",
-                        "successMessage": "Message received! We will contact you shortly."
+                        "columns": 2
                     }
                 }
             ]
@@ -147,177 +228,223 @@
         "services": [
             {
                 "id": "1",
-                "title": "CRM & ERP Solutions",
-                "category": "Enterprise",
-                "description": "Streamline your business operations with custom CRM and ERP systems tailored to your workflow.",
+                "title": "CRM & ERP Implementation",
+                "description": "Optimize your business operations with our CRM & ERP solutions.",
                 "image": "assets/images/taj/service-details/erp2.jpg",
-                "icon": "fa-solid fa-chart-line",
-                "featured": true,
-                "url": "/service-detail/1",
-                "tags": [
-                    "SAP",
-                    "Custom ERP",
-                    "Workflow"
-                ]
+                "url": "/service-detail/1"
             },
             {
                 "id": "2",
-                "title": "AI Chatbots",
-                "category": "Artificial Intelligence",
-                "description": "Intelligent conversational AI that enhances customer engagement 24/7.",
+                "title": "Chatbot Development",
+                "description": "Enhance customer engagement with responsive chatbots.",
                 "image": "assets/images/taj/service-details/chatbot.jpg",
-                "icon": "fa-solid fa-robot",
-                "featured": true,
-                "url": "/service-detail/2",
-                "tags": [
-                    "NLP",
-                    "GPT-4",
-                    "Automation"
-                ]
+                "url": "/service-detail/2"
             },
             {
                 "id": "3",
-                "title": "Custom Software",
-                "category": "Development",
-                "description": "Bespoke software solutions engineered for your unique business challenges.",
+                "title": "Software Development",
+                "description": "Custom software designed for your unique business needs.",
                 "image": "assets/images/taj/service-details/SD2.jpg",
-                "icon": "fa-solid fa-code",
-                "featured": true,
-                "url": "/service-detail/3",
-                "tags": [
-                    "Angular",
-                    "Node.js",
-                    "Scale"
-                ]
+                "url": "/service-detail/3"
             },
             {
                 "id": "4",
-                "title": "Tech Mentorship",
-                "category": "Consulting",
-                "description": "Accelerate your career with personalized guidance from industry experts.",
+                "title": "Mentorship Program",
+                "description": "Empowering aspiring tech professionals with expert guidance.",
                 "image": "assets/images/taj/service-details/mentorship2.jpg",
-                "icon": "fa-solid fa-users-gear",
-                "url": "/service-detail/4",
-                "tags": [
-                    "Coaching",
-                    "Career",
-                    "Skills"
-                ]
+                "url": "/service-detail/4"
             },
             {
                 "id": "5",
-                "title": "Web Development",
-                "category": "Development",
-                "description": "Modern, responsive websites that deliver exceptional user experiences.",
+                "title": "Website Development",
+                "description": "Create stunning websites that elevate your brand.",
                 "image": "assets/images/taj/service-details/web-development2.jpg",
-                "icon": "fa-solid fa-laptop-code",
-                "url": "/service-detail/5",
-                "tags": [
-                    "React",
-                    "UI/UX",
-                    "Responsive"
-                ]
+                "url": "/service-detail/5"
             },
             {
                 "id": "6",
-                "title": "IT Consulting",
-                "category": "Consulting",
-                "description": "Strategic technology guidance to drive your digital transformation.",
+                "title": "IT Consultancy",
+                "description": "Strategic guidance for digital transformation.",
                 "image": "assets/images/taj/service-details/Consultancy2.jpg",
-                "icon": "fa-solid fa-handshake-angle",
-                "url": "/service-detail/6",
-                "tags": [
-                    "Strategy",
-                    "Transformation",
-                    "Audit"
-                ]
+                "url": "/service-detail/6"
+            },
+            {
+                "id": "7",
+                "title": "SEO Optimization",
+                "description": "Boost your online visibility and traffic.",
+                "image": "assets/images/taj/service-details/seo2.jpg",
+                "url": "/service-detail/7"
+            },
+            {
+                "id": "8",
+                "title": "Data Analysis & Insights",
+                "description": "Unlock actionable insights from your data.",
+                "image": "assets/images/taj/service-details/Data_Analytics2.jpg",
+                "url": "/service-detail/8"
+            },
+            {
+                "id": "9",
+                "title": "Cyber Security",
+                "description": "Protect your assets with robust cybersecurity solutions.",
+                "image": "assets/images/taj/service-details/Cybersecurity2.jpg",
+                "url": "/service-detail/9"
+            },
+            {
+                "id": "10",
+                "title": "Mobile App Development",
+                "description": "Develop intuitive mobile apps for any platform.",
+                "image": "assets/images/taj/service-details/mobile2.jpg",
+                "url": "/service-detail/10"
+            },
+            {
+                "id": "11",
+                "title": "Web App Development",
+                "description": "Web apps built for performance and scalability.",
+                "image": "assets/images/taj/service-details/web2.jpg",
+                "url": "/service-detail/11"
+            },
+            {
+                "id": "12",
+                "title": "Digital Marketing",
+                "description": "Reach your audience with effective marketing strategies.",
+                "image": "assets/images/taj/service-details/digital2.jpg",
+                "url": "/service-detail/12"
+            }
+        ],
+        "trainingCourses": [
+            {
+                "id": "1",
+                "title": "Frontend Development",
+                "description": "Crafting visually appealing and responsive websites.",
+                "image": "assets/images/courses/frontend.jpg",
+                "url": "/training-detail/1"
+            },
+            {
+                "id": "2",
+                "title": "Backend Development",
+                "description": "Building robust server-side applications.",
+                "image": "assets/images/courses/backend.jpg",
+                "url": "/training-detail/2"
+            },
+            {
+                "id": "3",
+                "title": "UI/UX Design",
+                "description": "Designing intuitive, user-friendly interfaces.",
+                "image": "assets/images/courses/uiux.jpg",
+                "url": "/training-detail/3"
+            },
+            {
+                "id": "4",
+                "title": "Data Science",
+                "description": "Analyzing complex data for smarter decisions.",
+                "image": "assets/images/courses/data-science.jpg",
+                "url": "/training-detail/4"
+            },
+            {
+                "id": "5",
+                "title": "Cyber Security",
+                "description": "Protecting digital assets against threats.",
+                "image": "assets/images/courses/cyber-security.jpg",
+                "url": "/training-detail/5"
+            },
+            {
+                "id": "6",
+                "title": "Digital Marketing",
+                "description": "Grow brand presence and drive conversions.",
+                "image": "assets/images/courses/digital-marketing.jpg",
+                "url": "/training-detail/6"
             }
         ],
         "blogPosts": [
             {
                 "id": "1",
-                "title": "The Future of AI in Business",
-                "category": "Tech Trends",
-                "excerpt": "How artificial intelligence is reshaping enterprise software in 2026.",
-                "author": "Taj Network",
+                "title": "Meta's AI Research Lab Introduces Revolutionary Image Generation Model",
+                "description": "Meta unveils advanced AI model.",
+                "author": "TechCrunch",
                 "image": "assets/images/blog/meta.jpg",
-                "url": "/blog-detail/1",
-                "tags": [
-                    "AI",
-                    "Enterprise",
-                    "2026"
-                ]
+                "url": "/blog-detail/1"
             },
             {
                 "id": "2",
-                "title": "Building Scalable Systems",
-                "category": "Architecture",
-                "excerpt": "Architecture patterns for growing applications in a cloud-native world.",
-                "author": "Taj Network",
+                "title": "European AI Specialist Helsing Unveils First Attack Drone",
+                "description": "Helsing launches new AI drone.",
+                "author": "Financial Times",
                 "image": "assets/images/blog/drone.jpg",
-                "url": "/blog-detail/2",
-                "tags": [
-                    "Scale",
-                    "Cloud",
-                    "Microservices"
-                ]
+                "url": "/blog-detail/2"
             },
             {
                 "id": "3",
-                "title": "Cybersecurity Best Practices",
-                "category": "Security",
-                "excerpt": "Protecting your digital assets against evolving threats.",
-                "author": "Taj Network",
+                "title": "Amazon Cyber Monday is Here",
+                "description": "Amazon Cyber Monday sales soar.",
+                "author": "New York Post",
                 "image": "assets/images/blog/amazon.jpg",
-                "url": "/blog-detail/3",
-                "tags": [
-                    "Security",
-                    "Deepfake Defense",
-                    "Zero Trust"
-                ]
+                "url": "/blog-detail/3"
             }
         ],
+        "aboutContent": {
+            "headline": "Building Software Solutions That Stand the Test of Time",
+            "since": "2010",
+            "vision": "To become a leader in software development, known for quality, innovation, speed, optimization, and user-centric designs.",
+            "mission": "To develop cutting-edge software solutions that solve complex problems and add value to our client's business goal and their customers.",
+            "stats": [
+                {
+                    "value": "20+",
+                    "label": "Active Projects"
+                },
+                {
+                    "value": "30+",
+                    "label": "Active Clients"
+                },
+                {
+                    "value": "10+",
+                    "label": "Partners"
+                },
+                {
+                    "value": "100+",
+                    "label": "Projects Delivered"
+                }
+            ]
+        },
         "forms": {
-            "contactForm": {
-                "fields": [
-                    {
-                        "name": "fullName",
-                        "type": "text",
-                        "label": "Full Name",
-                        "placeholder": "John Doe",
-                        "required": true,
-                        "width": "half"
-                    },
-                    {
-                        "name": "email",
-                        "type": "email",
-                        "label": "Email",
-                        "placeholder": "john@company.com",
-                        "required": true,
-                        "width": "half"
-                    },
-                    {
-                        "name": "service",
-                        "type": "select",
-                        "label": "Interest",
-                        "options": [
-                            "Software Design",
-                            "Tech Mentorship",
-                            "AI Solutions",
-                            "Other"
-                        ],
-                        "width": "full"
-                    },
-                    {
-                        "name": "message",
-                        "type": "textarea",
-                        "label": "Message",
-                        "placeholder": "Briefly describe your project...",
-                        "rows": 5,
-                        "width": "full"
-                    }
-                ]
-            }
+            "contactForm": [
+                {
+                    "name": "fullName",
+                    "type": "text",
+                    "label": "Full Name",
+                    "placeholder": "Your name",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "label": "Email",
+                    "required": true
+                },
+                {
+                    "name": "phone",
+                    "type": "text",
+                    "label": "Phone Number"
+                },
+                {
+                    "name": "service",
+                    "type": "select",
+                    "label": "Service Interested In",
+                    "options": [
+                        "CRM & ERP",
+                        "Software Development",
+                        "Web Development",
+                        "IT Consultancy",
+                        "Cyber Security",
+                        "Training"
+                    ]
+                },
+                {
+                    "name": "message",
+                    "type": "textarea",
+                    "label": "Message",
+                    "rows": 5
+                }
+            ]
         }
     }
 }

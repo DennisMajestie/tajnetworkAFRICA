@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     <main class="status-page">
       <div class="status-bg">
         <div class="glow-orb"></div>
-        <div class="grid-overlay"></div>
+
       </div>
 
       <div class="container--narrow">
@@ -63,14 +63,7 @@ import { RouterModule } from '@angular/router';
         filter: blur(100px);
       }
 
-      .grid-overlay {
-        position: absolute;
-        inset: 0;
-        background-image: 
-          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
-      }
+
     }
 
     .container--narrow {
@@ -187,8 +180,6 @@ import { RouterModule } from '@angular/router';
     :host-context(.theme-light) .status-page { background: #f8faff !important; color: #0c152a !important; }
     :host-context(.theme-light) .status-bg {
       .glow-orb { background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%); }
-      .grid-overlay { background-image: linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-                                      linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px); }
     }
     :host-context(.theme-light) .status-title { color: #0c152a !important; }
     :host-context(.theme-light) .status-desc { color: #475569 !important; }

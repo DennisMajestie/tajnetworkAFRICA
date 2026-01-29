@@ -9,7 +9,7 @@ import { ServicesIntroComponent } from '../../shared/components/services-intro/s
   standalone: true,
   imports: [CommonModule, RouterModule, RouterLink, ServicesIntroComponent],
   templateUrl: './training-detail.component.html',
-  styleUrl: './training-detail.component.scss'
+  styleUrls: ['./training-detail.component.scss']
 })
 export class TrainingDetailComponent {
 

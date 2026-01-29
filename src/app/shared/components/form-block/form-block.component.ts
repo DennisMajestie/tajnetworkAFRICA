@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormConfig, FormField } from '../../../core/models/types';
 import { ContentService } from '../../../core/services/content.service';
 import { take } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-block',
@@ -175,7 +177,8 @@ export class FormBlockComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private contentService: ContentService
+    private contentService: ContentService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -224,12 +227,30 @@ export class FormBlockComponent implements OnInit {
       this.submitting = true;
       this.submitError = false;
       this.submitSuccess = false;
+      console.log('Dynamic Form Payload:', this.dynamicForm.value);
 
       setTimeout(() => {
         this.submitting = false;
-        this.submitSuccess = true;
+
+        Swal.fire({
+          title: 'Message Sent!',
+          text: (this.data.successMessage || 'Thank you! Your message has been received.') + ' Redirecting to home...',
+          icon: 'success',
+          background: '#ffffff',
+          confirmButtonColor: '#004a78',
+          customClass: {
+            popup: 'swal-taj-popup',
+            title: 'swal-taj-title'
+          },
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          willClose: () => {
+            this.router.navigate(['/']);
+          }
+        });
+
         this.dynamicForm.reset();
-        setTimeout(() => this.submitSuccess = false, 5000);
       }, 2000);
     } else {
       this.dynamicForm.markAllAsTouched();

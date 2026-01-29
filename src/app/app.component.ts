@@ -7,16 +7,20 @@ import { PreloaderComponent } from './shared/components/preloader/preloader.comp
 import { ModernFooterComponent } from './shared/components/modern-footer/modern-footer.component';
 import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 import { CustomCursorComponent } from './shared/components/custom-cursor/custom-cursor.component';
+import { BrandBackgroundComponent } from './shared/components/brand-background/brand-background.component';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, PreloaderComponent, ModernFooterComponent, BackToTopComponent, CustomCursorComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, PreloaderComponent, ModernFooterComponent, BackToTopComponent, CustomCursorComponent, BrandBackgroundComponent],
   template: `
+    <!-- Global Brand Background Elements (PDF Style) -->
+    <app-brand-background></app-brand-background>
+ 
     <!-- Premium Magnetic Cursor -->
     <taj-custom-cursor></taj-custom-cursor>
-
+    
     <!-- Radial Data Flow Preloader -->
     <app-preloader
       *ngIf="showPreloader"
@@ -40,13 +44,6 @@ import { filter } from 'rxjs';
 
       <!-- Go Back Top -->
       <app-back-to-top></app-back-to-top>
-
-      <!-- Global Background Elements -->
-      <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-      </div>
     </div>
   `,
   styles: [`
@@ -67,8 +64,7 @@ import { filter } from 'rxjs';
     .main-content {
       min-height: calc(100vh - 80px);
     }
-  `],
-  styleUrl: './app.component.scss'
+  `]
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'tajAfrica';
@@ -99,6 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+
   onPreloaderComplete(): void {
     this.showPreloader = false;
 
@@ -106,13 +103,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.isBrowser) {
       // Mark body as fully loaded - triggers visibility
       document.body.classList.add('app-loaded');
-
-      // Remove the fallback backdrop from index.html
-      const backdrop = document.querySelector('.preloader-backdrop');
-      if (backdrop) {
-        backdrop.classList.add('fade-out');
-        setTimeout(() => backdrop.remove(), 800);
-      }
     }
   }
 

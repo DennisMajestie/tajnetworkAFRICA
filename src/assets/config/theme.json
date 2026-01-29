@@ -1,20 +1,20 @@
 {
     "colors": {
         "primary": {
-            "dark": "#0f1419",
-            "light": "#1a1f2e"
+            "dark": "#E1E8F4",
+            "light": "#F0F4FA"
         },
         "accent": {
             "emerald": "#00d084",
             "gold": "#d4a574",
-            "blue": "#0066ff",
+            "blue": "#004a78",
             "purple": "#6f42c1"
         },
         "neutral": {
             "white": "#ffffff",
-            "lightGray": "#f5f7fa",
-            "mediumGray": "#d0d5dd",
-            "darkGray": "#6b7280"
+            "lightGray": "#E1E8F4",
+            "mediumGray": "#475569",
+            "darkGray": "#1e293b"
         }
     },
     "typography": {

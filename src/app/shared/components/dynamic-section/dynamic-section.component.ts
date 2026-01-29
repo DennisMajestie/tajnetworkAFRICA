@@ -10,6 +10,13 @@ import { TechSliderComponent } from '../tech-slider/tech-slider.component';
 import { ServicesGridComponent } from '../services-grid/services-grid.component';
 import { PortfolioShowcaseComponent } from '../portfolio-showcase/portfolio-showcase.component';
 import { CtaBannerComponent } from '../cta-banner/cta-banner.component';
+import { AboutHistoryComponent } from '../about-history/about-history.component';
+import { AboutValuesComponent } from '../about-values/about-values.component';
+import { AboutStatsComponent } from '../about-stats/about-stats.component';
+import { AboutFounderComponent } from '../about-founder/about-founder.component';
+import { TeamSectionComponent } from '../team-section/team-section.component';
+import { WhyChooseUsComponent } from '../why-choose-us/why-choose-us.component';
+import { HomeAboutSectionComponent } from '../home-about-section/home-about-section.component';
 import { ContentService } from '../../../core/services/content.service';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,7 +24,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-dynamic-section',
   standalone: true,
-  imports: [CommonModule, HeroBlockComponent, DynamicGridComponent, CtaBlockComponent, FormBlockComponent, TestimonialBlockComponent, TechSliderComponent, ServicesGridComponent, PortfolioShowcaseComponent, CtaBannerComponent],
+  imports: [CommonModule, HeroBlockComponent, DynamicGridComponent, CtaBlockComponent, FormBlockComponent, TestimonialBlockComponent, TechSliderComponent, ServicesGridComponent, PortfolioShowcaseComponent, CtaBannerComponent, AboutHistoryComponent, AboutValuesComponent, AboutStatsComponent, AboutFounderComponent, TeamSectionComponent, WhyChooseUsComponent, HomeAboutSectionComponent],
   template: `
     <section [id]="section.id" 
              [class]="'section section--' + section.type"
@@ -55,6 +62,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
                              [tag]="section.data['tag']"
                              [title]="section.data['title']"
                              [subtitle]="section.data['subtitle']"
+                             [limit]="section.data['limit']"
                              [services]="servicesData">
           </app-services-grid>
 
@@ -62,9 +70,29 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
                                   [tag]="section.data['tag']"
                                   [title]="section.data['title']"
                                   [subtitle]="section.data['subtitle']"
-                                  [limit]="3">
+                                  [limit]="section.data['limit'] || 6">
           </app-portfolio-showcase>
 
+          <app-about-history *ngSwitchCase="'about-history'">
+          </app-about-history>
+
+          <app-about-values *ngSwitchCase="'about-values'">
+          </app-about-values>
+
+          <app-about-stats *ngSwitchCase="'about-stats'">
+          </app-about-stats>
+
+          <app-about-founder *ngSwitchCase="'about-founder'">
+          </app-about-founder>
+
+          <app-team-section *ngSwitchCase="'team'">
+          </app-team-section>
+
+          <app-why-choose-us *ngSwitchCase="'why-choose-us'">
+          </app-why-choose-us>
+
+          <app-home-about-section *ngSwitchCase="'home-about'">
+          </app-home-about-section>
 
           <app-cta-banner *ngSwitchCase="'cta-banner'"
                           [title]="section.data['title']"
@@ -79,10 +107,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     </section>
   `,
   styles: [`
-    :host-context(.theme-light) { 
-      padding: 100px 0;
-      background: var(--bg-light-gradient) !important;
-    }
+    // :host-context(.theme-light) .section:not(.section--hero) { 
+    //   padding: 100px 0;
+    //   background: var(--bg-light-gradient);
+    // }
     .section { width: 100%; position: relative; }
     .section-motion-reveal { width: 100%; }
   `]

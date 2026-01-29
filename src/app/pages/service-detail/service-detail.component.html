@@ -91,8 +91,8 @@
                             <div class="help-card">
                                 <span class="help-tag">Ready to start?</span>
                                 <h3>Let's build something great together.</h3>
-                                <a href="tel:{{tel}}" class="help-action">
-                                    <i class="fas fa-phone-alt"></i> Get in touch
+                                <a [routerLink]="['/register']" [queryParams]="{course: serviceId}" class="help-action">
+                                    <i class="fas fa-envelope"></i> Enroll in Program
                                 </a>
                             </div>
                         </div>

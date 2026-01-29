@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-registration-not-found',
-    standalone: true,
-    imports: [CommonModule, RouterModule],
-    template: `
+  selector: 'app-registration-not-found',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  template: `
     <main class="status-page">
       <div class="status-bg">
         <div class="glow-orb"></div>
-        <div class="grid-overlay"></div>
+
       </div>
 
       <div class="container--narrow">
@@ -42,7 +42,7 @@ import { RouterModule } from '@angular/router';
       </div>
     </main>
   `,
-    styles: [`
+  styles: [`
     .status-page {
       min-height: 100vh;
       display: flex;
@@ -67,15 +67,7 @@ import { RouterModule } from '@angular/router';
         transform: translate(-50%, -50%);
         filter: blur(80px);
       }
-      .grid-overlay {
-        position: absolute;
-        inset: 0;
-        background-image: 
-          linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-        background-size: 50px 50px;
-        mask-image: radial-gradient(circle at center, black, transparent 80%);
-      }
+
     }
 
     .status-content {
@@ -191,7 +183,7 @@ import { RouterModule } from '@angular/router';
     /* Light Mode Overrides */
     :host-context(.theme-light) .status-page { background: #f8faff; color: #0c152a; }
     :host-context(.theme-light) .status-bg .glow-orb { background: radial-gradient(circle, rgba(239, 68, 68, 0.05) 0%, transparent 70%); }
-    :host-context(.theme-light) .status-bg .grid-overlay { background-image: linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px); }
+
     :host-context(.theme-light) .status-title { color: #0c152a; }
     :host-context(.theme-light) .status-desc { color: #475569; }
     :host-context(.theme-light) .info-card { background: #fff; border-color: rgba(0, 0, 0, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); span { color: #0c152a; } }

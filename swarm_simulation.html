@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refined Swarm Simulation | TAJ Creative Tech</title>
+    <style>
+        :root {
+            --bg-indigo: #030a12;
+            --cyan-glow: #00d2ff;
+            --emerald-glow: #00ffaa;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-indigo);
+            font-family: 'Outfit', -apple-system, system-ui, sans-serif;
+        }
+
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #ui {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: white;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            margin: 0;
+            text-transform: uppercase;
+            color: var(--cyan-glow);
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .stats {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-top: 10px;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ui">
+        <h1>Refined Swarm</h1>
+        <div class="stats" id="stats">Agents: 500 | FPS: --</div>
+    </div>
+    <canvas id="swarmCanvas"></canvas>
+
+    <script>
+        /**
+         * @file Refined Swarm Simulation
+         * @author Antigravity (Elite Creative Technologist)
+         * @description High-performance emergent behavior simulation using 
+         * Spatial Hash Grid optimization and Reynolds Steering Behaviors.
+         */
+
+        // --- Vector Math Implementation ---
+        class vec2 {
+            constructor(x = 0, y = 0) {
+                this.x = x;
+                this.y = y;
+            }
+
+            static add(v1, v2) { return new vec2(v1.x + v2.x, v1.y + v2.y); }
+            static sub(v1, v2) { return new vec2(v1.x - v2.x, v1.y - v2.y); }
+            static mul(v, n) { return new vec2(v.x * n, v.y * n); }
+            static div(v, n) { return n !== 0 ? new vec2(v.x / n, v.y / n) : new vec2(); }
+
+            add(v) { this.x += v.x; this.y += v.y; return this; }
+            sub(v) { this.x -= v.x; this.y -= v.y; return this; }
+            mul(n) { this.x *= n; this.y *= n; return this; }
+            div(n) { if (n !== 0) { this.x /= n; this.y /= n; } return this; }
+
+            magSq() { return this.x * this.x + this.y * this.y; }
+            mag() { return Math.sqrt(this.magSq()); }
+
+            setMag(n) {
+                this.normalize();
+                this.mul(n);
+                return this;
+            }
+
+            normalize() {
+                const m = this.mag();
+                if (m !== 0) this.div(m);
+                return this;
+            }
+
+            limit(max) {
+                const mSq = this.magSq();
+                if (mSq > max * max) {
+                    this.normalize();
+                    this.mul(max);
+                }
+                return this;
+            }
+
+            distSq(v) {
+                const dx = this.x - v.x;
+                const dy = this.y - v.y;
+                return dx * dx + dy * dy;
+            }
+
+            heading() {
+                return Math.atan2(this.y, this.x);
+            }
+
+            copy() {
+                return new vec2(this.x, this.y);
+            }
+        }
+
+        // --- Perlin Noise (Simplified 2D) ---
+        const Noise = {
+            perm: new Uint8Array(512),
+            gradP: new Float64Array(512),
+            init() {
+                const p = new Uint8Array(256);
+                for (let i = 0; i < 256; i++) p[i] = i;
+                for (let i = 255; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [p[i], p[j]] = [p[j], p[i]];
+                }
+                for (let i = 0; i < 512; i++) {
+                    this.perm[i] = p[i & 255];
+                    this.gradP[i] = Math.random() * Math.PI * 2;
+                }
+            },
+            fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); },
+            lerp(a, b, t) { return a + t * (b - a); },
+            gen(x, y) {
+                const X = Math.floor(x) & 255;
+                const Y = Math.floor(y) & 255;
+                x -= Math.floor(x);
+                y -= Math.floor(y);
+                const u = this.fade(x);
+                const v = this.fade(y);
+                const n00 = Math.sin(this.gradP[this.perm[X] + Y]) * x + Math.cos(this.gradP[this.perm[X] + Y]) * y;
+                const n10 = Math.sin(this.gradP[this.perm[X + 1] + Y]) * (x - 1) + Math.cos(this.gradP[this.perm[X + 1] + Y]) * y;
+                const n01 = Math.sin(this.gradP[this.perm[X] + Y + 1]) * x + Math.cos(this.gradP[this.perm[X] + Y + 1]) * (y - 1);
+                const n11 = Math.sin(this.gradP[this.perm[X + 1] + Y + 1]) * (x - 1) + Math.cos(this.gradP[this.perm[X + 1] + Y + 1]) * (y - 1);
+                return this.lerp(this.lerp(n00, n10, u), this.lerp(n01, n11, u), v);
+            }
+        };
+        Noise.init();
+
+        // --- Spatial Hash Grid for Optimization ---
+        class SpatialHash {
+            constructor(width, height, cellSize) {
+                this.cellSize = cellSize;
+                this.cols = Math.ceil(width / cellSize);
+                this.rows = Math.ceil(height / cellSize);
+                this.grid = new Map();
+            }
+
+            clear() {
+                this.grid.clear();
+            }
+
+            _key(x, y) {
+                const gx = Math.floor(x / this.cellSize);
+                const gy = Math.floor(y / this.cellSize);
+                return `${gx},${gy}`;
+            }
+
+            insert(agent) {
+                const key = this._key(agent.pos.x, agent.pos.y);
+                if (!this.grid.has(key)) this.grid.set(key, []);
+                this.grid.get(key).push(agent);
+            }
+
+            query(x, y, radius) {
+                const agents = [];
+                const xMin = Math.floor((x - radius) / this.cellSize);
+                const yMin = Math.floor((y - radius) / this.cellSize);
+                const xMax = Math.floor((x + radius) / this.cellSize);
+                const yMax = Math.floor((y + radius) / this.cellSize);
+
+                for (let i = xMin; i <= xMax; i++) {
+                    for (let j = yMin; j <= yMax; j++) {
+                        const cellAgents = this.grid.get(`${i},${j}`);
+                        if (cellAgents) agents.push(...cellAgents);
+                    }
+                }
+                return agents;
+            }
+        }
+
+        // --- Agent (Boid) Implementation ---
+        class Agent {
+            constructor(x, y) {
+                this.pos = new vec2(x, y);
+                this.vel = new vec2(Math.random() * 2 - 1, Math.random() * 2 - 1);
+                this.acc = new vec2();
+
+                // Physical Properties
+                this.maxSpeed = 2.5 + Math.random() * 1.5;
+                this.maxForce = 0.15;
+                this.mass = 1.0;
+                this.perceptionRadius = 80;
+
+                // Visual Properties
+                this.hue = Math.random() > 0.5 ? 180 : 160; // Cyan vs Emerald
+                this.size = 2 + Math.random() * 2;
+            }
+
+            applyForce(force) {
+                const f = vec2.div(force, this.mass);
+                this.acc.add(f);
+            }
+
+            /**
+             * SEPARATION LOGIC EXPLANATION
+             * The goal is to avoid overcrowding.
+             * 1. Iterate through neighbors within perception radius.
+             * 2. Calculate a vector pointing AWAY from the neighbor (self - neighbor).
+             * 3. Scale that vector inversely by distance (closer = stronger push).
+             * 4. Average these "push" vectors.
+             * 5. Apply Steering: Desired Velocity (Average Push) - Current Velocity.
+             */
+            flock(neighbors) {
+                let sep = new vec2();
+                let ali = new vec2();
+                let coh = new vec2();
+                let total = 0;
+
+                const rSq = this.perceptionRadius * this.perceptionRadius;
+                const sepRadius = 40;
+                const sepRSq = sepRadius * sepRadius;
+
+                for (let other of neighbors) {
+                    if (other === this) continue;
+                    const dSq = this.pos.distSq(other.pos);
+
+                    if (dSq < rSq) {
+                        // Separation (Push away)
+                        if (dSq < sepRSq && dSq > 0) {
+                            const diff = vec2.sub(this.pos, other.pos);
+                            diff.div(dSq); // Weight by inverse square distance
+                            sep.add(diff);
+                        }
+
+                        // Alignment (Match velocity)
+                        ali.add(other.vel);
+
+                        // Cohesion (Move toward center)
+                        coh.add(other.pos);
+
+                        total++;
+                    }
+                }
+
+                if (total > 0) {
+                    sep.div(total).setMag(this.maxSpeed).sub(this.vel).limit(this.maxForce);
+                    ali.div(total).setMag(this.maxSpeed).sub(this.vel).limit(this.maxForce);
+                    coh.div(total).sub(this.pos).setMag(this.maxSpeed).sub(this.vel).limit(this.maxForce);
+
+                    this.applyForce(vec2.mul(sep, 1.8));
+                    this.applyForce(vec2.mul(ali, 1.0));
+                    this.applyForce(vec2.mul(coh, 1.0));
+                }
+
+                // Turbulence (Perlin Noise)
+                const noiseScale = 0.005;
+                const angle = Noise.gen(this.pos.x * noiseScale, this.pos.y * noiseScale) * Math.PI * 4;
+                const turbulence = new vec2(Math.cos(angle), Math.sin(angle));
+                turbulence.mul(0.12);
+                this.applyForce(turbulence);
+            }
+
+            update() {
+                this.vel.add(this.acc);
+                this.vel.limit(this.maxSpeed);
+                this.pos.add(this.vel);
+                this.acc.mul(0);
+
+                // Screen Wrap
+                if (this.pos.x < 0) this.pos.x = window.innerWidth;
+                if (this.pos.x > window.innerWidth) this.pos.x = 0;
+                if (this.pos.y < 0) this.pos.y = window.innerHeight;
+                if (this.pos.y > window.innerHeight) this.pos.y = 0;
+            }
+
+            draw(ctx) {
+                const h = this.vel.heading();
+                ctx.save();
+                ctx.translate(this.pos.x, this.pos.y);
+                ctx.rotate(h);
+
+                // Agent Body (Elongated Triangle)
+                ctx.beginPath();
+                ctx.moveTo(this.size * 2, 0);
+                ctx.lineTo(-this.size, this.size / 1.5);
+                ctx.lineTo(-this.size, -this.size / 1.5);
+                ctx.closePath();
+
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, 0.8)`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `hsla(${this.hue}, 100%, 50%, 0.6)`;
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // --- Simulation Core ---
+        const canvas = document.getElementById('swarmCanvas');
+        const ctx = canvas.getContext('2d', { alpha: false });
+        const statsEl = document.getElementById('stats');
+
+        let agents = [];
+        let spatialHash;
+        const agentCount = 500;
+        const cellSize = 100;
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            spatialHash = new SpatialHash(canvas.width, canvas.height, cellSize);
+
+            agents = [];
+            for (let i = 0; i < agentCount; i++) {
+                agents.push(new Agent(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        window.addEventListener('resize', init);
+        init();
+
+        let lastTime = 0;
+        function animate(time) {
+            const dt = time - lastTime;
+            lastTime = time;
+            const fps = Math.round(1000 / dt);
+            statsEl.innerText = `Agents: ${agentCount} | FPS: ${fps || '--'}`;
+
+            // Clear with fade trail effect
+            ctx.fillStyle = 'rgba(3, 10, 18, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Update Spatial Hash
+            spatialHash.clear();
+            for (let agent of agents) {
+                spatialHash.insert(agent);
+            }
+
+            // Update & Draw Agents
+            for (let agent of agents) {
+                const neighbors = spatialHash.query(agent.pos.x, agent.pos.y, agent.perceptionRadius);
+                agent.flock(neighbors);
+                agent.update();
+                agent.draw(ctx);
+            }
+
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+
+    </script>
+</body>
+
+</html>

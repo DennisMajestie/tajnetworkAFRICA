@@ -193,7 +193,7 @@ main.main-content {
   --color-primary-dark: #0f1419;
   --color-primary-light: #1a1f2e;
 
-  --color-accent-emerald: #00d084;
+  --color-accent-emerald: #004a78;
   --color-accent-gold: #d4a574;
   --color-accent-blue: #0066ff;
   --color-accent-purple: #6f42c1;
@@ -205,9 +205,9 @@ main.main-content {
   --color-neutral-darkGray: #6b7280;
 
   /* Typography */
-  --font-heading: "Space Grotesk", "Poppins", sans-serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-heading: "Outfit", "Poppins", sans-serif;
+  --font-body: "Outfit", "Segoe UI", sans-serif;
+  --font-display: "Outfit", sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -254,64 +254,80 @@ main.main-content {
   --space-8: var(--spacing-lg);
 
   --text-sm: 0.875rem;
+
+  /* --- TAJ Futuristic Grid Tokens --- */
+  --taj-bg-dark: #030a12;
+  --taj-grid-primary: rgba(24, 93, 132, 0.2);
+  --taj-accent-cyan: #00d2ff;
+  --taj-glass-bg: rgba(255, 255, 255, 0.02);
+  --taj-glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* ========== LIGHT MODE THEME - Soft Lime-Pill ========== */
+/* ========== LIGHT MODE THEME - Corporate Sky Blue (Fixed Blending) ========== */
 [data-theme="light"] {
-  /* Softened Palette */
-  --color-primary-dark: #dbd9fd; /* Lavender Background */
-  --color-primary-light: #e0e7ff; /* Indigo-100 */
+  /* Unified Sky Blue Theme */
+  --color-primary-dark: #E1E8F4; /* Main Background */
+  --color-primary-light: #F0F4FA; /* Secondary/Elevated */
 
-  --color-neutral-white: #020617; /* Slate-950 (Deep Navy Black) */
-  --color-neutral-lightGray: #c7d2fe; /* Indigo-200 */
-  --color-neutral-mediumGray: #2e2d2e; /* Indigo-700 */
-  --color-neutral-darkGray: #1e1b4b; /* Indigo-950 */
+  --color-neutral-white: #0f172a; /* Slate-900 (Text) */
+  --color-neutral-lightGray: #E1E8F4;
+  --color-neutral-mediumGray: #334155;
+  --color-neutral-darkGray: #1e293b;
 
-  /* Deep Blue Accents */
+  /* Deep Corporate Blue Accents */
   --color-accent-blue: #004a78; 
   --color-accent-purple: #0066a5; 
   --color-accent-emerald: #004a78; 
 
-  --bg-primary: #dbd9fd;
-  --bg-secondary: #e0e7ff;
+  --bg-primary: #E1E8F4;
+  --bg-secondary: #F0F4FA;
   --bg-tertiary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
 
-  /* Harmonious Navy/Indigo Text */
-  --text-primary: #020617; /* Slate-950 */
-  --text-secondary: #1e1b4b; /* Indigo-950 */
-  --text-muted: #312e81; /* Indigo-900 */
+  /* Precise Text Contrast */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
 
-  --border-subtle: #c7d2fe;
+  --border-subtle: rgba(0, 74, 120, 0.1);
   --border-accent: #004a78;
 
   --gradient-primary: linear-gradient(135deg, #004a78 0%, #0066a5 100%);
-  --shadow-glow: 0 4px 20px rgba(0, 74, 120, 0.25);
+  --shadow-glow: 0 4px 20px rgba(0, 74, 120, 0.15);
+
+  /* Light Mode TAJ Futuristic Tokens - Removed properties that override basic feel */
+  --taj-bg-dark: #f8faff;
+  --taj-grid-primary: rgba(0, 74, 120, 0.05);
+  --taj-accent-cyan: #004a78;
 }
 
 
-/* Light mode body and section overrides */
+/* Light mode body and section overrides - Unified Blending */
 .theme-light {
-  background-color: #dbd9fd !important;
-  color: #004a77 !important;
+  background-color: var(--color-primary-dark) !important;
+  color: var(--text-primary) !important;
 }
 
-.theme-light {
-  background: #dbd9fd !important;
+.theme-light .main-content,
+.theme-light .page-wrapper {
+  background: var(--color-primary-dark) !important;
 }
 
 
-/* Hero sections that transition to light mode */
+/* Hero sections - Blend naturally into the unified background */
 .theme-light .contact-hero,
 .theme-light .about-hero,
 .theme-light .services-intro,
-.theme-light .page-header,
-.theme-light .hero {
+.theme-light .page-header {
   background: radial-gradient(ellipse at 50% 0%, 
     #ffffff 0%,           
-    #f8faff 40%,        
+    rgba(240, 244, 250, 0.5) 40%,        
     var(--color-primary-dark) 100%) !important;
+}
+
+.theme-light .hero {
+  background: transparent !important;
 }
 
 /* Hero content */
@@ -326,18 +342,16 @@ main.main-content {
   display: none !important;
 }
 
-/* Global Gold Badge Styling for Light Mode */
-/* Global Badge Styling for Light Mode - Emerald Green with Dark Text */
+/* Global Badge Styling for Light Mode - Branding Blue with Dark Text */
 .theme-light .header-badge,
 .theme-light .content-badge,
 .theme-light [class*="-badge"] {
-  // background: rgba(0, 208, 132, 0.12) !important;
-  color: #063d4e !important; /* Dark Forest Green for contrast */
-  border-color: rgba(0, 125, 208, 0.3) !important;
+  color: #0c152a !important; /* Branding Dark Blue for contrast */
+  border-color: rgba(0, 102, 255, 0.3) !important;
 }
 
 .theme-light .pulse-dot {
-  background: #063d4e !important;
+  background: #0066ff !important;
 }
 
 /* TAJ NETWORK Background Text - Light Mode Visibility */
@@ -469,19 +483,19 @@ main.main-content {
 }
 
 .theme-light .code-card__content {
-  color: #004a77 !important;
+  color: #fff !important;
   font-weight: 600 !important;
 }
 
 .theme-light .code-highlight {
-  color: var(--color-accent-emerald) !important;
+  color: rgba(8, 167, 2, 0.685) !important;
   background: rgba(0, 208, 132, 0.1) !important;
   padding: 2px 6px !important;
   border-radius: 4px !important;
 }
 
 .theme-light .code-comment {
-  color: #8b5cf6 !important;
+  color: #d1cfd6 !important;
   font-style: italic !important;
 }
 
@@ -516,34 +530,49 @@ main.main-content {
 }
 
 .theme-light .site-footer {
-  background: #dbd9fd !important;
-  border-top: 1px solid #c7d2fe;
+  background: var(--color-primary-dark) !important;
+  border-top: 1px solid rgba(0, 74, 120, 0.1);
 }
 
 .theme-light .services-title,
 .theme-light .portfolio-title,
-.theme-light .cta-banner__title {
-  background: none;
-  -webkit-text-fill-color: initial;
-  color: #004a77 !important;
+.theme-light .cta-banner__title,
+.theme-light .section-title,
+.theme-light .tech-title,
+.theme-light .team-title {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: #004a78 !important; /* Taj Brand Blue */
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
 }
 
 /* Explicit H1 and Header Titles */
 h1,
 .hero-headline,
 .section-title,
+.tech-title,
+.team-title,
+.cta-banner__title,
+.cta-title,
+.main-title,
 .page-title,
 .training-title,
 .training-caption,
 .news-details__title-1 {
-  color: #ffffff !important; /* White for dark mode */
+  color: #004a78 !important; /* Force Taj Color for all headers as requested */
 }
 
-.theme-light .section-title {
-  color: #004a77 !important;
+/* Global Icon Stability */
+i, .fa, .fas, .fab, .far, svg.theme-icon {
+  transition: color 0.4s ease, transform 0.3s ease, opacity 0.3s ease !important;
 }
+
+.theme-light i {
+  color: #004a78; /* Ensure icons pop in light mode */
+}
+
+/* Removed redundant section-title rule */
 
 /* Subtitles are protected by component styles */
 
@@ -553,6 +582,78 @@ h1,
   border: none !important;
   box-shadow: none !important;
   transition: transform 0.3s ease;
+}
+
+/* Custom Taj SweetAlert Modal (Matching Reference Image) */
+.swal-taj-popup {
+  border-radius: 24px !important;
+  padding-top: 50px !important;
+  padding-bottom: 20px !important;
+  background: #ffffff !important;
+  box-shadow: 0 20px 60px rgba(0, 74, 120, 0.15) !important;
+  overflow: visible !important;
+  border-bottom: 8px solid #004a78 !important;
+}
+
+.swal-taj-title {
+  color: #1e293b !important;
+  font-weight: 800 !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.75rem !important;
+}
+
+.swal2-icon.swal2-success {
+  position: absolute !important;
+  top: -60px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+  background: #00d084 !important; /* Vivid Green matching reference */
+  border: 10px solid #ffffff !important;
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 10px 25px rgba(0, 208, 132, 0.3) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+}
+
+/* Fix SweetAlert Success Icon when using a solid background color */
+.swal2-icon.swal2-success .swal2-success-ring {
+  border-color: rgba(255, 255, 255, 0.2) !important; /* Soft white ring instead of hidden */
+  display: block !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-line-tip,
+.swal2-icon.swal2-success .swal2-success-line-long {
+  background-color: #ffffff !important;
+  height: 5px !important; /* Thicker, more premium tick */
+  border-radius: 2px !important;
+}
+
+/* Make masking elements transparent to avoid white blocks on green background */
+.swal2-icon.swal2-success [class^='swal2-success-circular-line'],
+.swal2-icon.swal2-success .swal2-success-fix {
+  background-color: transparent !important;
+}
+
+/* Adjust line positions for the larger 100px icon */
+.swal2-icon.swal2-success .swal2-success-line-tip {
+  top: 46px !important;
+  left: 20px !important;
+  width: 25px !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-line-long {
+  top: 38px !important;
+  right: 15px !important;
+  width: 47px !important;
+}
+
+.swal2-timer-progress-bar {
+  background: #004a78 !important;
 }
 
 .theme-light .portfolio-card {
@@ -1233,3 +1334,55 @@ select option {
 }
 
 
+/* ========== TAJ FUTURISTIC GRID SYSTEM ========== */
+.taj-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--taj-grid-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--taj-grid-primary) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 2;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.8;
+
+  :host-context(.theme-light) & {
+    opacity: 0.4;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    filter: blur(1px);
+  }
+}
+
+/* ========== TAJ ANIMATIONS ========== */
+@keyframes tajFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+.taj-floating {
+  animation: tajFloat 8s ease-in-out infinite;
+}
+
+/* Global Typography Normalization */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+  letter-spacing: normal;
+}

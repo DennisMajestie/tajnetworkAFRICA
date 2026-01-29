@@ -128,7 +128,7 @@ import { GridData } from '../../../core/models/types';
 
     .card-grid {
       display: grid; gap: 2rem;
-      &.cols-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+      &.cols-3 { grid-template-columns: repeat(3, 1fr); }
       &.cols-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
       &.cols-1 { grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; }
     }

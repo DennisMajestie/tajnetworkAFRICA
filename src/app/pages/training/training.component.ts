@@ -9,7 +9,7 @@ import { ServicesIntroComponent } from '../../shared/components/services-intro/s
   standalone: true,
   imports: [CommonModule, RouterModule, ServicesIntroComponent],
   templateUrl: './training.component.html',
-  styleUrl: './training.component.scss'
+  styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent implements OnInit {
   introImage = "assets/images/taj/homeslider/slider5.jpg";

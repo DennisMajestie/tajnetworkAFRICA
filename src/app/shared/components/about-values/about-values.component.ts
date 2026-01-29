@@ -438,6 +438,15 @@ import { CommonModule } from '@angular/common';
         
         i { color: #004a78; }
       }
+
+      .mesh-gradient {
+        display: none !important;
+      }
+      
+      .about-values {
+        background: transparent !important;
+        border: none !important;
+      }
     }
   `]
 })

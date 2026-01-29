@@ -7,16 +7,16 @@ import { BlogDataService } from '../../services/blog-data.service';
   selector: 'app-blog-detail',
   imports: [CommonModule, RouterModule],
   templateUrl: './blog-detail.component.html',
-  styleUrl: './blog-detail.component.scss'
+  styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent {
 
   blogData: any;
   blogId: any;
   blogContent: any
-  blogPayload: any = {}; 
+  blogPayload: any = {};
 
-  constructor(public blogDetail: BlogDataService, private route: ActivatedRoute ){
+  constructor(public blogDetail: BlogDataService, private route: ActivatedRoute) {
     this.blogData = this.blogDetail.newData();
   }
 

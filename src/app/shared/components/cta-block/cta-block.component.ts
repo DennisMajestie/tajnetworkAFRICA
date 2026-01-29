@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
           <div class="cta-bg">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
-            <div class="grid-mesh"></div>
+
           </div>
         </div>
       </div>
@@ -38,20 +38,18 @@ import { CommonModule } from '@angular/common';
   styles: [`
     .cta-section {
        padding: 100px 0; 
-       
-    background: linear-gradient(180deg, #f8faff 0%, #eef2ff 100%);
-      //  background: var(--color-primary-dark);
-       }
+       background: transparent;
+    }
     
     .cta-glass {
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 2.5rem;
-      padding: 5rem 3rem;
+      background: var(--bg-card, rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+      border-radius: 3rem;
+      padding: 6rem 3rem;
       text-align: center;
       overflow: hidden;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
       
       @media (max-width: 640px) { padding: 3rem 1.5rem; }
     }
@@ -60,19 +58,19 @@ import { CommonModule } from '@angular/common';
 
     .cta-title {
       font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 800;
-      color: white;
-      margin-bottom: 1.5rem;
+      color: #004a78 !important; /* Taj Brand Blue */
+      margin-bottom: 2rem;
       line-height: 1.1;
       letter-spacing: -0.02em;
     }
 
     .cta-desc {
-      color: var(--color-neutral-darkGray);
-      font-size: 1.25rem;
-      margin-bottom: 3rem;
-      line-height: 1.5;
+      color: var(--text-secondary);
+      font-size: 1.35rem;
+      margin-bottom: 4rem;
+      line-height: 1.6;
     }
 
     .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -109,30 +107,20 @@ import { CommonModule } from '@angular/common';
     .cta-bg { position: absolute; inset: 0; pointer-events: none; }
     
     .orb {
-      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
-      &.orb-1 { width: 400px; height: 400px; background: var(--color-accent-blue); top: -200px; left: -100px; }
-      &.orb-2 { width: 300px; height: 300px; background: var(--color-accent-emerald); bottom: -150px; right: -50px; }
+      position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15;
+      &.orb-1 { width: 600px; height: 600px; background: var(--color-accent-blue); top: -300px; left: -200px; }
+      &.orb-2 { width: 500px; height: 500px; background: var(--color-accent-purple); bottom: -250px; right: -150px; }
     }
 
-    .grid-mesh {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    /* Light Mode Overrides */
+    /* Light Mode Refinement */
     :host-context(.theme-light) .cta-glass {
-      background: #ffffff;
-      border: 1.5px solid rgba(0, 102, 255, 0.15);
-      box-shadow: 0 20px 40px rgba(0, 74, 120, 0.08);
-    }
-
-    :host-context(.theme-light) .cta-title {
-      color: #004a78;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 74, 120, 0.1);
+      box-shadow: 0 30px 60px rgba(0, 74, 120, 0.05);
     }
 
     :host-context(.theme-light) .cta-desc {
-      color: #475569;
+      color: #334155;
     }
 
     :host-context(.theme-light) .cta-btn--secondary {
@@ -142,10 +130,6 @@ import { CommonModule } from '@angular/common';
         background: rgba(0, 74, 120, 0.05);
         border-color: #004a78;
       }
-    }
-
-    :host-context(.theme-light) .grid-mesh {
-      background-image: radial-gradient(rgba(0, 74, 120, 0.1) 1px, transparent 1px);
     }
   `]
 })

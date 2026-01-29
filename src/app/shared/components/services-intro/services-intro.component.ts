@@ -163,7 +163,7 @@ import { RouterModule } from '@angular/router';
 
     .services-intro__title {
       color: #fff !important;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
       font-weight: 700;
       line-height: 1.1;
       margin: 0 0 20px;

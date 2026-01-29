@@ -16,7 +16,7 @@ import { ServicesIntroComponent } from '../../shared/components/services-intro/s
     ServicesIntroComponent
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
   ngOnInit(): void {

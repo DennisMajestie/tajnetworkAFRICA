@@ -50,7 +50,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
       <div class="bg-elements">
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
-        <div class="grid-pattern"></div>
+
       </div>
 
       <div class="services-grid-container">
@@ -63,7 +63,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
 
         <!-- Grid -->
         <div class="services-grid">
-          <div class="service-card" *ngFor="let item of services; let i = index">
+          <div class="service-card" *ngFor="let item of displayedServices; let i = index">
             <!-- Icon - White circle with shadow, positioned ABOVE card -->
             <div class="service-card__icon-wrapper">
               <div class="service-card__icon">
@@ -87,7 +87,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
   styles: [`
     .services-grid-section {
       padding: 100px 0 120px;
-      background: #020c18;
+      background: #010816;
       position: relative;
       overflow: hidden;
 
@@ -138,20 +138,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
       animation-delay: -10s;
     }
 
-    .grid-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
 
-      :host-context(.theme-light) & {
-        background-image: 
-          linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px);
-      }
-    }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -180,12 +167,11 @@ const SERVICE_ICONS: { [key: string]: string } = {
     }
 
     .section-title {
-      color: var(--color-neutral-white, #ffffff);
+      color: #004a78; /* Taj Brand Blue */
       font-size: clamp(2.25rem, 5vw, 3.8rem);
-      font-weight: 800;
       margin: 0 0 18px;
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-weight: 800;
     }
 
     .section-subtitle {
@@ -251,14 +237,9 @@ const SERVICE_ICONS: { [key: string]: string } = {
 
     /* Card Content - Dark Glass effect */
     .service-card__content {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 24px;
       padding: 80px 40px 40px; /* Even 40px sides/bottom, 80px top to clear icon */
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 24px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -328,7 +309,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
     }
 
     :host-context(.theme-light) .section-title {
-      color: #0c152a;
+      color: #004a78;
     }
 
     :host-context(.theme-light) .section-subtitle {
@@ -363,7 +344,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
     }
 
     :host-context(.theme-light) .service-card__title {
-      color: #0c152a;
+      color: #1a2332;
     }
 
     :host-context(.theme-light) .service-card__desc {
@@ -400,6 +381,11 @@ export class ServicesGridComponent {
   @Input() subtitle = '';
   @Input() showHeader = true;
   @Input() services: ServiceData[] = [];
+  @Input() limit?: number; // Optional limit for number of services to display
+
+  get displayedServices(): ServiceData[] {
+    return this.limit ? this.services.slice(0, this.limit) : this.services;
+  }
 
   getIconClass(serviceName: string, index: number): string {
     if (!serviceName) {

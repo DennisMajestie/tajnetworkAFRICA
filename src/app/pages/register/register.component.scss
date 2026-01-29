@@ -82,15 +82,7 @@
     animation-delay: -15s;
 }
 
-.grid-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(0, 102, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 102, 255, 0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-}
+
 
 @keyframes floatOrb {
     0%, 100% { transform: translate(0, 0) scale(1); }
@@ -613,11 +605,7 @@
     opacity: 0.3;
 }
 
-:host-context(.theme-light) .grid-overlay {
-    background-image: 
-        linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px);
-}
+
 
 :host-context(.theme-light) .shape {
     border-color: rgba(0, 102, 255, 0.08);

@@ -22,7 +22,8 @@ export class TrainingDataService {
         "Version Control",
         "Project-Based Learning"
       ],
-      images: "assets/images/courses/frontend.jpg"
+      images: "assets/images/courses/frontend.jpg",
+      courseValue: "Frontend-Development"
     },
     {
       id: 2,
@@ -37,7 +38,8 @@ export class TrainingDataService {
         "Authentication & Security",
         "Scalability & Performance"
       ],
-      images: "assets/images/courses/backend.jpg"
+      images: "assets/images/courses/backend.jpg",
+      courseValue: "Backend-Development"
     },
     {
       id: 3,
@@ -52,7 +54,8 @@ export class TrainingDataService {
         "Visual Design Principles",
         "Real-World Projects"
       ],
-      images: "assets/images/courses/uiux.jpg"
+      images: "assets/images/courses/uiux.jpg",
+      courseValue: "UI/UX-Design"
     },
     {
       id: 4,
@@ -67,7 +70,8 @@ export class TrainingDataService {
         "Big Data Technologies",
         "Data Visualization"
       ],
-      images: "assets/images/courses/data-science.jpg"
+      images: "assets/images/courses/data-science.jpg",
+      courseValue: "Data-Science"
     },
     {
       id: 5,
@@ -82,7 +86,8 @@ export class TrainingDataService {
         "Cyber Threat Intelligence",
         "Compliance & Risk Management"
       ],
-      images: "assets/images/courses/cyber-security.jpg"
+      images: "assets/images/courses/cyber-security.jpg",
+      courseValue: "Cyber-Security"
     },
     {
       id: 6,
@@ -97,7 +102,8 @@ export class TrainingDataService {
         "Link Building",
         "SEO Tools"
       ],
-      images: "assets/images/courses/seo.jpg"
+      images: "assets/images/courses/seo.jpg",
+      courseValue: "SEO-Optimization"
     },
     {
       id: 7,
@@ -112,7 +118,8 @@ export class TrainingDataService {
         "Content Marketing",
         "Analytics"
       ],
-      images: "assets/images/courses/digital-marketing.jpg"
+      images: "assets/images/courses/digital-marketing.jpg",
+      courseValue: "Digital-Marketing"
     },
     {
       id: 8,
@@ -127,7 +134,8 @@ export class TrainingDataService {
         "Motion Graphics",
         "Portfolio Development"
       ],
-      images: "assets/images/courses/graphics-design.jpg"
+      images: "assets/images/courses/graphics-design.jpg",
+      courseValue: "Graphics-Design"
     },
     {
       id: 9,
@@ -142,7 +150,8 @@ export class TrainingDataService {
         "Audience Targeting",
         "Budget Management"
       ],
-      images: "assets/images/courses/sem.jpg"
+      images: "assets/images/courses/sem.jpg",
+      courseValue: "SEM-Optimization"
     },
     {
       id: 10,
@@ -157,7 +166,8 @@ export class TrainingDataService {
         "Speed optimization",
         "Security best practices"
       ],
-      images: "assets/images/courses/cms.jpg"
+      images: "assets/images/courses/cms.jpg",
+      courseValue: "Content-Management-System"
     },
     {
       id: 11,
@@ -172,7 +182,8 @@ export class TrainingDataService {
         "API Integration",
         "Store Deployment"
       ],
-      images: "assets/images/courses/mobile.jpg"
+      images: "assets/images/courses/mobile.jpg",
+      courseValue: "Mobile-App-Development"
     },
     {
       id: 12,
@@ -187,7 +198,8 @@ export class TrainingDataService {
         "CI/CD Pipelines",
         "Cloud Security"
       ],
-      images: "assets/images/courses/cloud-mastery.jpg"
+      images: "assets/images/courses/cloud-mastery.jpg",
+      courseValue: "Cloud-DevOps-Mastery"
     }
   ];
 

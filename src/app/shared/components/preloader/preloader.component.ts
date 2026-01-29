@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
     <div class="preloader" [class.fade-out]="fadeOut">
       <!-- Organic Blobs Background -->
       <div class="blobs-container">
-        <div class="blob emerald"></div>
         <div class="blob blue"></div>
       </div>
 
@@ -71,15 +70,10 @@ import { CommonModule } from '@angular/common';
       animation: float 20s infinite alternate;
     }
 
-    .blob.emerald {
-      background: #00d084;
-      top: -100px;
-      left: -100px;
-      animation-delay: -5s;
-    }
+
 
     .blob.blue {
-      background: #02578bff;
+      background: #004a78;
       bottom: -100px;
       right: -100px;
     }
@@ -114,8 +108,8 @@ import { CommonModule } from '@angular/common';
     }
 
     .dot.active {
-      fill: #02578bff;
-      filter: drop-shadow(0 0 5px #02578bff);
+      fill: #004a78;
+      filter: drop-shadow(0 0 5px #004a78);
     }
 
     .central-area {
@@ -136,7 +130,7 @@ import { CommonModule } from '@angular/common';
 
     @keyframes logoPulse {
       0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(0, 102, 255, 0.5)); }
+      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(0, 74, 120, 0.5)); }
     }
 
 

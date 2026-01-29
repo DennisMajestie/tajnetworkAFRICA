@@ -17,9 +17,9 @@
             var root = document.documentElement;
             if (isLight) {
                 root.classList.add('theme-light');
-                root.style.setProperty('--bg-preloader', '#dbd9fd');
+                root.style.setProperty('--bg-preloader', '#eef2ff');
                 root.style.setProperty('--text-preloader', '#0c152a');
-                root.style.backgroundColor = '#dbd9fd';
+                root.style.backgroundColor = '#eef2ff';
             } else {
                 root.style.setProperty('--bg-preloader', '#0a0f14');
                 root.style.setProperty('--text-preloader', '#ffffff');
@@ -99,43 +99,6 @@
             transition-duration: 0s !important;
         }
 
-        /* Fallback Preloader - ALWAYS visible until Angular takes over */
-        .preloader-backdrop {
-            position: fixed;
-            inset: 0;
-            background-color: var(--bg-preloader);
-            z-index: 99998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .preloader-backdrop.fade-out {
-            opacity: 0 !important;
-            pointer-events: none;
-        }
-
-        .radial-spinner {
-            width: 80px;
-            height: 80px;
-            border: 3px solid rgba(0, 102, 255, 0.1);
-            border-top: 3px solid #0066ff;
-            border-radius: 50%;
-            animation: ringRotate 1s linear infinite !important;
-        }
-
-        @keyframes ringRotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
         /* Essential preloader component styles - synchronized with component */
         .preloader {
             position: fixed;
@@ -173,7 +136,7 @@
         }
 
         .dot.active {
-            fill: #0066ff;
+            fill: #004a78;
         }
     </style>
 
@@ -182,11 +145,6 @@
 </head>
 
 <body>
-    <!-- Fallback Preloader - Shows IMMEDIATELY -->
-    <div class="preloader-backdrop">
-        <div class="radial-spinner"></div>
-    </div>
-
     <app-root></app-root>
 
 </body>

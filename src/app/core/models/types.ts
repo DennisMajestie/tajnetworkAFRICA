@@ -38,7 +38,7 @@ export interface NavigationConfig {
 }
 
 // === Page & Section Configuration ===
-export type SectionType = 'hero' | 'grid' | 'content' | 'cta' | 'testimonial' | 'form' | 'custom' | 'faq' | 'team' | 'services' | 'tech-slider' | 'portfolio' | 'cta-banner' | 'footer';
+export type SectionType = 'hero' | 'grid' | 'content' | 'cta' | 'testimonial' | 'form' | 'custom' | 'faq' | 'team' | 'services' | 'tech-slider' | 'portfolio' | 'cta-banner' | 'why-choose-us' | 'home-about' | 'footer';
 
 export interface SectionConfig {
     type: SectionType;
@@ -88,6 +88,7 @@ export interface HeroData {
     stats?: Stat[];
     backgroundVideo?: string;
     backgroundImage?: string;
+    heroImage?: string;
     trustedBy?: { name: string; logo: string }[];
     layout?: 'centered' | 'left' | 'split';
 }

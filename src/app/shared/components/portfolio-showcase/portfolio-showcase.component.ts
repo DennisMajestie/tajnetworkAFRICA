@@ -16,16 +16,17 @@ interface PortfolioItem {
   imports: [CommonModule, RouterModule],
   template: `
     <section class="portfolio-showcase">
+      
       <!-- Animated Background Elements -->
       <div class="bg-elements">
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
-        <div class="grid-pattern"></div>
+
       </div>
 
       <div class="container">
         <div class="section-header">
-          <span class="section-tag" *ngIf="tag">{{ tag }}</span>
+          <span class="section-tag taj-floating" *ngIf="tag">{{ tag }}</span>
           <h2 class="section-title" *ngIf="title">{{ title }}</h2>
           <p class="section-subtitle" *ngIf="subtitle">{{ subtitle }}</p>
         </div>
@@ -60,7 +61,7 @@ interface PortfolioItem {
   styles: [`
     .portfolio-showcase {
       padding: 120px 0;
-      background: #020c18;
+      background: #010816;
       position: relative;
       overflow: hidden;
     }
@@ -97,14 +98,7 @@ interface PortfolioItem {
       animation-delay: -10s;
     }
 
-    .grid-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -120,11 +114,7 @@ interface PortfolioItem {
       opacity: 0.15;
     }
 
-    :host-context(.theme-light) .grid-pattern {
-      background-image: 
-        linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px);
-    }
+
 
     .section-header {
       text-align: center;
@@ -134,25 +124,24 @@ interface PortfolioItem {
 
     .section-tag {
       display: inline-block;
-      color: var(--color-accent-blue, #0066ff);
+      color: var(--taj-accent-cyan);
       font-size: 0.9rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       margin-bottom: 20px;
-      background: rgba(0, 102, 255, 0.1);
+      background: rgba(24, 93, 132, 0.1);
       padding: 8px 20px;
       border-radius: 50px;
-      border: 1px solid rgba(0, 102, 255, 0.15);
+      border: 1px solid rgba(24, 93, 132, 0.15);
     }
 
     .section-title {
-      font-size: clamp(2.5rem, 5vw, 3.8rem);
-      font-weight: 800;
+      font-size: clamp(2.25rem, 5vw, 3.8rem);
       color: #fff;
       margin-bottom: 20px;
       line-height: 1.1;
-     
+      font-weight: 800;
     }
 
     .section-subtitle {
@@ -163,13 +152,9 @@ interface PortfolioItem {
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
       margin-bottom: 60px;
-
-      @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -214,16 +199,13 @@ interface PortfolioItem {
     .portfolio-card__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, 
-        rgba(2, 6, 23, 0.9) 0%, 
-        rgba(0, 102, 255, 0.4) 60%,
-        transparent 100%
-      );
+      background: linear-gradient(to top, rgba(0, 74, 120, 0.95) 0%, rgba(0, 102, 255, 0.4) 100%);
       display: flex;
       align-items: flex-end;
       padding: 40px;
       opacity: 0;
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.4s ease;
+      z-index: 2;
     }
 
     .portfolio-card__content {
@@ -235,7 +217,7 @@ interface PortfolioItem {
       font-size: 1rem;
       font-weight: 800;
       text-transform: uppercase;
-      color: #ffc400ea;
+      color: var(--color-accent-blue);
       margin-bottom: 8px;
     }
 
@@ -244,6 +226,7 @@ interface PortfolioItem {
       font-weight: 700;
       color: #fff;
       margin-bottom: 15px;
+      line-height: 1.3;
     }
 
     .portfolio-card__link {
@@ -317,7 +300,7 @@ interface PortfolioItem {
     }
 
     :host-context(.theme-light) .section-title {
-      color: #0c152a;
+      color: #004a78;
     }
 
     :host-context(.theme-light) .section-subtitle {
@@ -365,44 +348,30 @@ export class PortfolioShowcaseComponent {
   portfolioItems: PortfolioItem[] = [
     {
       id: 1,
-      title: 'AS-SABUR',
-      category: 'Travel Tech',
-      image: 'assets/images/taj/Portfolio Cards/AS-SABUR.png',
-      link: '/portfolio'
-    },
-    {
-      id: 2,
       title: 'NANTA',
-      category: 'Travel Tech',
+      category: 'GovTech',
       image: 'assets/images/taj/Portfolio Cards/NANTA.png',
       link: '/portfolio'
     },
     {
       id: 3,
-      title: 'Tifa Travels',
-      category: 'Travel Tech',
-      image: 'assets/images/taj/Portfolio Cards/Tifa Travels & Tours.png',
+      title: 'National ID Day',
+      category: 'GovTech',
+      image: 'assets/images/portfolio/Frame 28.png',
+      link: '/portfolio'
+    },
+    {
+      id: 2,
+      title: 'AMPAY',
+      category: 'FinTech',
+      image: 'assets/images/portfolio/Frame 25.png',
       link: '/portfolio'
     },
     {
       id: 4,
-      title: 'SingingBee',
-      category: 'Enterprise Solution',
-      image: 'assets/images/taj/Portfolio Cards/SingingBee.png',
-      link: '/portfolio'
-    },
-    {
-      id: 5,
-      title: 'Elixir Attorneys',
-      category: 'Enterprise Solution',
-      image: 'assets/images/taj/Portfolio Cards/Elixir attorneys.png',
-      link: '/portfolio'
-    },
-    {
-      id: 6,
-      title: 'Password Tutors',
-      category: 'E-Learning',
-      image: 'assets/images/taj/Portfolio Cards/Password Professional Tutors.png',
+      title: 'AI Air Radio',
+      category: 'Media & Entertainment',
+      image: 'assets/images/portfolio/Frame 26.png',
       link: '/portfolio'
     }
   ];

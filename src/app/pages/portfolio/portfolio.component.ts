@@ -20,7 +20,7 @@ interface PortfolioItem {
     <main class="portfolio-page">
       <app-services-intro 
         tag="Innovating Africa" 
-        title="Our Portfolio"
+        title="Innovation in Action"
         subtitle="Explore our journey of digital transformation across various industries and sectors."
         bgImage="assets/images/project/portfolio-page-v3-1-1.jpg">
       </app-services-intro>
@@ -30,7 +30,7 @@ interface PortfolioItem {
         <div class="bg-elements">
           <div class="gradient-orb orb-1"></div>
           <div class="gradient-orb orb-2"></div>
-          <div class="grid-pattern"></div>
+
         </div>
 
         <div class="container">
@@ -114,14 +114,7 @@ interface PortfolioItem {
       animation-delay: -10s;
     }
 
-    .grid-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -284,11 +277,7 @@ interface PortfolioItem {
       opacity: 0.15;
     }
 
-    :host-context(.theme-light) .grid-pattern {
-      background-image: 
-        linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px);
-    }
+
 
     :host-context(.theme-light) .filter-btn {
       background: #fff;
@@ -335,20 +324,29 @@ export class PortfolioComponent implements OnInit {
 
   portfolioItems: PortfolioItem[] = [
     {
+      id: 2,
+      title: 'NANTA',
+      category: 'GovTech',
+      image: 'assets/images/taj/Portfolio Cards/NANTA.png',
+      link: '/portfolio',
+      description: 'Unified travel agency network portal for streamlined bookings and member management.'
+    },
+    {
+      id: 10,
+      title: 'National ID Day',
+      category: 'GovTech',
+      image: 'assets/images/portfolio/Frame 28.png',
+      link: '/portfolio',
+      description: 'Identification management and outreach systems for national digital identity initiatives.'
+    },
+    // --- Other Projects ---
+    {
       id: 1,
       title: 'AS-SABUR',
       category: 'Travel Tech',
       image: 'assets/images/taj/Portfolio Cards/AS-SABUR.png',
       link: '/portfolio',
-      description: 'A comprehensive enterprise resource planning system tailored for modern business management.'
-    },
-    {
-      id: 2,
-      title: 'NANTA',
-      category: 'Travel Tech',
-      image: 'assets/images/taj/Portfolio Cards/NANTA.png',
-      link: '/portfolio',
-      description: 'Unified travel agency network portal for streamlined bookings and member management.'
+      description: 'A comprehensive travel management system tailored for modern business efficiency.'
     },
     {
       id: 3,
@@ -361,7 +359,7 @@ export class PortfolioComponent implements OnInit {
     {
       id: 4,
       title: 'SingingBee',
-      category: 'Enterprise Solution',
+      category: 'Media & Entertainment',
       image: 'assets/images/taj/Portfolio Cards/SingingBee.png',
       link: '/portfolio',
       description: 'Dynamic mobile application focused on high-performance media and community engagement.'
@@ -369,18 +367,66 @@ export class PortfolioComponent implements OnInit {
     {
       id: 5,
       title: 'Elixir Attorneys',
-      category: 'Enterprise Solution',
+      category: 'Legal Tech',
       image: 'assets/images/taj/Portfolio Cards/Elixir attorneys.png',
       link: '/portfolio',
       description: 'Sophisticated digital identity and case management platform for legal professionals.'
     },
     {
       id: 6,
-      title: 'Password Professional Tutors',
+      title: 'Password Professionals',
       category: 'E-Learning',
       image: 'assets/images/taj/Portfolio Cards/Password Professional Tutors.png',
       link: '/portfolio',
       description: 'Adaptive e-learning platform providing interactive educational resources for students.'
+    },
+    {
+      id: 7,
+      title: 'Prime Gym & Spa',
+      category: 'Fitness and Ecommerce',
+      image: 'assets/images/portfolio/Frame 22.png',
+      link: '/portfolio',
+      description: 'Dynamic fitness management and high-performance e-commerce integration.'
+    },
+    {
+      id: 8,
+      title: 'Ampay Fintech',
+      category: 'Fintech',
+      image: 'assets/images/portfolio/Frame 25.png',
+      link: '/portfolio',
+      description: 'Secure cross-border payment infrastructure designed for the African digital economy.'
+    },
+    {
+      id: 9,
+      title: 'AI Air Radio',
+      category: 'Media & Entertainment',
+      image: 'assets/images/portfolio/Frame 26.png',
+      link: '/portfolio',
+      description: 'High-performance audio-visual management platform for modern media enterprises.'
+    },
+    {
+      id: 11,
+      title: 'Royal Newton',
+      category: 'Travel Tech',
+      image: 'assets/images/portfolio/Frame 29.png',
+      link: '/portfolio',
+      description: 'Client relationship management system optimized for rapid scaling and market excellence.'
+    },
+    {
+      id: 12,
+      title: 'Eclipse Legal Consult',
+      category: 'Legal Tech',
+      image: 'assets/images/portfolio/Frame 31.png',
+      link: '/portfolio',
+      description: 'Bespoke software suite for modern legal consulting and case management.'
+    },
+    {
+      id: 13,
+      title: 'eSKILLZ',
+      category: 'E-Learning',
+      image: 'assets/images/portfolio/Frame 34.png',
+      link: '/portfolio',
+      description: 'An interactive repository of technical curricula and professional development resources.'
     }
   ];
 

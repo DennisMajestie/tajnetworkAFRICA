@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-testimonials',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-testimonials',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <section class="testimonials-section">
       <div class="container">
         <div class="section-header">
@@ -46,7 +46,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-    styles: [`
+  styles: [`
     .testimonials-section {
       padding: 120px 0;
       background: transparent;
@@ -74,7 +74,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .section-title {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2.25rem, 5vw, 3.8rem);
       font-weight: 800;
       color: #fff;
       margin-bottom: 20px;
@@ -223,30 +223,30 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class TestimonialsComponent {
-    testimonials = [
-        {
-            text: "TAJ Network Africa transformed our entire digital infrastructure. Their team's expertise and dedication exceeded our expectations. The CRM system they built has revolutionized how we manage client relationships.",
-            name: "Adaeze Nwosu",
-            initials: "AN",
-            role: "Chief Technology Officer",
-            company: "Zenith FinTech Ltd",
-            color: "#0066ff"
-        },
-        {
-            text: "Working with TAJ was seamless from start to finish. They understood our vision and delivered a mobile app that our users genuinely love. The attention to UI/UX detail is unmatched.",
-            name: "Olumide Adeyemi",
-            initials: "OA",
-            role: "Founder & CEO",
-            company: "LogiTrack Africa",
-            color: "#00d084"
-        },
-        {
-            text: "The training programs provided by TAJ have upskilled our entire development team. Our productivity has increased by 40% and we're now handling projects we never thought possible.",
-            name: "Fatima Mohammed",
-            initials: "FM",
-            role: "HR Director",
-            company: "Savannah Digital",
-            color: "#d4a574"
-        }
-    ];
+  testimonials = [
+    {
+      text: "TAJ Network Africa transformed our entire digital infrastructure. Their team's expertise and dedication exceeded our expectations. The CRM system they built has revolutionized how we manage client relationships.",
+      name: "Adaeze Nwosu",
+      initials: "AN",
+      role: "Chief Technology Officer",
+      company: "Zenith FinTech Ltd",
+      color: "#0066ff"
+    },
+    {
+      text: "Working with TAJ was seamless from start to finish. They understood our vision and delivered a mobile app that our users genuinely love. The attention to UI/UX detail is unmatched.",
+      name: "Olumide Adeyemi",
+      initials: "OA",
+      role: "Founder & CEO",
+      company: "LogiTrack Africa",
+      color: "#00d084"
+    },
+    {
+      text: "The training programs provided by TAJ have upskilled our entire development team. Our productivity has increased by 40% and we're now handling projects we never thought possible.",
+      name: "Fatima Mohammed",
+      initials: "FM",
+      role: "HR Director",
+      company: "Savannah Digital",
+      color: "#d4a574"
+    }
+  ];
 }

@@ -27,8 +27,8 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .contact-info {
-      padding: 40px 0 120px;
-      background: var(--bg-primary, #0f1419);
+      padding: 100px 0 20px;
+      background: #020c18;
       position: relative;
       overflow: hidden;
 
@@ -184,8 +184,8 @@ import { CommonModule } from '@angular/common';
     }
 
     /* Light Mode */
-    :host-context(.theme-light) .contact-info { background: #dbd9fd; }
-    :host-context(.theme-light) .section-title { color: #0c152a; }
+    :host-context(.theme-light) .contact-info { background: #f8faff; }
+    :host-context(.theme-light) .section-title { color: #004a78; }
     :host-context(.theme-light) .section-desc { color: #475569; }
     :host-context(.theme-light) .section-tag { background: rgba(0, 74, 120, 0.05); color: #004a78; }
 

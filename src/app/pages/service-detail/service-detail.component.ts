@@ -9,7 +9,7 @@ import { PageHeaderComponent } from '../../shared/components/page-header/page-he
   standalone: true,
   imports: [CommonModule, RouterModule, PageHeaderComponent],
   templateUrl: './service-detail.component.html',
-  styleUrl: './service-detail.component.scss'
+  styleUrls: ['./service-detail.component.scss']
 })
 export class ServiceDetailComponent implements OnInit {
 

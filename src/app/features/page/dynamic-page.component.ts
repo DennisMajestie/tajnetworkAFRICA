@@ -18,7 +18,7 @@ import { PageConfig, SectionConfig } from '../../core/models/types';
     <div class="status-page" *ngIf="error">
       <div class="status-bg">
         <div class="glow-orb"></div>
-        <div class="grid-overlay"></div>
+
       </div>
       <div class="container--narrow">
         <div class="status-content">
@@ -85,12 +85,7 @@ import { PageConfig, SectionConfig } from '../../core/models/types';
         background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
         top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(80px);
       }
-      .grid-overlay {
-        position: absolute; inset: 0;
-        background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
-                         linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-        background-size: 50px 50px;
-      }
+
     }
 
     .status-content { text-align: center; position: relative; z-index: 10; max-width: 600px; padding: 0 20px; }
@@ -130,8 +125,6 @@ import { PageConfig, SectionConfig } from '../../core/models/types';
     }
     :host-context(.theme-light) .status-bg {
       .glow-orb { background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%); }
-      .grid-overlay { background-image: linear-gradient(rgba(0, 74, 120, 0.03) 1px, transparent 1px),
-                                      linear-gradient(90deg, rgba(0, 74, 120, 0.03) 1px, transparent 1px); }
     }
     :host-context(.theme-light) .status-title { color: #0c152a !important; }
     :host-context(.theme-light) .status-desc { color: #475569 !important; }

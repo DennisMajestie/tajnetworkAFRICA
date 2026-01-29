@@ -14,7 +14,7 @@ interface TabItem {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './about-hero.component.html',
-  styleUrl: './about-hero.component.scss'
+  styleUrls: ['./about-hero.component.scss']
 })
 export class AboutHeroComponent implements OnInit {
   tabs: TabItem[] = [
@@ -22,7 +22,7 @@ export class AboutHeroComponent implements OnInit {
       id: 'about',
       num: '01',
       title: 'About Us',
-      desc: 'TAJ Network Africa is a premier technology group dedicated to transforming the African digital landscape through innovative software solutions.',
+      desc: 'Taj Network Africa is a technology company dedicated to designing and engineering digital solutions that solve real business problems and enable sustainable growth.',
       active: true
     },
     {

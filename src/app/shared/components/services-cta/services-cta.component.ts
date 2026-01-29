@@ -142,7 +142,7 @@ import { RouterModule } from '@angular/router';
       line-height: 1;
       margin-bottom: 30px;
       letter-spacing: -0.04em;
-      background: linear-gradient(135deg, #fff 0%, var(--color-accent-emerald) 100%);
+      background: linear-gradient(135deg, #fff 0%, var(--color-accent-blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -169,7 +169,7 @@ import { RouterModule } from '@angular/router';
       gap: 15px;
       padding: 22px 55px;
       background: white;
-      color: var(--color-accent-emerald) !important;
+      color: var(--color-accent-blue) !important;
       font-size: 1.1rem;
       font-weight: 900;
       border-radius: 100px;
@@ -183,10 +183,10 @@ import { RouterModule } from '@angular/router';
       }
 
       &:hover {
-        background: var(--color-accent-emerald) !important;
+        background: var(--color-accent-blue) !important;
         color: white !important;
         transform: translateY(-10px) scale(1.05);
-        box-shadow: 0 30px 60px rgba(0, 208, 132, 0.4);
+        box-shadow: 0 30px 60px rgba(0, 102, 255, 0.4);
         
         i {
           transform: translateX(8px);
@@ -218,7 +218,7 @@ import { RouterModule } from '@angular/router';
           content: '';
           position: absolute;
           inset: -50px;
-          background: radial-gradient(circle, rgba(0, 208, 132, 0.2) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
           z-index: -1;
           filter: blur(20px);
       }
@@ -227,7 +227,7 @@ import { RouterModule } from '@angular/router';
     .mockup-img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 40px rgba(0, 208, 132, 0.4)) brightness(1.2);
+      filter: drop-shadow(0 0 40px rgba(0, 102, 255, 0.4)) brightness(1.2);
     }
 
     .floating-card {
@@ -251,11 +251,11 @@ import { RouterModule } from '@angular/router';
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
       &:hover {
-        background: rgba(0, 208, 132, 0.15);
-        border-color: var(--color-accent-emerald);
+        background: rgba(0, 102, 255, 0.15);
+        border-color: var(--color-accent-blue);
         transform: scale(1.15) translateY(-15px) rotate(3deg);
         z-index: 10;
-        box-shadow: 0 40px 80px rgba(0, 208, 132, 0.3);
+        box-shadow: 0 40px 80px rgba(0, 102, 255, 0.3);
       }
     }
 
@@ -268,7 +268,7 @@ import { RouterModule } from '@angular/router';
       justify-content: center;
       font-size: 24px;
       background: rgba(255,255,255,0.05);
-      color: var(--color-accent-emerald);
+      color: var(--color-accent-blue);
     }
 
     .card-content h4 {
@@ -283,7 +283,7 @@ import { RouterModule } from '@angular/router';
     /* Mathematical Protractor Arc (180deg Semi-Circle) - Mockup as Origin */
     .card-1 { left: 5%; bottom: 85px; animation-delay: 0s; }
     .card-2 { left: 10%; bottom: 240px; animation-delay: -1.2s; }
-    .card-3 { left: 22%; bottom: 380px; animation-delay: -2.4s; .card-badge { font-size: 2rem; color: var(--color-accent-emerald); font-weight: 900; } }
+    .card-3 { left: 22%; bottom: 380px; animation-delay: -2.4s; .card-badge { font-size: 2rem; color: var(--color-accent-blue); font-weight: 900; } }
     .card-4 { left: 38%; bottom: 480px; animation-delay: -3.6s; .card-icon { color: #fbbf24; } }
     .card-5 { left: 62%; bottom: 480px; animation-delay: -4.8s; .card-icon { color: #818cf8; } }
     .card-6 { left: 78%; bottom: 380px; animation-delay: -6s; .card-icon { color: #38bdf8; } }
@@ -326,7 +326,7 @@ import { RouterModule } from '@angular/router';
     }
 
     :host-context(.theme-light) .cta-title {
-      background: linear-gradient(135deg, #0c152a 0%, var(--color-accent-emerald) 100%);
+      background: linear-gradient(135deg, #0c152a 0%, var(--color-accent-blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -343,8 +343,8 @@ import { RouterModule } from '@angular/router';
       
       &:hover {
         background: #ffffff;
-        box-shadow: 0 30px 60px rgba(0, 208, 132, 0.2);
-        border-color: var(--color-accent-emerald);
+        box-shadow: 0 30px 60px rgba(0, 102, 255, 0.2);
+        border-color: var(--color-accent-blue);
       }
     }
 

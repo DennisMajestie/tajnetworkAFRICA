@@ -9,13 +9,19 @@ export class AlertService {
 
   constructor() { }
 
-  alert(text:any){
+  alert(text: any) {
     Swal.fire({
+      title: 'Success!',
       text: text,
       icon: "success",
+      iconColor: '#00d084',
+      background: '#ffffff',
       showConfirmButton: false,
-      timer: 2000,
-
+      timer: 3000,
+      customClass: {
+        popup: 'swal-taj-popup',
+        title: 'swal-taj-title'
+      }
     });
   }
 }

@@ -7,7 +7,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   selector: 'app-subsidiaries',
   imports: [CommonModule, CarouselModule, RouterModule],
   templateUrl: './subsidiaries.component.html',
-  styleUrl: './subsidiaries.component.scss'
+  styleUrls: ['./subsidiaries.component.scss']
 })
 export class SubsidiariesComponent {
 
@@ -27,7 +27,7 @@ export class SubsidiariesComponent {
       0: {
         items: 1,
         margin: 20
-        
+
       },
       400: {
         items: 2,
@@ -50,29 +50,32 @@ export class SubsidiariesComponent {
 
 
   subsidiaries = [
-    {id: 1, 
-      service: 'TechBound Mentorship', 
-      img:'assets/images/taj/service-details/mentorship2.jpg', 
-      text: "Empowering the next generation of tech innovators through", 
+    {
+      id: 1,
+      service: 'TechBound Mentorship',
+      img: 'assets/images/taj/service-details/mentorship2.jpg',
+      text: "Empowering the next generation of tech innovators through",
       text2: "personalized mentorship and hands-on learning",
       link: "https://student.techbound.ng/"
     },
-    {id: 1, 
-      service: 'TechBound Mentorship', 
-      img:'assets/images/taj/service-details/mentorship2.jpg', 
-      text: "Empowering the next generation of tech innovators through", 
+    {
+      id: 1,
+      service: 'TechBound Mentorship',
+      img: 'assets/images/taj/service-details/mentorship2.jpg',
+      text: "Empowering the next generation of tech innovators through",
       text2: "personalized mentorship and hands-on learning",
       link: "https://student.techbound.ng/"
     },
-    {id: 1, 
-      service: 'TechBound Mentorship', 
-      img:'assets/images/taj/service-details/mentorship2.jpg', 
-      text: "Empowering the next generation of tech innovators through", 
+    {
+      id: 1,
+      service: 'TechBound Mentorship',
+      img: 'assets/images/taj/service-details/mentorship2.jpg',
+      text: "Empowering the next generation of tech innovators through",
       text2: "personalized mentorship and hands-on learning",
       link: "https://student.techbound.ng/"
     },
-      
-   
+
+
   ]
 
 
@@ -80,5 +83,5 @@ export class SubsidiariesComponent {
     window.scrollTo(0, 0);
 
   }
- 
+
 }

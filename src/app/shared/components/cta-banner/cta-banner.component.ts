@@ -91,7 +91,7 @@ import { RouterModule } from '@angular/router';
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 6vw, 3.5rem);
       font-weight: 800;
-      color: #0c152a; /* Navy for Light Background */
+      color: #004a78 !important; /* Taj Brand Blue */
       line-height: 1.15;
       margin-bottom: 1.5rem;
     }
