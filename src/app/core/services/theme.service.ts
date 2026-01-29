@@ -11,8 +11,8 @@ export class ThemeService {
     private readonly STORAGE_KEY = 'taj-theme-mode';
     private isInitialLoad = true;
 
-    // Reactive signal for theme state
-    currentTheme = signal<ThemeMode>('dark');
+    // Reactive signal for theme state - Forced to light
+    currentTheme = signal<ThemeMode>('light');
 
     constructor(@Inject(PLATFORM_ID) platformId: Object) {
         this.isBrowser = isPlatformBrowser(platformId);
@@ -23,16 +23,8 @@ export class ThemeService {
     }
 
     private initTheme(): void {
-        // Check for saved preference
-        const savedTheme = localStorage.getItem(this.STORAGE_KEY) as ThemeMode;
-
-        if (savedTheme) {
-            this.applyThemeInstantly(savedTheme);
-        } else {
-            // Check system preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.applyThemeInstantly(prefersDark ? 'dark' : 'light');
-        }
+        // Force light mode
+        this.applyThemeInstantly('light');
 
         // Re-enable transitions after first paint
         requestAnimationFrame(() => {
@@ -101,8 +93,8 @@ export class ThemeService {
     }
 
     toggleTheme(): void {
-        const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
-        this.setTheme(newTheme);
+        // Forced to light mode
+        this.setTheme('light');
     }
 
     isDarkMode(): boolean {

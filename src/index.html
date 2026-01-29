@@ -10,21 +10,11 @@
     <!-- CRITICAL: Apply saved theme BEFORE everything else to prevent flash -->
     <script>
         (function () {
-            var theme = localStorage.getItem('taj-theme-mode');
-            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var isLight = theme === 'light' || (!theme && !prefersDark);
-
             var root = document.documentElement;
-            if (isLight) {
-                root.classList.add('theme-light');
-                root.style.setProperty('--bg-preloader', '#eef2ff');
-                root.style.setProperty('--text-preloader', '#0c152a');
-                root.style.backgroundColor = '#eef2ff';
-            } else {
-                root.style.setProperty('--bg-preloader', '#0a0f14');
-                root.style.setProperty('--text-preloader', '#ffffff');
-                root.style.backgroundColor = '#0a0f14';
-            }
+            root.classList.add('theme-light');
+            root.style.setProperty('--bg-preloader', '#eef2ff');
+            root.style.setProperty('--text-preloader', '#0c152a');
+            root.style.backgroundColor = '#eef2ff';
         })();
     </script>
 
