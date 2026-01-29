@@ -88,6 +88,7 @@ export interface HeroData {
     stats?: Stat[];
     backgroundVideo?: string;
     backgroundImage?: string;
+    sliderImages?: string[];
     heroImage?: string;
     trustedBy?: { name: string; logo: string }[];
     layout?: 'centered' | 'left' | 'split';

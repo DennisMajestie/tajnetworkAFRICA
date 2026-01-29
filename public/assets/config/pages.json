@@ -31,7 +31,18 @@
                                 "style": "secondary"
                             }
                         ],
-                        "backgroundImage": "",
+                        "backgroundImage": "assets/images/taj/slide1.jpg",
+                        "sliderImages": [
+                            "assets/images/taj/slide1.jpg",
+                            "assets/images/taj/slide2.jpg",
+                            "assets/images/taj/slide3.jpg",
+                            "assets/images/taj/hq-innovation-bright.png",
+                            "assets/images/taj/hq-mission-control.png",
+                            "assets/images/taj/hq-mission-control-dark.png",
+                            "assets/images/taj/contact-hero.png",
+                            "assets/images/taj/contact-discovery-bg.png",
+                            "assets/images/taj/contact-discovery-light-bg.png"
+                        ],
                         "heroImage": "assets/images/hero/team-collaboration.jpg"
                     }
                 },

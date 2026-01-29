@@ -1,14 +1,16 @@
-import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { TypewriterDirective } from '../../directives/typewriter.directive';
 import { ParallaxDirective } from '../../directives/parallax.directive';
 import { HeroData } from '../../../core/models/types';
+import { register } from 'swiper/element/bundle';
 
 @Component({
   selector: 'app-hero-block',
   standalone: true,
   imports: [CommonModule, TypewriterDirective, ParallaxDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div class="hero" [class]="'hero--' + (data.layout || 'centered')" #container>
       <!-- 3D Background Canvas Disabled to remove tint -->
@@ -32,13 +34,27 @@ import { HeroData } from '../../../core/models/types';
       <!-- Orbs and Circles Disabled to remove tint -->
       <!-- <div class="bg-orbs">...</div> -->
       <!-- <div class="accent-circles">...</div> -->
-      <!-- Video/Image Background -->
+      <!-- Video/Image Background / Slider -->
       <div class="hero__bg">
         <video *ngIf="data.backgroundVideo" 
                [src]="data.backgroundVideo" 
                autoplay muted loop playsinline 
                class="hero__video"></video>
-        <img *ngIf="!data.backgroundVideo && data.backgroundImage" 
+        
+        <!-- Swiper Slider -->
+        <swiper-container *ngIf="!data.backgroundVideo && data.sliderImages && data.sliderImages.length > 0"
+                         init="false"
+                         class="hero__slider"
+                         navigation="true"
+                         pagination="true"
+                         #swiperRef>
+          <swiper-slide *ngFor="let img of data.sliderImages">
+            <img [src]="img" alt="" class="hero__img">
+          </swiper-slide>
+        </swiper-container>
+
+        <!-- Static Background Image (Fallback) -->
+        <img *ngIf="!data.backgroundVideo && (!data.sliderImages || data.sliderImages.length === 0) && data.backgroundImage" 
              [src]="data.backgroundImage" 
              alt="" class="hero__img">
       </div>
@@ -47,7 +63,7 @@ import { HeroData } from '../../../core/models/types';
       <div class="bg-grid-overlay"></div>
 
       <!-- Africa Map Background -->
-      <div class="africa-map-bg">
+      <div class="africa-map-bg" *ngIf="!data.sliderImages || data.sliderImages.length === 0">
         <img src="assets/images/taj/map-bg2.jpg" alt="" class="africa-map-img">
       </div>
 
@@ -336,7 +352,7 @@ import { HeroData } from '../../../core/models/types';
     .hero__bg {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 1; /* Moved up to be above orbs but below overlay */
     }
 
     .hero__video, .hero__img {
@@ -452,7 +468,7 @@ import { HeroData } from '../../../core/models/types';
       display: block; 
       padding: 16px 20px; 
       font-family: 'JetBrains Mono', monospace; 
-      font-size: 1.05rem; 
+      font-size: 1.05rem;
       color: #ffffff; 
       font-weight: 600;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -536,7 +552,7 @@ import { HeroData } from '../../../core/models/types';
     @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
 
     .hero-subheadline { 
-      font-size: 1.25rem; 
+      font-size: 1.25rem;
       color: rgba(255, 255, 255, 0.9); /* Increased contrast */
       margin-bottom: 3rem; 
       line-height: 1.8;
@@ -550,7 +566,7 @@ import { HeroData } from '../../../core/models/types';
       display: flex; 
       gap: 1.5rem; 
       justify-content: center; 
-      margin-bottom: 4rem; 
+      margin-bottom: 4rem;
 
       @media (max-width: 640px) {
         flex-direction: column;
@@ -614,6 +630,33 @@ import { HeroData } from '../../../core/models/types';
 
     .w-full { width: 100%; }
     .mt-3 { margin-top: 0.75rem; }
+
+    /* Swiper Slider Styling */
+    .hero__slider {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero__slider swiper-slide {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero__slider .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: ken-burns 20s infinite alternate;
+    }
+
+    @keyframes ken-burns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
   `]
 })
 export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
@@ -622,6 +665,7 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('container') containerRef!: ElementRef<HTMLElement>;
+  @ViewChild('swiperRef') swiperRef!: ElementRef<any>;
 
   private renderer?: any;
   private scene?: any;
@@ -636,8 +680,15 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
+    console.log('HeroBlockComponent: ngOnInit');
+    // Register Swiper custom elements
+    register();
     // Disable mouse parallax on mobile
     this.isMouseParallaxEnabled = window.innerWidth > 768;
+
+    if (this.data) {
+      console.log('HeroData sliderImages:', this.data.sliderImages);
+    }
   }
 
   get typewriterPhrases(): string[] {
@@ -654,6 +705,13 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    console.log('HeroBlockComponent: ngAfterViewInit');
+    // Use timeout to ensure swiperRef is available if it was just rendered
+    if (this.data.sliderImages && this.data.sliderImages.length > 0) {
+      console.log('Setting up Swiper slider...');
+      setTimeout(() => this.initSwiper(), 500); // Increased timeout to be safer
+    }
+
     if (!this.animation) return;
 
     const root = this.el.nativeElement;
@@ -667,6 +725,60 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
 
     // Futuristic 3D Background
     this.initThreeJs();
+  }
+
+  /**
+   * Initialize Swiper with custom parameters
+   */
+  private initSwiper(): void {
+    if (!this.swiperRef) {
+      console.error('Swiper ref not found!');
+      return;
+    }
+
+    console.log('Initializing Swiper container:', this.swiperRef.nativeElement);
+    const swiperEl = this.swiperRef.nativeElement;
+
+    const swiperParams = {
+      slidesPerView: 1,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      speed: 1500,
+      pagination: true, // Let's add pagination to see if it shows up
+      injectStyles: [
+        `
+        :host {
+          --swiper-theme-color: #004a78;
+        }
+        .swiper-pagination-bullet {
+          background: #fff;
+          opacity: 0.5;
+        }
+        .swiper-pagination-bullet-active {
+          background: #004a78;
+          opacity: 1;
+        }
+        `
+      ],
+    };
+
+    // Assign parameters to swiper element
+    Object.assign(swiperEl, swiperParams);
+
+    // Initialize swiper
+    if (typeof swiperEl.initialize === 'function') {
+      swiperEl.initialize();
+      console.log('Swiper initialized successfully');
+    } else {
+      console.error('swiperEl.initialize is not a function. Swiper might not be registered correctly.');
+    }
   }
 
   /**

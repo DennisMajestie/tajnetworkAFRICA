@@ -76,6 +76,7 @@
    ============================================ */
 :root {
   color-scheme: dark light; /* Direct browser optimization for initial paint */
+  zoom: 0.67; /* Force 67% Scale per User Request */
 }
 
 body {
