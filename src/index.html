@@ -140,18 +140,28 @@
     <script>
         (function () {
             function applyScale() {
+                var root = document.documentElement;
                 if (window.innerWidth >= 1024) {
-                    var html = document.documentElement;
-                    html.style.transform = 'scale(0.67)';
-                    html.style.transformOrigin = 'top center';
-                    html.style.width = '149.25%';
-                    html.style.height = '149.25%';
+                    // 1. Chrome/Edge/Safari support 'zoom' property which is much more stable for layout
+                    if ('zoom' in root.style && navigator.userAgent.indexOf('Firefox') === -1) {
+                        root.style.zoom = "0.67";
+                        root.style.transform = "";
+                        root.style.width = "";
+                        root.style.height = "";
+                    } else {
+                        // 2. Firefox Fallback: Use scale with top-left origin to prevent displacement
+                        root.style.transform = 'scale(0.67)';
+                        root.style.transformOrigin = 'top left';
+                        root.style.width = '149.25%';
+                        root.style.height = '149.25%';
+                    }
                     document.body.style.overflowX = 'hidden';
                 } else {
-                    var html = document.documentElement;
-                    html.style.transform = '';
-                    html.style.width = '';
-                    html.style.height = '';
+                    root.style.zoom = "";
+                    root.style.transform = "";
+                    root.style.width = "";
+                    root.style.height = "";
+                    document.body.style.overflowX = "";
                 }
             }
             applyScale();
