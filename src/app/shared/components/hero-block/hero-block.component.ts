@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy, CUSTOM_ELEMENTS_SCHEMA, afterNextRender } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { TypewriterDirective } from '../../directives/typewriter.directive';
@@ -677,7 +677,14 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   private mouseY = 0;
   private isMouseParallaxEnabled = true;
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {
+    afterNextRender(() => {
+      console.log('HeroBlockComponent: afterNextRender (Swiper Init)');
+      if (this.data && this.data.sliderImages && this.data.sliderImages.length > 0) {
+        this.initSwiper();
+      }
+    });
+  }
 
   ngOnInit(): void {
     console.log('HeroBlockComponent: ngOnInit');
@@ -705,11 +712,7 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
 
   ngAfterViewInit(): void {
     console.log('HeroBlockComponent: ngAfterViewInit');
-    // Use timeout to ensure swiperRef is available if it was just rendered
-    if (this.data.sliderImages && this.data.sliderImages.length > 0) {
-      console.log('Setting up Swiper slider...');
-      setTimeout(() => this.initSwiper(), 500); // Increased timeout to be safer
-    }
+    // Swiper initialization is now handled by afterNextRender for better hydration stability
 
     if (!this.animation) return;
 

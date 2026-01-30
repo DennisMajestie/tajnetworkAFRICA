@@ -133,29 +133,34 @@
     <!-- External stylesheets load AFTER critical CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Option B: Inline Critical CSS for Global Scaling (Angular 19/Vercel Highly Reliable) -->
-    <style>
-        @media screen and (min-width: 1024px) {
-            html {
-                transform: scale(0.67);
-                transform-origin: top center;
-                width: 149.25% !important;
-                /* 100 / 0.67 */
-                height: 149.25vh !important;
-            }
-
-            body {
-                margin: 0;
-                overflow-x: hidden;
-            }
-        }
-    </style>
-
 </head>
 
-<body>
+<body class="theme-light">
+    <!-- PERSISTENT SCALING ENFORCER: Final Fail-safe for Angular 19/Vercel -->
+    <script>
+        (function () {
+            function applyScale() {
+                if (window.innerWidth >= 1024) {
+                    var html = document.documentElement;
+                    html.style.transform = 'scale(0.67)';
+                    html.style.transformOrigin = 'top center';
+                    html.style.width = '149.25%';
+                    html.style.height = '149.25%';
+                    document.body.style.overflowX = 'hidden';
+                } else {
+                    var html = document.documentElement;
+                    html.style.transform = '';
+                    html.style.width = '';
+                    html.style.height = '';
+                }
+            }
+            applyScale();
+            window.addEventListener('DOMContentLoaded', applyScale);
+            window.addEventListener('load', applyScale);
+            window.addEventListener('resize', applyScale);
+        })();
+    </script>
     <app-root></app-root>
-
 </body>
 
 </html>
