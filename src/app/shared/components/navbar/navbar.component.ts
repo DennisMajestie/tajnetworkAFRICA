@@ -280,7 +280,7 @@ import { filter } from 'rxjs/operators';
       color: var(--color-neutral-mediumGray);
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.9375rem;
+      font-size: 1.1rem;
       transition: all 0.3s ease;
       position: relative;
 
@@ -330,13 +330,13 @@ import { filter } from 'rxjs/operators';
         display: inline-flex;
         padding:10px 43px;
         height: 48px;
-        font-size: 0.95rem;
+        font-size: 1.05rem;
       }
 
       @media (min-width: 1151px) {
         padding: 0 40px;
         height: 52px;
-        font-size: 1.1rem;
+        font-size: 1.25rem;
       }
 
       &:focus,
