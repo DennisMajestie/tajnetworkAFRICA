@@ -92,7 +92,7 @@ import { NavigationConfig } from '../../../core/models/types';
             <ul class="footer__contact">
               <li class="footer__contact-item">
                 <i class="fa-solid fa-location-dot"></i>
-                <span>Block 1, Flat 2 PhilKruiz Estate, Lugbe FCT Abuja, Nigeria</span>
+                <span>Block 1, PhilKruiz Estate, Lugbe FCT Abuja, Nigeria</span>
               </li>
               <li class="footer__contact-item">
                 <i class="fa-solid fa-envelope"></i>

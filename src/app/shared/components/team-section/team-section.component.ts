@@ -453,7 +453,7 @@ export class TeamSectionComponent implements OnInit {
       ]
     },
     {
-      name: "Isaac Ayodejiariyo",
+      name: "Ayodeji Ariyo",
       role: "Mobile App Developer",
       type: "manager",
       bio: "Crafting high-performance mobile experiences with a focus on fluid UX and innovative cross-platform solutions.",

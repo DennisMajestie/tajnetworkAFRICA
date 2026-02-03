@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
               
-              <a href="https://www.google.com/maps/dir/?api=1&destination=Block+1+Flat+2+Philcruz+Estate+Lugbe+Airport+Road+Abuja" 
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Block+1+Philcruz+Estate+Lugbe+Airport+Road+Abuja" 
                  target="_blank" 
                  class="map-tag">
                 <i class="fas fa-location-arrow"></i>
@@ -41,7 +41,7 @@ import { CommonModule } from '@angular/common';
                 </div>
                 <div class="location-card">
                   <h4 class="location-name">Taj Network Africa</h4>
-                  <p class="location-addr">Block 1, Flat 2, Philcruz Estate</p>
+                  <p class="location-addr">Block 1, Philcruz Estate</p>
                 </div>
               </div>
             </div>
@@ -299,7 +299,7 @@ export class ContactMapComponent {
     {
       icon: 'fas fa-location-arrow',
       label: 'Location',
-      detail: 'Block 1, Flat 2, Philcruz Estate,<br>Lugbe Airport Road, Abuja'
+      detail: 'Block 1, Philcruz Estate,<br>Lugbe Airport Road, Abuja'
     }
   ];
 }
