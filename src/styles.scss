@@ -693,22 +693,25 @@ i, .fa, .fas, .fab, .far, svg.theme-icon {
   font-weight: 500;
 }
 
-/* Section, Hero, and Tech Tags - Hidden globally per user request */
+/* Section, Hero, and Tech Tags - Updated to be less aggressive */
 .section-tag,
 .hero-tag,
-.tech-tag,
-.services-intro__tag,
-.map-tag,
-.header-badge,
-.content-badge {
+.tech-tag {
   display: none !important;
+}
+
+/* Ensure badges and tags that might contain icons are visible */
+.header-badge,
+.content-badge,
+.section-badge {
+  display: inline-flex !important;
 }
 
 /* Icons across components */
 .theme-dark i, 
 .theme-dark span[class^="icon-"], 
 .theme-dark span[class*=" icon-"] {
-  color: #004a78;
+  color: #ffffff; /* White icons in dark mode for visibility */
 }
 
 /* White icons inside Primary Blue elements (cards, buttons, headers) */
@@ -723,7 +726,7 @@ i, .fa, .fas, .fab, .far, svg.theme-icon {
 .theme-light i, 
 .theme-light span[class^="icon-"], 
 .theme-light span[class*=" icon-"] {
-  color: #004a78 !important;
+  color: #004a78; /* Removed !important to allow component-level overrides */
 }
 
 /* Specific icon boxes */

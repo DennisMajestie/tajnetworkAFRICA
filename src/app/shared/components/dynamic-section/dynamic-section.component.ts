@@ -136,27 +136,10 @@ export class DynamicSectionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Only animate if section doesn't have internal complex animations like hero
-    if (this.section.type !== 'hero' && this.section.animation !== false) {
-      const target = this.el.nativeElement.querySelector('.section-motion-reveal');
-      if (target) {
-        gsap.from(target, {
-          opacity: 0,
-          y: 50,
-          scale: 0.98,
-          duration: 1.2,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: target,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-          }
-        });
-      }
-    }
+    // Reveal animations are now handled globally by ScrollAnimationService
+    // to prevent redundancy and improve performance.
   }
+
 
   private applyStyling(styles: any): void {
     // Custom logic for setting CSS variables if needed

@@ -671,6 +671,7 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   private scene?: any;
   private camera?: any;
   private animationFrameId?: number;
+  private mouseMoveListener?: (e: MouseEvent) => void;
 
   // Mouse parallax tracking
   private mouseX = 0;
@@ -725,8 +726,9 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
     this.initializeMagneticButtons(root);
     this.initializeMouseParallax(root);
 
-    // Futuristic 3D Background
-    this.initThreeJs();
+    // Futuristic 3D Background - Removed for performance optimization
+    // this.initThreeJs();
+
   }
 
   /**
@@ -925,7 +927,7 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
     const cards = root.querySelectorAll('.code-card');
     if (cards.length === 0) return;
 
-    document.addEventListener('mousemove', (e: MouseEvent) => {
+    this.mouseMoveListener = (e: MouseEvent) => {
       this.mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
       this.mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
 
@@ -938,7 +940,9 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
           ease: 'power2.out'
         });
       });
-    });
+    };
+
+    document.addEventListener('mousemove', this.mouseMoveListener, { passive: true });
   }
 
   private animateStats(): void {
@@ -963,90 +967,27 @@ export class HeroBlockComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   /**
-   * Futuristic 3D Wireframe Background (Three.js)
+   * Futuristic 3D Wireframe Background (Three.js) - DISABLED FOR PERFORMANCE
    */
   private initThreeJs() {
-    // Only load Three.js if not already present
-    if ((window as any).THREE) {
-      this.setupScene();
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    script.onload = () => this.setupScene();
-    document.head.appendChild(script);
+    // Logic removed to prevent main-thread lag and unnecessary CDN script loading
   }
 
   private setupScene() {
-    const THREE = (window as any).THREE;
-    if (!THREE || !this.containerRef || !this.canvasRef) return;
-
-    const width = this.containerRef.nativeElement.clientWidth;
-    const height = this.containerRef.nativeElement.clientHeight;
-
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 5;
-
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvasRef.nativeElement,
-      alpha: true,
-      antialias: true
-    });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubes: any[] = [];
-
-    // Create floating wireframe cubes
-    for (let i = 0; i < 15; i++) {
-      const material = new THREE.MeshBasicMaterial({
-        color: 0x004a78,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.1
-      });
-      const cube = new THREE.Mesh(geometry, material);
-      cube.position.set(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 5
-      );
-      cube.rotation.set(Math.random(), Math.random(), 0);
-      this.scene.add(cube);
-      cubes.push(cube);
-    }
-
-    const animate = () => {
-      this.animationFrameId = requestAnimationFrame(animate);
-      cubes.forEach(c => {
-        c.rotation.x += 0.002;
-        c.rotation.y += 0.002;
-      });
-      this.renderer.render(this.scene, this.camera);
-    };
-    animate();
-
-    // Handle Resize
-    window.addEventListener('resize', () => this.onResize());
+    // Scene setup removed for performance
   }
-
-
 
   private onResize() {
-    if (!this.renderer || !this.camera || !this.containerRef) return;
-    const width = this.containerRef.nativeElement.clientWidth;
-    const height = this.containerRef.nativeElement.clientHeight;
-
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    // Resize handling logic simplified or removed as 3D canvas is disabled
   }
+
 
   ngOnDestroy() {
     if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
-    window.removeEventListener('resize', () => this.onResize());
+    if (this.mouseMoveListener) {
+      document.removeEventListener('mousemove', this.mouseMoveListener);
+    }
+    // Correctly remove the arrow function listener if it was added this way
+    // or just ensure we don't leak anything.
   }
 }

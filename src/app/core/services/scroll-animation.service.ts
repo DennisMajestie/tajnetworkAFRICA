@@ -13,7 +13,9 @@ export class ScrollAnimationService {
         this.isBrowser = isPlatformBrowser(platformId);
 
         if (this.isBrowser) {
-            gsap.registerPlugin(ScrollTrigger);
+            // GSAP and ScrollTrigger are already registered globally in main.ts
+            // But we can set defaults here for cleaner animations
+            gsap.defaults({ ease: 'power2.out', duration: 0.8 });
         }
     }
 
@@ -23,8 +25,8 @@ export class ScrollAnimationService {
     initDramaticScrollEffects(): void {
         if (!this.isBrowser) return;
 
-        // Refresh ScrollTrigger to recalculate positions
-        ScrollTrigger.refresh();
+        // No need to refresh on every call unless the layout has changed drastically
+        // ScrollTrigger.refresh();
 
         // Section reveal animations - dramatic fade and slide
         this.initSectionReveals();

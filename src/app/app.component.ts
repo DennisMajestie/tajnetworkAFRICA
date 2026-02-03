@@ -91,7 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => {
         this.scrollAnimations.initDramaticScrollEffects();
         window.scrollTo(0, 0);
-      }, 100);
+      }, 50);
     });
   }
 
@@ -134,7 +134,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     // Initialize dramatic scroll animations after a short delay
     setTimeout(() => {
       this.scrollAnimations.initDramaticScrollEffects();
-    }, 500);
+    }, 100);
   }
 
   ngOnDestroy(): void {

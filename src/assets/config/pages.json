@@ -31,17 +31,13 @@
                                 "style": "secondary"
                             }
                         ],
-                        "backgroundImage": "assets/images/taj/slide1.jpg",
+                        "backgroundImage": "assets/images/Taj Banner/team-crane-shot.jpeg",
                         "sliderImages": [
-                            "assets/images/taj/slide1.jpg",
-                            "assets/images/taj/slide2.jpg",
-                            "assets/images/taj/slide3.jpg",
-                            "assets/images/taj/hq-innovation-bright.png",
-                            "assets/images/taj/hq-mission-control.png",
-                            "assets/images/taj/hq-mission-control-dark.png",
-                            "assets/images/taj/contact-hero.png",
-                            "assets/images/taj/contact-discovery-bg.png",
-                            "assets/images/taj/contact-discovery-light-bg.png"
+                            "assets/images/Taj Banner/team-crane-shot.jpeg",
+                            "assets/images/Taj Banner/team-focused.jpeg",
+                            "assets/images/Taj Banner/team-smiling.jpeg",
+                            "assets/images/Taj Banner/team1.png",
+                            "assets/images/Taj Banner/team2.jpeg"
                         ]
                     }
                 },

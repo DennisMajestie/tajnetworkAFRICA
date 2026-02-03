@@ -139,37 +139,55 @@
     <!-- PERSISTENT SCALING ENFORCER: Final Fail-safe for Angular 19/Vercel -->
     <script>
         (function () {
+            var appliedScale = null;
             function applyScale() {
                 var root = document.documentElement;
-                if (window.innerWidth >= 1024) {
-                    // 1. Chrome/Edge/Safari support 'zoom' property which is much more stable for layout
+                var currentWidth = window.innerWidth;
+                var targetScale = "0.67";
+
+                if (currentWidth >= 1024) {
+                    if (appliedScale === targetScale) return;
+
                     if ('zoom' in root.style && navigator.userAgent.indexOf('Firefox') === -1) {
-                        root.style.zoom = "0.67";
+                        root.style.zoom = targetScale;
                         root.style.transform = "";
                         root.style.width = "";
                         root.style.height = "";
                     } else {
-                        // 2. Firefox Fallback: Use scale with top-left origin to prevent displacement
-                        root.style.transform = 'scale(0.67)';
+                        root.style.transform = 'scale(' + targetScale + ')';
                         root.style.transformOrigin = 'top left';
                         root.style.width = '149.25%';
                         root.style.height = '149.25%';
                     }
                     document.body.style.overflowX = 'hidden';
+                    appliedScale = targetScale;
                 } else {
+                    if (appliedScale === "") return;
                     root.style.zoom = "";
                     root.style.transform = "";
                     root.style.width = "";
                     root.style.height = "";
                     document.body.style.overflowX = "";
+                    appliedScale = "";
                 }
             }
-            applyScale();
-            window.addEventListener('DOMContentLoaded', applyScale);
-            window.addEventListener('load', applyScale);
-            window.addEventListener('resize', applyScale);
+
+            // Run immediately with RAF
+            requestAnimationFrame(applyScale);
+
+            // Throttled listeners
+            var resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(applyScale, 100);
+            }, { passive: true });
+
+            // Secondary failsafe
+            document.addEventListener('DOMContentLoaded', applyScale);
         })();
     </script>
+
+
     <app-root></app-root>
 </body>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, Renderer2, HostListener, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, HostListener, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 /**
  * Premium Magnetic Cursor Component for Taj Network Africa
@@ -190,6 +191,9 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly magneticStrength = 0.3;
   private readonly magneticRadius = 100;
 
+  // Scale Factor Compensation
+  private docScale = 1;
+
   // Particle System
   private particles: Particle[] = [];
   private readonly maxParticles = 15;
@@ -205,11 +209,15 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   private isMobile = false;
   private isTouchDevice = false;
   private prefersReducedMotion = false;
+  private isBrowser: boolean;
 
   constructor(
     private renderer: Renderer2,
-    private el: ElementRef
-  ) { }
+    private el: ElementRef,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     // Device and accessibility checks
@@ -231,8 +239,36 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.initializeCursor();
     this.initializeCanvas();
+    this.updateDocScale();
     this.startAnimation();
     this.isInitialized = true;
+  }
+
+  /**
+   * Detect current document scale factor (zoom/transform)
+   */
+  private updateDocScale(): void {
+    if (!this.isBrowser) return;
+
+    // Check for zoom property on root element
+    const zoom = parseFloat(getComputedStyle(document.documentElement).zoom);
+    if (!isNaN(zoom) && zoom !== 0) {
+      this.docScale = zoom;
+      return;
+    }
+
+    // Check for transform scale on root element
+    const matrix = getComputedStyle(document.documentElement).transform;
+    if (matrix && matrix !== 'none') {
+      const values = matrix.split('(')[1].split(')')[0].split(',');
+      const a = parseFloat(values[0]);
+      const b = parseFloat(values[1]);
+      const scale = Math.sqrt(a * a + b * b);
+      this.docScale = scale || 1;
+      return;
+    }
+
+    this.docScale = 1;
   }
 
   ngOnDestroy(): void {
@@ -457,8 +493,9 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   onMouseMove(event: MouseEvent): void {
     if (!this.isInitialized) return;
 
-    this.mouseX = event.clientX;
-    this.mouseY = event.clientY;
+    // Compensate for global scale (zoom/transform)
+    this.mouseX = event.clientX / this.docScale;
+    this.mouseY = event.clientY / this.docScale;
 
     // Check for magnetic pull and state changes
     this.checkMagneticPull(event);
@@ -474,6 +511,7 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   onResize(): void {
     if (!this.isInitialized) return;
     this.resizeCanvas();
+    this.updateDocScale();
 
     // Check if resized to mobile
     if (window.innerWidth <= 1024) {

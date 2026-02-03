@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-why-choose-us',
@@ -10,6 +12,10 @@ import { RouterModule } from '@angular/router';
     <section class="why-choose-us-v6">
       <!-- Section Branding Background -->
       <div class="section-taj">TAJ</div>
+      
+      <!-- Decorative Floating Balls -->
+      <div class="bg-floating-ball ball-1"></div>
+      <div class="bg-floating-ball ball-2"></div>
 
       <div class="container--wide">
         <header class="section-header" data-aos="fade-up">
@@ -117,6 +123,68 @@ import { RouterModule } from '@angular/router';
       z-index: 0;
       letter-spacing: -10px;
       transform-origin: center;
+    }
+
+    /* Glassmorphic Floating Spheres */
+    .bg-floating-ball {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+      backdrop-filter: blur(4px); /* Slightly reduced for better performance */
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        inset 10px 10px 20px rgba(255, 255, 255, 0.05),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.3);
+      will-change: transform;
+      transform: translate3d(0,0,0); /* Force GPU acceleration */
+      
+      :host-context(.theme-light) & {
+        border-color: rgba(0, 74, 120, 0.1);
+        box-shadow: 
+          inset 10px 10px 20px rgba(255, 255, 255, 0.4),
+          inset -10px -10px 20px rgba(0, 74, 120, 0.05),
+          0 20px 40px rgba(0, 74, 120, 0.1);
+      }
+    }
+
+    .ball-1 {
+      top: 5%;
+      left: 5%;
+      width: 480px;
+      height: 480px;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 242, 255, 0.05) 100%);
+      
+      :host-context(.theme-light) & {
+        background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 242, 255, 0.03) 100%);
+      }
+    }
+
+    .ball-2 {
+      bottom: -15%;
+      right: 5%;
+      width: 380px;
+      height: 380px;
+      background: linear-gradient(225deg, rgba(0, 242, 255, 0.15) 0%, rgba(0, 102, 255, 0.05) 100%);
+
+      :host-context(.theme-light) & {
+        background: linear-gradient(225deg, rgba(0, 242, 255, 0.08) 0%, rgba(0, 102, 255, 0.02) 100%);
+      }
+    }
+
+    @keyframes floatingBall1 {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(10%, 15%) scale(1.1); }
+      66% { transform: translate(-5%, 25%) scale(0.95); }
+      100% { transform: translate(5%, -5%) scale(1.05); }
+    }
+
+    @keyframes floatingBall2 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-15%, -20%) scale(1.2); }
+      100% { transform: translate(10%, 10%) scale(0.9); }
     }
 
     .container--wide {
@@ -405,4 +473,85 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class WhyChooseUsComponent { }
+export class WhyChooseUsComponent implements OnInit, AfterViewInit, OnDestroy {
+  private isBrowser: boolean;
+  private scrollTriggers: ScrollTrigger[] = [];
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.initParallax();
+    }
+  }
+
+  private initParallax(): void {
+    // Parallax effect for glass spheres
+    const ball1 = document.querySelector('.ball-1');
+    const ball2 = document.querySelector('.ball-2');
+
+    if (ball1) {
+      const t1 = gsap.to(ball1, {
+        yPercent: 40,
+        xPercent: 15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.why-choose-us-v6',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+      this.scrollTriggers.push(t1.scrollTrigger!);
+    }
+
+    if (ball2) {
+      const t2 = gsap.to(ball2, {
+        yPercent: -40,
+        xPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.why-choose-us-v6',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      });
+      this.scrollTriggers.push(t2.scrollTrigger!);
+    }
+
+    // Floating base animation (combined with scroll for complex motion)
+    if (ball1) {
+      gsap.to(ball1, {
+        y: '+=30',
+        x: '+=20',
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+    }
+
+    if (ball2) {
+      gsap.to(ball2, {
+        y: '-=40',
+        x: '-=30',
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 1
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isBrowser) {
+      this.scrollTriggers.forEach(trigger => trigger.kill());
+    }
+  }
+}

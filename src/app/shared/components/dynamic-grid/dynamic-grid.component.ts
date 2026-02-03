@@ -265,7 +265,6 @@ export class DynamicGridComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private animateIn(): void {
-    gsap.registerPlugin(ScrollTrigger);
     const cards = this.el.nativeElement.querySelectorAll('.card, .accordion-item');
     if (cards && cards.length) {
       gsap.killTweensOf(cards);

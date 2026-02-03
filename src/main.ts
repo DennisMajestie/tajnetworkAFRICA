@@ -3,6 +3,10 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { register } from 'swiper/element/bundle';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins globally
+gsap.registerPlugin(ScrollTrigger);
 
 // Register Swiper custom elements globally
 register();
