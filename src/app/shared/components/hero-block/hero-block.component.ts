@@ -1,5 +1,5 @@
 import { Component, Input, AfterViewInit, ElementRef, OnInit, ViewChild, OnDestroy, CUSTOM_ELEMENTS_SCHEMA, afterNextRender } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { gsap } from 'gsap';
 import { TypewriterDirective } from '../../directives/typewriter.directive';
 import { ParallaxDirective } from '../../directives/parallax.directive';
@@ -9,7 +9,7 @@ import { HeroData } from '../../../core/models/types';
 @Component({
   selector: 'app-hero-block',
   standalone: true,
-  imports: [CommonModule, TypewriterDirective, ParallaxDirective],
+  imports: [CommonModule, NgOptimizedImage, TypewriterDirective, ParallaxDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div class="hero" [class]="'hero--' + (data.layout || 'centered')" #container>
@@ -21,14 +21,14 @@ import { HeroData } from '../../../core/models/types';
 
       <!-- Decorative Shapes Background Layer -->
       <div class="hero-shapes">
-        <img src="assets/images/shapes/main-slider-shape-2.png" 
-             alt="" class="shape shape-1" appParallax [parallaxSpeed]="0.12">
-        <img src="assets/images/shapes/main-slider-shape-4.png" 
-             alt="" class="shape shape-2" appParallax [parallaxSpeed]="-0.08">
-        <img src="assets/images/shapes/main-slider-three-shape-5.png" 
-             alt="" class="shape shape-3" appParallax [parallaxSpeed]="0.15">
-        <img src="assets/images/shapes/about-five-shape-1.png" 
-             alt="" class="shape shape-4" appParallax [parallaxSpeed]="-0.1">
+        <img ngSrc="assets/images/shapes/main-slider-shape-2.png" 
+             alt="" class="shape shape-1" appParallax [parallaxSpeed]="0.12" width="600" height="600">
+        <img ngSrc="assets/images/shapes/main-slider-shape-4.png" 
+             alt="" class="shape shape-2" appParallax [parallaxSpeed]="-0.08" width="500" height="500">
+        <img ngSrc="assets/images/shapes/main-slider-three-shape-5.png" 
+             alt="" class="shape shape-3" appParallax [parallaxSpeed]="0.15" width="300" height="300">
+        <img ngSrc="assets/images/shapes/about-five-shape-1.png" 
+             alt="" class="shape shape-4" appParallax [parallaxSpeed]="-0.1" width="250" height="250">
       </div>
 
       <!-- Orbs and Circles Disabled to remove tint -->
@@ -48,15 +48,15 @@ import { HeroData } from '../../../core/models/types';
                          navigation="true"
                          pagination="true"
                          #swiperRef>
-          <swiper-slide *ngFor="let img of data.sliderImages">
-            <img [src]="img" alt="" class="hero__img">
+          <swiper-slide *ngFor="let img of data.sliderImages; let first = first">
+            <img [ngSrc]="img" alt="" class="hero__img" fill [priority]="first">
           </swiper-slide>
         </swiper-container>
 
         <!-- Static Background Image (Fallback) -->
         <img *ngIf="!data.backgroundVideo && (!data.sliderImages || data.sliderImages.length === 0) && data.backgroundImage" 
-             [src]="data.backgroundImage" 
-             alt="" class="hero__img">
+             [ngSrc]="data.backgroundImage" 
+             alt="" class="hero__img" fill priority>
       </div>
 
       <!-- Grid Pattern -->
@@ -64,7 +64,7 @@ import { HeroData } from '../../../core/models/types';
 
       <!-- Africa Map Background -->
       <div class="africa-map-bg" *ngIf="!data.sliderImages || data.sliderImages.length === 0">
-        <img src="assets/images/taj/map-bg2.jpg" alt="" class="africa-map-img">
+        <img ngSrc="assets/images/taj/map-bg2.jpg" alt="" class="africa-map-img" fill>
       </div>
 
       <!-- Main Dark Overlay for Text Visibility -->
@@ -159,7 +159,7 @@ import { HeroData } from '../../../core/models/types';
           <div class="trusted-by" *ngIf="data.trustedBy">
             <span class="trusted-label">Trusted by innovative teams</span>
             <div class="trusted-logos">
-              <img *ngFor="let partner of data.trustedBy" [src]="partner.logo" [alt]="partner.name" class="trusted-logo">
+              <img *ngFor="let partner of data.trustedBy" [ngSrc]="partner.logo" [alt]="partner.name" class="trusted-logo" width="120" height="40">
             </div>
           </div>
 
@@ -167,22 +167,22 @@ import { HeroData } from '../../../core/models/types';
           <div class="tech-badges" *ngIf="data.layout === 'centered'">
              <div class="tech-badges__list">
                 <div class="tech-badge taj-floating">
-                   <img src="assets/images/brand/angular.png" alt="Angular">
+                   <img ngSrc="assets/images/brand/angular.png" alt="Angular" width="30" height="30">
                 </div>
                 <div class="tech-badge taj-floating" style="animation-delay: -1s">
-                   <img src="assets/images/brand/typescript.png" alt="TypeScript">
+                   <img ngSrc="assets/images/brand/typescript.png" alt="TypeScript" width="30" height="30">
                 </div>
                 <div class="tech-badge taj-floating" style="animation-delay: -2s">
-                   <img src="assets/images/brand/node.png" alt="Node.js">
+                   <img ngSrc="assets/images/brand/node.png" alt="Node.js" width="30" height="30">
                 </div>
                 <div class="tech-badge taj-floating" style="animation-delay: -3s">
-                   <img src="assets/images/brand/python.png" alt="Python">
+                   <img ngSrc="assets/images/brand/python.png" alt="Python" width="30" height="30">
                 </div>
                 <div class="tech-badge taj-floating" style="animation-delay: -4s">
-                   <img src="assets/images/brand/php.png" alt="PHP">
+                   <img ngSrc="assets/images/brand/php.png" alt="PHP" width="30" height="30">
                 </div>
                 <div class="tech-badge taj-badge taj-floating" style="animation-delay: -5s">
-                   <img src="assets/images/brand/firebase.png" alt="Firebase">
+                   <img ngSrc="assets/images/brand/firebase.png" alt="Firebase" width="30" height="30">
                 </div>
              </div>
           </div>

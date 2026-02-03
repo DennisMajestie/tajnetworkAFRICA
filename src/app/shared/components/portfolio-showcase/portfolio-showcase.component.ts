@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 interface PortfolioItem {
@@ -13,7 +13,7 @@ interface PortfolioItem {
 @Component({
   selector: 'app-portfolio-showcase',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
   template: `
     <section class="portfolio-showcase">
       
@@ -35,7 +35,7 @@ interface PortfolioItem {
           <div class="portfolio-card" *ngFor="let item of displayItems; let i = index" 
                [style.animation-delay]="i * 0.1 + 's'">
             <div class="portfolio-card__image-box">
-              <img [src]="item.image" [alt]="item.title" class="portfolio-card__image">
+              <img [ngSrc]="item.image" [alt]="item.title" class="portfolio-card__image" fill>
               <div class="portfolio-card__overlay">
                 <div class="portfolio-card__content">
                   <span class="portfolio-card__category">{{ item.category }}</span>

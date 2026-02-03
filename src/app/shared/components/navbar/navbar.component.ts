@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { ConfigService } from '../../../core/services/config.service';
 import { ThemeService } from '../../../core/services/theme.service';
@@ -9,13 +9,13 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
   template: `
     <nav class="navbar" [class.navbar--scrolled]="isScrolled" [class.navbar--mobile-open]="isMobileMenuOpen">
       <div class="container navbar__container">
         <!-- Logo -->
         <a routerLink="/" class="navbar__logo" (click)="closeMobileMenu()">
-          <img src="assets/images/taj/tajlogo.png" alt="Taj Network Africa" class="navbar__logo-img" width="160" height="44">
+          <img ngSrc="assets/images/taj/tajlogo.png" alt="Taj Network Africa" class="navbar__logo-img" width="160" height="44" priority>
         </a>
 
         <!-- Desktop Menu -->
