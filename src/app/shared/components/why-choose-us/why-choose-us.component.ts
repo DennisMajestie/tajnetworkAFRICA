@@ -113,7 +113,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     .section-taj {
       position: absolute;
       top: 50%;
-      right: -5%;
+      right: 5%;
       transform: translateY(-50%) rotate(90deg);
       font-size: 12rem;
       font-weight: 950;
@@ -163,8 +163,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     }
 
     .ball-2 {
-      bottom: -15%;
-      right: 5%;
+      bottom: 3%;
+      right: 3%;
       width: 380px;
       height: 380px;
       background: linear-gradient(225deg, rgba(0, 242, 255, 0.15) 0%, rgba(0, 102, 255, 0.05) 100%);
