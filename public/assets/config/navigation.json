@@ -19,10 +19,6 @@
         {
             "text": "Portfolio",
             "url": "/portfolio"
-        },
-        {
-            "text": "Contact",
-            "url": "/contact"
         }
     ],
     "cta": {

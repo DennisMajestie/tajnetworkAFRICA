@@ -11,9 +11,12 @@ import { NavigationConfig } from '../../../core/models/types';
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   template: `
     <footer class="footer">
-      <!-- Decorative background orbs -->
-      <div class="footer__glow footer__glow--1"></div>
-      <div class="footer__glow footer__glow--2"></div>
+      <!-- Decorative Shapes Background -->
+      <div class="footer__shapes">
+        <img src="assets/images/shapes/site-footer-shape-1.png" alt="" class="footer__shape footer__shape--1">
+        <img src="assets/images/shapes/site-footer-shape-2.png" alt="" class="footer__shape footer__shape--2">
+        <img src="assets/images/shapes/site-footer-shape-3.png" alt="" class="footer__shape footer__shape--3">
+      </div>
 
       <div class="container footer__container">
         <!-- Top Section: Newsletter -->
@@ -135,27 +138,42 @@ import { NavigationConfig } from '../../../core/models/types';
       }
     }
 
-    .footer__glow {
+    /* Decorative Shapes */
+    .footer__shapes {
       position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.1;
+      inset: 0;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
+    }
 
-      &--1 {
-        background: var(--color-accent-blue);
-        top: -100px;
-        left: -100px;
-      }
+    .footer__shape {
+      position: absolute;
+      opacity: 0.08;
+      filter: blur(1px);
+    }
 
-      &--2 {
-        background: var(--color-accent-purple);
-        bottom: -100px;
-        right: -100px;
-      }
+    .footer__shape--1 {
+      top: -10%;
+      left: -5%;
+      width: 40%;
+      max-width: 400px;
+    }
+
+    .footer__shape--2 {
+      bottom: -15%;
+      right: -5%;
+      width: 35%;
+      max-width: 350px;
+      transform: rotate(180deg);
+    }
+
+    .footer__shape--3 {
+      top: 30%;
+      right: 15%;
+      width: 20%;
+      max-width: 200px;
+      opacity: 0.05;
     }
 
     .footer__container {
@@ -393,12 +411,12 @@ import { NavigationConfig } from '../../../core/models/types';
 
     /* Light Mode Overrides - Consistent with other sections */
     :host-context(.theme-light) .footer {
-      background: #dbd9fd !important; /* Solid lavender to match all sections */
-      color: #1e1b4b;
+      background: #020c18 !important; /* Premium Service Hero Dark */
+      color: #ffffff;
     }
 
     :host-context(.theme-light) .newsletter-title {
-      background: linear-gradient(135deg, #004a78, #0066a5);
+      background: linear-gradient(135deg, #ffffff, #a8d4ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -409,24 +427,24 @@ import { NavigationConfig } from '../../../core/models/types';
     :host-context(.theme-light) .footer__contact-item,
     :host-context(.theme-light) .footer__copyright,
     :host-context(.theme-light) .footer__legal-link {
-      color: #312e81;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     :host-context(.theme-light) .footer__title {
-      color: #004a78;
+      color: #ffffff;
     }
 
     :host-context(.theme-light) .newsletter-input {
-      background: rgba(255, 255, 255, 0.6);
-      border: 1.5px solid rgba(0, 74, 120, 0.2);
-      color: #1e1b4b;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
 
-      &::placeholder { color: rgba(30, 27, 75, 0.5); }
+      &::placeholder { color: rgba(255, 255, 255, 0.5); }
 
       &:focus {
-        border-color: #004a78;
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 0 0 4px rgba(0, 74, 120, 0.1);
+        border-color: #4da6ff;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.2);
       }
     }
 
@@ -443,20 +461,23 @@ import { NavigationConfig } from '../../../core/models/types';
     }
 
     :host-context(.theme-light) .footer__social-link {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(0, 74, 120, 0.15);
-      color: #004a78;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff !important;
 
       &:hover {
-        background: #004a78;
-        border-color: #004a78;
-        color: #ffffff;
+        background: var(--color-accent-blue);
+        border-color: var(--color-accent-blue);
+        color: #ffffff !important;
       }
     }
 
-    :host-context(.theme-light) .footer__glow--1,
-    :host-context(.theme-light) .footer__glow--2 {
-      display: none; /* Remove glow orbs in light mode for cleaner look */
+    :host-context(.theme-light) .footer__shapes {
+      opacity: 0.8; /* Keep shapes visible in light mode */
+    }
+
+    :host-context(.theme-light) .footer__shape {
+      opacity: 0.1;
     }
 
     :host-context(.theme-light) .footer__divider {
@@ -464,7 +485,7 @@ import { NavigationConfig } from '../../../core/models/types';
     }
 
     :host-context(.theme-light) .footer__contact-item i {
-      color: #004a78;
+      color: #ffffff;
     }
 
     :host-context(.theme-light) .footer__link:hover,

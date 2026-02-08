@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
       <div class="services-intro__shapes">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
       </div>
 
       
@@ -94,23 +96,50 @@ import { RouterModule } from '@angular/router';
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
-      opacity: 0.3;
+      opacity: 0.2;
+      animation: floatServices 15s infinite alternate ease-in-out;
     }
 
     .shape-1 {
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
       background: var(--color-accent-blue);
-      top: -100px;
-      right: -50px;
+      top: -150px;
+      right: -100px;
     }
 
     .shape-2 {
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
       background: var(--color-accent-emerald);
-      bottom: -50px;
-      left: -50px;
+      bottom: -100px;
+      left: -100px;
+      animation-delay: -4s;
+    }
+
+    .shape-3 {
+      width: 250px;
+      height: 250px;
+      background: var(--color-accent-purple);
+      top: 50px;
+      left: 10%;
+      animation-delay: -8s;
+      opacity: 0.15;
+    }
+
+    .shape-4 {
+      width: 350px;
+      height: 350px;
+      background: #0066ff;
+      bottom: 20%;
+      right: 20%;
+      animation-delay: -12s;
+      opacity: 0.1;
+    }
+
+    @keyframes floatServices {
+      from { transform: translate(0, 0); }
+      to { transform: translate(40px, 30px); }
     }
 
     .services-intro__content {

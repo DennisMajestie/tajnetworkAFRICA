@@ -7,6 +7,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <section class="home-about-new">
+      <!-- Decorative Shapes Background -->
+      <div class="decorative-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
       <!-- Section Branding Background -->
       <div class="section-taj">TAJ</div>
 
@@ -75,6 +81,53 @@ import { CommonModule } from '@angular/common';
       :host-context(.theme-light) & {
         background: #f8faff;
       }
+    }
+
+    /* Decorative Shapes background */
+    .decorative-shapes {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      .shape {
+        position: absolute;
+        opacity: 0.08;
+        filter: blur(80px);
+        animation: floatHomeA 25s infinite alternate ease-in-out;
+        :host-context(.theme-light) & { opacity: 0.04; }
+      }
+
+      .shape-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--color-accent-blue);
+        top: -100px;
+        right: -100px;
+      }
+
+      .shape-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--color-accent-purple);
+        bottom: -50px;
+        left: -100px;
+        animation-delay: -7s;
+      }
+
+      .shape-3 {
+        width: 300px;
+        height: 300px;
+        background: var(--color-accent-emerald);
+        top: 20%;
+        left: 20%;
+        animation-delay: -14s;
+      }
+    }
+
+    @keyframes floatHomeA {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-40px) scale(1.1); }
     }
 
     /* Vertical Section Branding */

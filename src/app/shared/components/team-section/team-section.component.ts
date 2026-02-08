@@ -7,6 +7,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <section class="team-section">
+      <!-- Decorative Shapes Background -->
+      <div class="team-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Our Team</span>
@@ -98,6 +104,8 @@ import { CommonModule } from '@angular/common';
     .team-section {
       padding: 120px 0;
       background: #020c18;
+      position: relative;
+      overflow: hidden;
       
       :host-context(.theme-light) & { 
         background: linear-gradient(#f8faff 0%, #eef2ff 100%); 
@@ -106,6 +114,53 @@ import { CommonModule } from '@angular/common';
       @media (max-width: 768px) {
         padding: 60px 0;
       }
+    }
+
+    /* Decorative Shapes Background Layers */
+    .team-shapes {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      .shape {
+        position: absolute;
+        opacity: 0.1;
+        filter: blur(100px);
+        animation: floatTeam 22s infinite alternate ease-in-out;
+        :host-context(.theme-light) & { opacity: 0.05; }
+      }
+
+      .shape-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--color-accent-blue);
+        top: -150px;
+        left: -150px;
+      }
+
+      .shape-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--color-accent-purple);
+        bottom: 50px;
+        right: -100px;
+        animation-delay: -6s;
+      }
+
+      .shape-3 {
+        width: 400px;
+        height: 400px;
+        background: var(--color-accent-emerald);
+        top: 20%;
+        right: 15%;
+        animation-delay: -12s;
+      }
+    }
+
+    @keyframes floatTeam {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.15); }
     }
 
     .container {
@@ -431,9 +486,9 @@ export class TeamSectionComponent implements OnInit {
   team = [
     {
       name: "Leo Chukwu",
-      role: "Software Engineer (Manager)",
+      role: "Software Engineer",
       type: "manager",
-      badge: "Lead",
+      // badge: "Lead",
       bio: "Leo is a Software Engineer focused on solving real-world problems in travel tech and e-learning through impactful, user-centered solutions.",
       image: "assets/images/taj/Taj Team/dp2.jpg",
       socials: [
@@ -442,11 +497,11 @@ export class TeamSectionComponent implements OnInit {
       ]
     },
     {
-      name: "Nasira",
-      role: "Product Designer",
+      name: "Nasira Zaibiru",
+      role: "Creative Director",
       type: "manager",
       bio: "Creative thinker focused on building user-centric digital experiences through meticulous research and collaborative design.",
-      image: "assets/images/taj/Taj Team/Nasira.jpeg", // Updated photo
+      image: "assets/images/taj/Taj Team/Nasira.jpeg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-dribbble", url: "#" }
@@ -465,7 +520,7 @@ export class TeamSectionComponent implements OnInit {
     },
     {
       name: "Praise Daniel",
-      role: "Creative Director & Social Media",
+      role: "Content Creator & Social Media strategist",
       type: "manager",
       bio: "Storyteller and strategist bridging the gap between brand identity and audience connection through creative digital narratives.",
       image: "assets/images/taj/Taj Team/Praise Daniel.JPG",
@@ -497,10 +552,10 @@ export class TeamSectionComponent implements OnInit {
       ]
     },
     {
-      name: "Charity",
+      name: "Charity Thomas",
       role: "Administrative Lead",
       type: "manager",
-      badge: "Admin",
+      // badge: "Admin",
       bio: "Ensuring operational excellence and seamless coordination across the network with a focus on administrative leadership.",
       image: "assets/images/taj/Taj Team/charity.jpeg",
       socials: [

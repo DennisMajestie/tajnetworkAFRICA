@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { ServicesIntroComponent } from '../../shared/components/services-intro/services-intro.component';
 
 @Component({
   selector: 'app-service-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, PageHeaderComponent],
+  imports: [CommonModule, RouterModule, PageHeaderComponent, ServicesIntroComponent],
   templateUrl: './service-detail.component.html',
   styleUrls: ['./service-detail.component.scss']
 })
@@ -18,6 +19,11 @@ export class ServiceDetailComponent implements OnInit {
   servicePayload: any = {};
   bgImage = "assets/images/taj/homeslider/slider6.jpg";
   tel: number = 2348029824786;
+
+  get isTraining(): boolean {
+    const trainingIds = [4, 23, 24];
+    return trainingIds.includes(Number(this.serviceId));
+  }
 
 
 

@@ -1,12 +1,71 @@
 
 .service-detail-wrapper {
   padding-bottom: 120px;
-  /* Deep, vibrant mesh-inspired background to prevent it from looking 'flat' */
-  background: 
-    radial-gradient(circle at 0% 0%, rgba(0, 208, 132, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(0, 118, 246, 0.08) 0%, transparent 50%),
-    #f8fafc;
+  background: #020c18; /* Dark base to match global design */
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  :host-context(.theme-light) & {
+    background: #f8fafc;
+  }
+}
+
+/* Decorative Shapes Background Layers */
+.sd-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  .shape {
+    position: absolute;
+    opacity: 0.1;
+    filter: blur(80px);
+    animation: floatShape 20s infinite alternate ease-in-out;
+
+    :host-context(.theme-light) & { opacity: 0.05; }
+  }
+
+  .shape-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--color-accent-blue);
+    top: -200px;
+    left: -200px;
+  }
+
+  .shape-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--color-accent-purple);
+    bottom: 100px;
+    right: -100px;
+    animation-delay: -5s;
+  }
+
+  .shape-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--color-accent-emerald);
+    top: 30%;
+    right: 15%;
+    animation-delay: -10s;
+  }
+
+  .shape-4 {
+    width: 400px;
+    height: 400px;
+    background: #0066ff;
+    bottom: -100px;
+    left: 20%;
+    animation-delay: -15s;
+  }
+}
+
+@keyframes floatShape {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(50px, 80px) rotate(15deg); }
 }
 
 .sd-content-area {
@@ -187,8 +246,8 @@
 
 /* High-Impact Curriculum Cards */
 .sd-curriculum {
-  margin: 80px 0;
-  padding: 70px;
+  margin: 60px 0;
+  padding: clamp(20px, 5vw, 40px);
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
   border-radius: 40px;
   border: 1px solid rgba(15, 23, 42, 0.05);
@@ -228,20 +287,28 @@
 
   .curriculum-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: clamp(20px, 4vw, 30px);
     position: relative;
     z-index: 2;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .curriculum-item {
     display: flex;
     align-items: flex-start;
-    gap: 22px;
-    font-size: 17px;
+    gap: 15px;
+    font-size: 15px;
     color: var(--color-accent-emerald); /* Vibrant Taj Emerald */
     font-weight: 700;
-    padding: 30px;
+    padding: 20px;
     background: white;
     border-radius: 24px;
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
@@ -282,9 +349,15 @@
 }
 
 /* --- Sidebar Refinement --- */
+.col-lg-4 {
+  display: flex;
+}
+
 .sd-sidebar-new {
-  position: sticky;
-  top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .sd-sidebar-widget {
@@ -292,8 +365,12 @@
   border-radius: 32px;
   padding: 50px;
   box-shadow: 0 20px 60px rgba(15, 23, 42, 0.05);
-  margin-bottom: 40px;
+  margin-bottom: 0; /* Balanced by space-between */
   border: 1px solid rgba(15, 23, 42, 0.03);
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
 
 /* High-Contrast Insight Widget */
@@ -376,8 +453,8 @@
 .hub-nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-height: 520px;
+  gap: 20px;
+  max-height: 600px;
   overflow-y: auto;
   padding-right: 15px;
 

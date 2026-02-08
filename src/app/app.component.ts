@@ -8,7 +8,9 @@ import { ModernFooterComponent } from './shared/components/modern-footer/modern-
 import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 import { CustomCursorComponent } from './shared/components/custom-cursor/custom-cursor.component';
 import { BrandBackgroundComponent } from './shared/components/brand-background/brand-background.component';
-import { filter } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
+import { ConfigService } from './core/services/config.service';
+import { SeoService } from './core/services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -75,6 +77,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private scrollAnimations: ScrollAnimationService,
     private contexts: ChildrenOutletContexts,
     private router: Router,
+    private configService: ConfigService,
+    private seoService: SeoService,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -83,10 +87,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     if (!this.isBrowser) return;
 
-    // Refresh scroll animations on every navigation
+    // Refresh scroll animations and update SEO on every navigation
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+    ).subscribe((event: any) => {
+      // Update SEO
+      const url = event.urlAfterRedirects || event.url;
+      const slug = url === '/' ? 'home' : url.split('/')[1];
+
+      this.configService.getPageConfig(slug).subscribe(config => {
+        if (config) {
+          this.seoService.updateMetadata({
+            title: config.title,
+            description: config.meta.description,
+            keywords: config.meta.keywords,
+            image: config.meta.image,
+            url: `https://tajnetworkafrica.com${url}`
+          });
+        }
+      });
+
       // Small delay to allow DOM to render
       setTimeout(() => {
         this.scrollAnimations.initDramaticScrollEffects();

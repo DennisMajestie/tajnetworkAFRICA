@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
             <div class="map-card">
               <iframe 
                 class="map-iframe"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.536294747!2d7.3683955!3d8.995006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7127163f9d51%3A0x6e8a4a5840d4f9b!2sLugbe%2C%20Abuja!5e0!3m2!1sen!2sng!4v1705161453253!5m2!1sen!2sng"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3792.275882464102!2d7.351144174800965!3d8.9635590900103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7316f9669515%3A0x4af43b25a6397811!2sPhilkruz%20Estate%2C%20Lugbe!5e1!3m2!1sen!2sng!4v1770568810719!5m2!1sen!2sng"
                 width="100%" 
                 height="100%" 
                 style="border:0;" 
@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
               
-              <a href="https://www.google.com/maps/dir/?api=1&destination=Block+1+Philcruz+Estate+Lugbe+Airport+Road+Abuja" 
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Philkruz+Estate,+Lugbe,+X973%2BCFH,+Lugbe+900107" 
                  target="_blank" 
                  class="map-tag">
                 <i class="fas fa-location-arrow"></i>
@@ -63,9 +63,12 @@ import { CommonModule } from '@angular/common';
     :host-context(.theme-light) .contact-map { background: #f8faff; }
 
     .container--wide {
-      max-width: 2000px;
+      // max-width: 2000px;
+      // margin: 0 auto;
+      // padding: 0 20px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 20px 20px;
     }
 
     .map-stack {

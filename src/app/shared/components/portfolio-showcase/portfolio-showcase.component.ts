@@ -34,7 +34,7 @@ interface PortfolioItem {
         <div class="portfolio-grid">
           <div class="portfolio-card" *ngFor="let item of displayItems; let i = index" 
                [style.animation-delay]="i * 0.1 + 's'">
-            <div class="portfolio-card__image-box">
+            <div class="">
               <img [ngSrc]="item.image" [alt]="item.title" class="portfolio-card__image" fill>
               <div class="portfolio-card__overlay">
                 <div class="portfolio-card__content">
@@ -152,7 +152,7 @@ interface PortfolioItem {
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       margin-bottom: 60px;
 
@@ -165,7 +165,7 @@ interface PortfolioItem {
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/3;
   
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       animation: fadeInUp 0.8s both;
@@ -192,7 +192,7 @@ interface PortfolioItem {
     .portfolio-card__image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: center;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -353,13 +353,7 @@ export class PortfolioShowcaseComponent {
       image: 'assets/images/taj/Portfolio Cards/NANTA.png',
       link: '/portfolio'
     },
-    {
-      id: 3,
-      title: 'National ID Day',
-      category: 'GovTech',
-      image: 'assets/images/portfolio/Frame 28.png',
-      link: '/portfolio'
-    },
+
     {
       id: 2,
       title: 'AMPAY',
@@ -367,12 +361,21 @@ export class PortfolioShowcaseComponent {
       image: 'assets/images/portfolio/Frame 25.png',
       link: '/portfolio'
     },
+
     {
-      id: 4,
-      title: 'AI Air Radio',
-      category: 'Media & Entertainment',
-      image: 'assets/images/portfolio/Frame 26.png',
+      id: 3,
+      title: 'National ID Day',
+      category: 'GovTech',
+      image: 'assets/images/portfolio/Frame 28.png',
       link: '/portfolio'
-    }
+    },
+
+    // {
+    //   id: 4,
+    //   title: 'AI Air Radio',
+    //   category: 'Media & Entertainment',
+    //   image: 'assets/images/portfolio/Frame 26.png',
+    //   link: '/portfolio'
+    // }
   ];
 }

@@ -165,7 +165,7 @@ interface PortfolioItem {
       border-radius: 24px;
       overflow: hidden;
       padding-top: 35px;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/3;
       position: relative;
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -191,7 +191,7 @@ interface PortfolioItem {
     .portfolio-card__image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: center;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -331,14 +331,6 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'Unified travel agency network portal for streamlined bookings and member management.'
     },
-    {
-      id: 10,
-      title: 'National ID Day',
-      category: 'GovTech',
-      image: 'assets/images/portfolio/Frame 28.png',
-      link: '/portfolio',
-      description: 'Identification management and outreach systems for national digital identity initiatives.'
-    },
     // --- Other Projects ---
     {
       id: 1,
@@ -348,6 +340,16 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'A comprehensive travel management system tailored for modern business efficiency.'
     },
+
+    {
+      id: 10,
+      title: 'National ID Day',
+      category: 'GovTech',
+      image: 'assets/images/portfolio/Frame 28.png',
+      link: '/portfolio',
+      description: 'Identification management and outreach systems for national digital identity initiatives.'
+    },
+
     {
       id: 3,
       title: 'Tifa Travels & Tours',
@@ -355,6 +357,15 @@ export class PortfolioComponent implements OnInit {
       image: 'assets/images/taj/Portfolio Cards/Tifa Travels & Tours.png',
       link: '/portfolio',
       description: 'End-to-end travel management system with real-time flight and hotel integration.'
+    },
+
+    {
+      id: 5,
+      title: 'Elixir Attorneys',
+      category: 'Legal Tech',
+      image: 'assets/images/taj/Portfolio Cards/Elixir attorneys.png',
+      link: '/portfolio',
+      description: 'Sophisticated digital identity and case management platform for legal professionals.'
     },
     {
       id: 4,
@@ -364,14 +375,7 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'Dynamic mobile application focused on high-performance media and community engagement.'
     },
-    {
-      id: 5,
-      title: 'Elixir Attorneys',
-      category: 'Legal Tech',
-      image: 'assets/images/taj/Portfolio Cards/Elixir attorneys.png',
-      link: '/portfolio',
-      description: 'Sophisticated digital identity and case management platform for legal professionals.'
-    },
+
     {
       id: 6,
       title: 'Password Professionals',
@@ -396,14 +400,7 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'Secure cross-border payment infrastructure designed for the African digital economy.'
     },
-    {
-      id: 9,
-      title: 'AI Air Radio',
-      category: 'Media & Entertainment',
-      image: 'assets/images/portfolio/Frame 26.png',
-      link: '/portfolio',
-      description: 'High-performance audio-visual management platform for modern media enterprises.'
-    },
+
     {
       id: 11,
       title: 'Royal Newton',
@@ -412,6 +409,16 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'Client relationship management system optimized for rapid scaling and market excellence.'
     },
+
+    {
+      id: 9,
+      title: 'AI Air Radio',
+      category: 'Media & Entertainment',
+      image: 'assets/images/portfolio/Frame 26.png',
+      link: '/portfolio',
+      description: 'High-performance audio-visual management platform for modern media enterprises.'
+    },
+
     {
       id: 12,
       title: 'Eclipse Legal Consult',
@@ -420,14 +427,14 @@ export class PortfolioComponent implements OnInit {
       link: '/portfolio',
       description: 'Bespoke software suite for modern legal consulting and case management.'
     },
-    {
-      id: 13,
-      title: 'eSKILLZ',
-      category: 'E-Learning',
-      image: 'assets/images/portfolio/Frame 34.png',
-      link: '/portfolio',
-      description: 'An interactive repository of technical curricula and professional development resources.'
-    }
+    // {
+    //   id: 13,
+    //   title: 'eSKILLZ',
+    //   category: 'E-Learning',
+    //   image: 'assets/images/portfolio/Frame 34.png',
+    //   link: '/portfolio',
+    //   description: 'An interactive repository of technical curricula and professional development resources.'
+    // }
   ];
 
   ngOnInit(): void {

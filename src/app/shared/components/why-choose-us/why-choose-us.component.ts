@@ -13,9 +13,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       <!-- Section Branding Background -->
       <div class="section-taj">TAJ</div>
       
-      <!-- Decorative Floating Balls -->
-      <div class="bg-floating-ball ball-1"></div>
-      <div class="bg-floating-ball ball-2"></div>
+      <!-- Decorative Shapes Background -->
+      <div class="decorative-shapes">
+        <img src="assets/images/shapes/why-choose-one-shape-1.png" alt="" class="shape shape-1">
+        <img src="assets/images/shapes/why-choose-one-shape-2.png" alt="" class="shape shape-2">
+        <img src="assets/images/shapes/why-choose-two-shape-1.png" alt="" class="shape shape-3">
+      </div>
 
       <div class="container--wide">
         <header class="section-header" data-aos="fade-up">
@@ -91,7 +94,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
               </div>
             </div>
             
-            <div class="card-footer">
+            <div class="card-footers">
                <a href="#contact" class="btn-brand btn-primary-glow">Get Started Today <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
@@ -125,66 +128,55 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       transform-origin: center;
     }
 
-    /* Glassmorphic Floating Spheres */
-    .bg-floating-ball {
+    /* Decorative Shapes Background */
+    .decorative-shapes {
       position: absolute;
-      border-radius: 50%;
-      z-index: 1;
+      inset: 0;
       pointer-events: none;
-      backdrop-filter: blur(4px); /* Slightly reduced for better performance */
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 
-        inset 10px 10px 20px rgba(255, 255, 255, 0.05),
-        inset -10px -10px 20px rgba(0, 0, 0, 0.2),
-        0 20px 50px rgba(0, 0, 0, 0.3);
-      will-change: transform;
-      transform: translate3d(0,0,0); /* Force GPU acceleration */
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.15;
+      filter: blur(1px);
+      animation: float 20s ease-in-out infinite;
       
       :host-context(.theme-light) & {
-        border-color: rgba(0, 74, 120, 0.1);
-        box-shadow: 
-          inset 10px 10px 20px rgba(255, 255, 255, 0.4),
-          inset -10px -10px 20px rgba(0, 74, 120, 0.05),
-          0 20px 40px rgba(0, 74, 120, 0.1);
+        opacity: 0.12;
       }
     }
 
-    .ball-1 {
-      top: 5%;
-      left: 5%;
-      width: 480px;
-      height: 480px;
-      background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 242, 255, 0.05) 100%);
-      
-      :host-context(.theme-light) & {
-        background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 242, 255, 0.03) 100%);
-      }
+    .shape-1 {
+      top: -5%;
+      left: -5%;
+      width: 45%;
+      max-width: 500px;
+      animation-delay: 0s;
     }
 
-    .ball-2 {
-      bottom: 3%;
-      right: 3%;
-      width: 380px;
-      height: 380px;
-      background: linear-gradient(225deg, rgba(0, 242, 255, 0.15) 0%, rgba(0, 102, 255, 0.05) 100%);
-
-      :host-context(.theme-light) & {
-        background: linear-gradient(225deg, rgba(0, 242, 255, 0.08) 0%, rgba(0, 102, 255, 0.02) 100%);
-      }
+    .shape-2 {
+      bottom: 5%;
+      right: -8%;
+      width: 40%;
+      max-width: 450px;
+      animation-delay: -5s;
+      transform: rotate(180deg);
     }
 
-    @keyframes floatingBall1 {
-      0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(10%, 15%) scale(1.1); }
-      66% { transform: translate(-5%, 25%) scale(0.95); }
-      100% { transform: translate(5%, -5%) scale(1.05); }
+    .shape-3 {
+      top: 40%;
+      right: 10%;
+      width: 20%;
+      max-width: 250px;
+      opacity: 0.1;
+      animation-delay: -10s;
     }
 
-    @keyframes floatingBall2 {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-15%, -20%) scale(1.2); }
-      100% { transform: translate(10%, 10%) scale(0.9); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
     }
 
     .container--wide {
@@ -316,7 +308,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       .highlight-item { color: #ffffff !important; }
       .feature-text { color: rgba(255, 255, 255, 0.9) !important; }
       
-      .card-content-wrap, .card-footer {
+      .card-content-wrap {
         position: relative;
         z-index: 2;
       }
@@ -434,9 +426,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       line-height: 1.7;
     }
 
-    .card-footer {
+    .card-footers {
       margin-top: auto;
-      padding-top: 40px;
+      // padding-top: 40px;
     }
 
     .btn-brand {
@@ -490,63 +482,26 @@ export class WhyChooseUsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initParallax(): void {
-    // Parallax effect for glass spheres
-    const ball1 = document.querySelector('.ball-1');
-    const ball2 = document.querySelector('.ball-2');
+    // Parallax effect for decorative shapes
+    const shapes = document.querySelectorAll('.why-choose-us-v6 .shape');
 
-    if (ball1) {
-      const t1 = gsap.to(ball1, {
-        yPercent: 40,
-        xPercent: 15,
+    shapes.forEach((shape, index) => {
+      const direction = index % 2 === 0 ? 1 : -1;
+      const t = gsap.to(shape, {
+        yPercent: 30 * direction,
+        xPercent: 10 * direction,
         ease: 'none',
         scrollTrigger: {
           trigger: '.why-choose-us-v6',
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 1
+          scrub: 1 + (index * 0.5)
         }
       });
-      this.scrollTriggers.push(t1.scrollTrigger!);
-    }
-
-    if (ball2) {
-      const t2 = gsap.to(ball2, {
-        yPercent: -40,
-        xPercent: -15,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.why-choose-us-v6',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5
-        }
-      });
-      this.scrollTriggers.push(t2.scrollTrigger!);
-    }
-
-    // Floating base animation (combined with scroll for complex motion)
-    if (ball1) {
-      gsap.to(ball1, {
-        y: '+=30',
-        x: '+=20',
-        duration: 8,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
-      });
-    }
-
-    if (ball2) {
-      gsap.to(ball2, {
-        y: '-=40',
-        x: '-=30',
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 1
-      });
-    }
+      if (t.scrollTrigger) {
+        this.scrollTriggers.push(t.scrollTrigger);
+      }
+    });
   }
 
   ngOnDestroy(): void {

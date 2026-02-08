@@ -44,8 +44,10 @@ import { RouterModule } from '@angular/router';
           </div>
 
           <div class="floating-card card-3">
-             <div class="card-badge">TAJ</div>
-             <div class="card-info">Global Network</div>
+             <!-- <div class="card-badge">TAJ</div> -->
+                          <div class="card-icon"><i class="fas fa-user-check"></i></div>
+
+             <div class="card-info">Taj Network Africa</div>
           </div>
 
           <div class="floating-card card-4">
@@ -227,7 +229,7 @@ import { RouterModule } from '@angular/router';
     .mockup-img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 40px rgba(0, 102, 255, 0.4)) brightness(1.2);
+      // filter: drop-shadow(0 0 40px rgba(0, 102, 255, 0.4)) brightness(1.2);
     }
 
     .floating-card {
@@ -353,7 +355,7 @@ import { RouterModule } from '@angular/router';
     }
 
     :host-context(.theme-light) .mockup-img {
-      filter: drop-shadow(0 20px 40px rgba(0, 74, 120, 0.15));
+      // filter: drop-shadow(0 20px 40px rgba(0, 74, 120, 0.15));
     }
   `]
 })

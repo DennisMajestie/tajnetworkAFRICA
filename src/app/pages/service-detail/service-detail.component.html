@@ -1,8 +1,15 @@
-<!-- Service Detail Page -->
 <div class="service-detail-wrapper" *ngIf="serviceContent; else notFound">
-
-    <!-- Unified Page Header -->
-    <app-page-header [title]="serviceContent.service" [bgImage]="bgImage"></app-page-header>
+    <!-- Decorative Shapes Background -->
+    <div class="sd-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    <!-- Premium Header Section -->
+    <app-services-intro [tag]="isTraining ? 'Mentorship & Training' : 'Our Professional Services'"
+        [title]="serviceContent.service" [subtitle]="serviceContent.intro" [bgImage]="bgImage">
+    </app-services-intro>
 
     <div class="sd-content-area">
         <div class="container">
@@ -25,8 +32,8 @@
                         <div class="sd-article-body">
                             <div class="sd-meta-header">
                                 <div class="sd-badge-row">
-                                    <span class="content-tag">{{ serviceContent.features ? 'MENTORSHIP & TRAINING' :
-                                        'TAJ EXPERTISE' }}</span>
+                                    <span class="content-tag">{{ isTraining ? 'MENTORSHIP & TRAINING' : 'TAJ EXPERTISE'
+                                        }}</span>
                                     <span class="duration-pill" *ngIf="serviceContent.duration">
                                         <i class="fas fa-bolt"></i> {{ serviceContent.duration }}
                                     </span>
@@ -43,7 +50,8 @@
                             <!-- Integrated Curriculum (Vibrant) -->
                             <div class="sd-curriculum" *ngIf="serviceContent.features">
                                 <div class="curriculum-header-group">
-                                    <h4 class="curriculum-heading">Program Curriculum</h4>
+                                    <h4 class="curriculum-heading">{{ isTraining ? 'Program Curriculum' : 'Key Features
+                                        & Capabilities' }}</h4>
                                     <p class="curriculum-sub">A comprehensive technical roadmap designed by industry
                                         experts.</p>
                                 </div>
@@ -89,10 +97,13 @@
                         <!-- CTA Widget -->
                         <div class="sd-sidebar-widget help-widget">
                             <div class="help-card">
-                                <span class="help-tag">Ready to start?</span>
-                                <h3>Let's build something great together.</h3>
+                                <span class="help-tag">{{ isTraining ? 'Ready to Start?' : 'Looking for Solutions?'
+                                    }}</span>
+                                <h3>{{ isTraining ? 'Let\'s build your career together.' : 'Let\'s build something great
+                                    together.' }}</h3>
                                 <a [routerLink]="['/register']" [queryParams]="{course: serviceId}" class="help-action">
-                                    <i class="fas fa-envelope"></i> Enroll in Program
+                                    <i [class]="isTraining ? 'fas fa-graduation-cap' : 'fas fa-briefcase'"></i>
+                                    {{ isTraining ? 'Enroll in Program' : 'Register Now' }}
                                 </a>
                             </div>
                         </div>

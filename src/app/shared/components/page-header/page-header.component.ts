@@ -11,8 +11,8 @@ import { RouterModule } from '@angular/router';
       <div class="page-header__bg" [style.background-image]="'url(' + bgImage + ')'"></div>
       <div class="page-header__overlay"></div>
 
-      <!-- Decorative Shapes -->
-      <div class="page-header__shapes">
+      <!-- Decorative Shapes (Optional) -->
+      <div class="page-header__shapes" *ngIf="showShapes">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
         <div class="shape shape-3"></div>
@@ -165,4 +165,5 @@ export class PageHeaderComponent {
   @Input() title: string = '';
   @Input() bgImage: string = 'assets/images/taj/homeslider/slider5.jpg'; // Default
   @Input() showBreadcrumbs: boolean = true;
+  @Input() showShapes: boolean = true;
 }

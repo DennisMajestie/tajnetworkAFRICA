@@ -7,6 +7,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <section class="about-values">
+      <!-- Decorative Shapes Background -->
+      <div class="about-values-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
       <!-- Background Mesh Gradient -->
       <div class="mesh-gradient"></div>
       
@@ -101,6 +107,53 @@ import { CommonModule } from '@angular/common';
       filter: blur(80px);
       z-index: 1;
       pointer-events: none;
+    }
+
+    /* Decorative Shapes background */
+    .about-values-shapes {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      .shape {
+        position: absolute;
+        opacity: 0.12;
+        filter: blur(100px);
+        animation: floatValues 20s infinite alternate ease-in-out;
+        :host-context(.theme-light) & { opacity: 0.05; }
+      }
+
+      .shape-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--accent-blue);
+        top: -200px;
+        left: -100px;
+      }
+
+      .shape-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--accent-purple);
+        bottom: -150px;
+        right: -100px;
+        animation-delay: -5s;
+      }
+
+      .shape-3 {
+        width: 400px;
+        height: 400px;
+        background: var(--accent-emerald);
+        top: 40%;
+        left: 30%;
+        animation-delay: -10s;
+      }
+    }
+
+    @keyframes floatValues {
+      from { transform: translate(0, 0); }
+      to { transform: translate(60px, 40px); }
     }
 
     .values-wrapper {
