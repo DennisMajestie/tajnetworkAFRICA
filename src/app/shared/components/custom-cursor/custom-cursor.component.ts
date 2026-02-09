@@ -314,12 +314,13 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * Resize canvas to match window size
+   * Resize canvas to match scaled document size
    */
   private resizeCanvas(): void {
     if (!this.canvas) return;
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    // Canvas needs to match the scaled document dimensions
+    this.canvas.width = window.innerWidth / this.docScale;
+    this.canvas.height = window.innerHeight / this.docScale;
   }
 
   /**
@@ -493,15 +494,19 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
   onMouseMove(event: MouseEvent): void {
     if (!this.isInitialized) return;
 
-    // Compensate for global scale (zoom/transform)
+    // Update the scale factor on each move to handle dynamic changes
+    this.updateDocScale();
+
+    // DOM cursor elements use scaled coordinates (compensate for zoom)
+    // When zoom is 0.67, we need to divide by 0.67 to get the correct position
     this.mouseX = event.clientX / this.docScale;
     this.mouseY = event.clientY / this.docScale;
 
     // Check for magnetic pull and state changes
     this.checkMagneticPull(event);
 
-    // Add particle trail
-    this.addParticle(event.clientX, event.clientY);
+    // Canvas particles use scaled coordinates (same as DOM cursor)
+    this.addParticle(this.mouseX, this.mouseY);
   }
 
   /**

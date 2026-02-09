@@ -162,7 +162,7 @@ interface PortfolioItem {
     }
 
     .portfolio-card {
-      border-radius: 24px;
+      // border-radius: 24px;
       overflow: hidden;
       padding-top: 35px;
       aspect-ratio: 3/3;
