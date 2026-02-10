@@ -406,7 +406,7 @@ export class AboutFounderComponent {
     role: "CEO & Founder",
     bio: "Founding TAJ Network Africa, Ismail provides strategic leadership and oversight for the company's technological vision and long-term growth. With over 16 years of extensive experience in software architecture and emerging technologies, he brings a strong blend of innovation, governance, and execution.",
     tagline: "Award-Winning Excellence, Setting benchmarks with unconventional and exceptional results.",
-    image: "assets/images/taj/Taj Team/Akibul Ismail.jpg",
+    image: "assets/images/taj/taj-team/Akibul Ismail.jpg",
     socials: [
       { icon: "fab fa-linkedin", url: "#" },
       { icon: "fab fa-twitter", url: "#" }

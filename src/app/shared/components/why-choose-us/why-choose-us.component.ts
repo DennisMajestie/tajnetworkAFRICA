@@ -363,6 +363,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       .feature-text { 
         font-size: 1.05rem;
         line-height: 1.6;
+        // color: #fff !important;
         margin-bottom: 35px;
         max-width: 90%;
       }
@@ -424,6 +425,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     .feature-text p {
       margin-bottom: 20px;
       line-height: 1.7;
+      color: #fff !important;
+
     }
 
     .card-footers {

@@ -47,7 +47,7 @@ import { CommonModule } from '@angular/common';
           <!-- Visual Side -->
           <div class="visual-side" data-aos="fade-left">
             <div class="image-perspective">
-              <img src="assets/images/taj/Taj Team/taj-bg.jpg" alt="Innovating at Taj" class="bg-visual">
+              <img src="assets/images/taj/taj-team/taj-bg.jpg" alt="Innovating at Taj" class="bg-visual">
               <div class="overlay-gradient"></div>
               
               <!-- Floating Principle Badges -->
