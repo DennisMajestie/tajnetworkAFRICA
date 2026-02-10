@@ -27,7 +27,7 @@ import { ContactMapComponent } from '../../shared/components/contact-map/contact
     styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-    introImage = "assets/images/taj/Taj Team/taj-bg.jpg";
+    introImage = "assets/images/taj/taj-team/taj-bg.jpg";
 
     ngOnInit(): void {
         window.scrollTo(0, 0);

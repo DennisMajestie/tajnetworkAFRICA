@@ -31,13 +31,13 @@
                                 "style": "secondary"
                             }
                         ],
-                        "backgroundImage": "assets/images/Taj Banner/team-crane-shot.jpeg",
+                        "backgroundImage": "assets/images/taj-banner/team-crane-shot.jpeg",
                         "sliderImages": [
-                            "assets/images/Taj Banner/team-crane-shot.jpeg",
-                            "assets/images/Taj Banner/team-focused.jpeg",
-                            "assets/images/Taj Banner/team-smiling.jpeg",
-                            "assets/images/Taj Banner/team1.png",
-                            "assets/images/Taj Banner/team2.jpeg"
+                            "assets/images/taj-banner/team-crane-shot.jpeg",
+                            "assets/images/taj-banner/team-focused.jpeg",
+                            "assets/images/taj-banner/team-smiling.jpeg",
+                            "assets/images/taj-banner/team1.png",
+                            "assets/images/taj-banner/team2.jpeg"
                         ]
                     }
                 },

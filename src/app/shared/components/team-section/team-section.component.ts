@@ -490,7 +490,7 @@ export class TeamSectionComponent implements OnInit {
       type: "manager",
       // badge: "Lead",
       bio: "Leo is a Software Engineer focused on solving real-world problems in travel tech and e-learning through impactful, user-centered solutions.",
-      image: "assets/images/taj/Taj Team/leo chukwu.jpg",
+      image: "assets/images/taj/taj-team/leo chukwu.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-github", url: "#" }
@@ -501,7 +501,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Creative Director",
       type: "manager",
       bio: "Creative thinker focused on building user-centric digital experiences through meticulous research and collaborative design.",
-      image: "assets/images/taj/Taj Team/Nasira.jpg",
+      image: "assets/images/taj/taj-team/Nasira.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-dribbble", url: "#" }
@@ -512,7 +512,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Mobile App Developer",
       type: "manager",
       bio: "Crafting high-performance mobile experiences with a focus on fluid UX and innovative cross-platform solutions.",
-      image: "assets/images/taj/Taj Team/Isaac Ayodejiariyo.jpg",
+      image: "assets/images/taj/taj-team/Isaac Ayodejiariyo.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-github", url: "#" }
@@ -523,7 +523,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Content Creator & Social Media strategist",
       type: "manager",
       bio: "Storyteller and strategist bridging the gap between brand identity and audience connection through creative digital narratives.",
-      image: "assets/images/taj/Taj Team/Praise Daniel.jpg",
+      image: "assets/images/taj/taj-team/Praise Daniel.jpg",
       socials: [
         { icon: "fab fa-instagram", url: "#" },
         { icon: "fab fa-behance", url: "#" }
@@ -534,7 +534,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Product Designer",
       type: "manager",
       bio: "Human-centric designer dedicated to creating beautiful, intuitive interfaces that tell a story and drive user engagement.",
-      image: "assets/images/taj/Taj Team/Judith Yakubu.jpg",
+      image: "assets/images/taj/taj-team/Judith Yakubu.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-dribbble", url: "#" }
@@ -545,7 +545,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Software Engineer",
       type: "manager",
       bio: "With a background in mechanical engineering, Hemdinachi builds methodical, reliable, and efficient systems with a focus on maintainability.",
-      image: "assets/images/taj/Taj Team/Hemdinachi Emem.jpg",
+      image: "assets/images/taj/taj-team/Hemdinachi Emem.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-github", url: "#" }
@@ -557,7 +557,7 @@ export class TeamSectionComponent implements OnInit {
       type: "manager",
       // badge: "Admin",
       bio: "Ensuring operational excellence and seamless coordination across the network with a focus on administrative leadership.",
-      image: "assets/images/taj/Taj Team/charity.jpg",
+      image: "assets/images/taj/taj-team/charity.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "far fa-envelope", url: "mailto:admin@tajnetworkafrica.com" }
@@ -568,7 +568,7 @@ export class TeamSectionComponent implements OnInit {
       role: "Software Engineer",
       type: "manager",
       bio: "A Creative Software Engineer dedicated to building cutting-edge digital products and meaningful experiences that improve everyday life.",
-      image: "assets/images/taj/Taj Team/Dennis Majesty.jpg",
+      image: "assets/images/taj/taj-team/Dennis Majesty.jpg",
       socials: [
         { icon: "fab fa-linkedin", url: "#" },
         { icon: "fab fa-github", url: "#" }

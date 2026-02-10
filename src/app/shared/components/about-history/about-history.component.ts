@@ -57,7 +57,7 @@ import { CommonModule } from '@angular/common';
           <div class="image-col">
             <div class="image-frame">
               <div class="frame-glass"></div>
-              <img src="assets/images/taj/Taj Team/taj-mentor.jpg" alt="Innovation Team" class="main-img" loading="lazy">
+              <img src="assets/images/taj/taj-team/taj-mentor.jpg" alt="Innovation Team" class="main-img" loading="lazy">
               
               <!-- Award Badge Overlay -->
               <div class="award-badge">
