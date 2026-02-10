@@ -248,7 +248,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .founder-name {
-      font-size: clamp(2rem, 4vw, 2rem);
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
       font-weight: 900;
       color: var(--text-primary, #1a1a2e);
       margin: 0 0 10px 0;
@@ -256,7 +256,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .founder-role {
-      font-size: 1.25rem;
+      font-size: clamp(1.1rem, 3vw, 1.25rem);
       color: var(--color-accent-blue, #0066ff);
       font-weight: 700;
       margin: 0;
@@ -264,8 +264,8 @@ import { CommonModule } from '@angular/common';
 
     .founder-bio {
       .bio-text {
-        font-size: 1.3rem;
-        line-height: 1.5;
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        line-height: 1.6;
         color: var(--text-secondary, #4a5568);
         margin: 0;
       }

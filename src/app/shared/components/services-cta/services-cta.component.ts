@@ -150,7 +150,7 @@ import { RouterModule } from '@angular/router';
     }
 
     .cta-subtitle {
-      font-size: 1.5rem;
+      font-size: clamp(0.95rem, 3vw, 1.5rem);
       color: rgba(255, 255, 255, 0.7);
       margin-bottom: 50px;
       font-weight: 600;

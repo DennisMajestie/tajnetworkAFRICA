@@ -82,7 +82,7 @@ import { CommonModule } from '@angular/common';
 
     .section-subtitle {
       color: rgba(255, 255, 255, 0.6);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       line-height: 1.6;
     }
 
@@ -131,8 +131,8 @@ import { CommonModule } from '@angular/common';
 
     .testimonial-text {
       color: rgba(255, 255, 255, 0.8);
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      line-height: 1.7;
       margin-bottom: 30px;
       font-style: italic;
     }

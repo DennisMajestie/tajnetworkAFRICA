@@ -405,27 +405,27 @@ import { CommonModule } from '@angular/common';
     }
 
     .team-card__name {
-      font-size: 1.5rem;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
 
     .team-card__role {
-      font-size: 0.85rem;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
       color: var(--color-accent-blue, #0066ff);
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
 
     .team-card__bio {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.5);
-      line-height: 1.5;
-      margin: 0 0 15px;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .team-card__tagline {

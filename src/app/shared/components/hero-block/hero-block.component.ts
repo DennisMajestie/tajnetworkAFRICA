@@ -517,11 +517,11 @@ import { HeroData } from '../../../core/models/types';
     .tag-dot { width: 8px; height: 8px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 10px #38bdf8; }
 
     .hero-headline {
-      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-size: clamp(2.2rem, 9vw, 5.5rem);
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 2rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       color: #fff;
       font-family: var(--font-heading);
       text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -553,11 +553,14 @@ import { HeroData } from '../../../core/models/types';
     @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
 
     .hero-subheadline { 
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
       color: rgba(255, 255, 255, 0.9); /* Increased contrast */
-      margin-bottom: 3rem; 
+      margin-bottom: clamp(2rem, 5vw, 3rem); 
       line-height: 1.8;
       text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
       
       :host-context(.theme-light) & {
         color: rgba(255, 255, 255, 0.9);

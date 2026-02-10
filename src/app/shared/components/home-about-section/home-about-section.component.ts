@@ -153,7 +153,7 @@ import { CommonModule } from '@angular/common';
     .container--full {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 20px;
       position: relative;
       z-index: 1;
     }
@@ -190,11 +190,11 @@ import { CommonModule } from '@angular/common';
     }
 
     .display-title {
-      font-size: clamp(3rem, 6vw, 3.8rem);
+      font-size: clamp(2.4rem, 8vw, 4rem);
       font-weight: 950;
       color: #fff;
-      line-height: 1;
-      margin-bottom: 40px;
+      line-height: 1.1;
+      margin-bottom: clamp(25px, 5vw, 40px);
       letter-spacing: -0.03em;
 
       .text-accent {
@@ -210,7 +210,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .lead-text {
-      font-size: 1.35rem;
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
       color: #fff;
       line-height: 1.5;
       margin-bottom: 30px;

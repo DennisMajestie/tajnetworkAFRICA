@@ -182,7 +182,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     .container--wide {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 20px;
       position: relative;
       z-index: 10;
     }

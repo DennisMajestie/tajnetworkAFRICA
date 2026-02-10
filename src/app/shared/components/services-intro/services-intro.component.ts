@@ -192,17 +192,16 @@ import { RouterModule } from '@angular/router';
 
     .services-intro__title {
       color: #fff !important;
-      font-size: clamp(2.5rem, 8vw, 3.5rem);
-      font-weight: 700;
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      font-weight: 800;
       line-height: 1.1;
       margin: 0 0 20px;
-      letter-spacing: -0.05em;
-      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      letter-spacing: -0.04em;
     }
 
     .services-intro__subtitle {
       color: rgba(255, 255, 255, 0.9);
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
       max-width: 750px;
       margin: 0 auto;
       line-height: 1.6;

@@ -133,15 +133,14 @@ import { CommonModule } from '@angular/common';
 
 
     .info-panel {
-      padding: 30px 18px 21px;
-      height: 50%;
+      padding: clamp(25px, 5vw, 40px) clamp(20px, 4vw, 35px) 35px;
+      height: 55%; /* Increased for better mobile fit */
       display: flex;
       flex-direction: column;
       background: linear-gradient(to bottom, 
         transparent 0%, 
         rgba(15, 23, 42, 0.7) 15%, 
-        rgba(15, 23, 42, 0.95) 40%,
-        #020617 70%
+        var(--taj-bg-dark) 70%
       );
       transform: translateZ(40px);
       margin-top: -94px; /* Deep overlap to erase divider look */
@@ -151,17 +150,21 @@ import { CommonModule } from '@angular/common';
 
     .project-title {
       color: #fff;
-       font-size: 1.5rem;
-       font-weight: 800;
-       margin-bottom: 18px;
-       line-height: 1.1;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: clamp(12px, 2vw, 18px);
+      letter-spacing: -0.02em;
     }
 
     .project-desc {
-      color: rgba(255, 255, 255, 0.5);
-    font-size: 1.05em;
-    line-height: 1.5;
-    margin-bottom: 25px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .info-footer {

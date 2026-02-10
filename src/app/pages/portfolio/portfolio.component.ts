@@ -148,13 +148,13 @@ interface PortfolioItem {
     }
 
     .filter-btn {
-      padding: 12px 30px;
+      padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
       border-radius: 50px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: #fff;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
       transition: all 0.3s ease;
       cursor: pointer;
 
@@ -239,18 +239,23 @@ interface PortfolioItem {
     }
 
     .portfolio-card__title {
-      font-size: 2rem;
+      font-size: clamp(1.4rem, 4vw, 2rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
 
     .portfolio-card__desc {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
       line-height: 1.6;
       margin-bottom: 25px;
       max-width: 500px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .portfolio-card__btn {

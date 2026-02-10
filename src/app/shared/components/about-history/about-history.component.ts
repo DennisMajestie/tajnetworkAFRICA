@@ -169,8 +169,8 @@ import { CommonModule } from '@angular/common';
     }
 
     .company-desc {
-      font-size: 1.3rem;
-      line-height: 1.5;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      line-height: 1.6;
       color: rgba(255, 255, 255, 0.6);
       margin-bottom: 20px;
     }
@@ -255,7 +255,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .value-name {
-      font-size: 1.35rem; /* Increased text size */
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
       font-weight: 800;
       color: #fff;
       margin-bottom: 8px;
@@ -263,7 +263,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .value-text {
-      font-size: 1rem; /* Increased text size */
+      font-size: clamp(0.9rem, 2vw, 1rem);
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.6);
       margin: 0;

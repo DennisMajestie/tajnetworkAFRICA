@@ -168,7 +168,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .info-card__label {
-      font-size: 1.35rem;
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
       font-weight: 800;
       color: #fff;
       margin-bottom: 0;
@@ -178,7 +178,7 @@ import { CommonModule } from '@angular/common';
     .info-card__detail {
       margin: 0;
       color: #94a3b8;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       line-height: 1.6;
       font-weight: 500;
     }

@@ -210,7 +210,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .section-desc {
-      font-size: 1.15rem;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
       line-height: 1.8;
       color: rgba(255, 255, 255, 0.6);
       max-width: 500px;
@@ -344,7 +344,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .value-text {
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.5);
       margin: 0;
