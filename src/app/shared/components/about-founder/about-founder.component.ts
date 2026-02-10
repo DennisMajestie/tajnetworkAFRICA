@@ -248,7 +248,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .founder-name {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 4vw, 2rem);
       font-weight: 900;
       color: var(--text-primary, #1a1a2e);
       margin: 0 0 10px 0;
@@ -264,8 +264,8 @@ import { CommonModule } from '@angular/common';
 
     .founder-bio {
       .bio-text {
-        font-size: 1.125rem;
-        line-height: 1.8;
+        font-size: 1.3rem;
+        line-height: 1.5;
         color: var(--text-secondary, #4a5568);
         margin: 0;
       }
@@ -287,7 +287,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .tagline-text {
-      font-size: 1.125rem;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--text-primary, #1a1a2e);
       margin: 0;
@@ -350,13 +350,13 @@ import { CommonModule } from '@angular/common';
         display: flex;
         align-items: start;
         gap: 12px;
-        font-size: 1rem;
+        font-size: 1.3rem;
         color: var(--text-secondary, #4a5568);
         line-height: 1.6;
 
         i {
           color: var(--color-accent-blue, #0066ff);
-          font-size: 1.25rem;
+          font-size: 1.35rem;
           margin-top: 2px;
           flex-shrink: 0;
         }
@@ -406,7 +406,7 @@ export class AboutFounderComponent {
     role: "CEO & Founder",
     bio: "Founding TAJ Network Africa, Ismail provides strategic leadership and oversight for the company's technological vision and long-term growth. With over 16 years of extensive experience in software architecture and emerging technologies, he brings a strong blend of innovation, governance, and execution.",
     tagline: "Award-Winning Excellence, Setting benchmarks with unconventional and exceptional results.",
-    image: "assets/images/taj/Taj Team/Akibul Ismail.JPG",
+    image: "assets/images/taj/Taj Team/Akibul Ismail.jpg",
     socials: [
       { icon: "fab fa-linkedin", url: "#" },
       { icon: "fab fa-twitter", url: "#" }

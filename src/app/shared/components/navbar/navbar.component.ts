@@ -169,12 +169,12 @@ import { filter } from 'rxjs/operators';
 
     /* Light Mode Floating Pill Overrides */
     :host-context(.theme-light) .navbar {
-      --navbar-width: 80%;
+      --navbar-width: 65%;
       --navbar-top: 1.5rem;
       --navbar-radius: 100px;
-      --navbar-bg: rgba(255, 255, 255, 0.97);
+      --navbar-bg: rgba(255, 255, 255, 64%);
       --navbar-border: rgba(0, 74, 120, 0.1);
-      --navbar-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      --navbar-shadow: 0 10px 40px rgba(36, 26, 26, 0.08);
       --navbar-padding: 1.25rem 2rem;
       
       border: 1px solid var(--navbar-border);
@@ -248,7 +248,7 @@ import { filter } from 'rxjs/operators';
       transition: transform 0.3s ease;
       
       @media (min-width: 769px) {
-        height: clamp(50px, 6vw, 65px);
+        height: clamp(50px, 6vw, 75px);
       }
       
       &:hover {

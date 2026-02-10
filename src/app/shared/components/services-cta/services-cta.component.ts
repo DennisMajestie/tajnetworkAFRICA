@@ -25,7 +25,6 @@ import { RouterModule } from '@angular/router';
           <!-- Central Mockup -->
           <div class="mockup-wrapper">
              <img src="assets/images/taj/tajlogo.png" alt="TAJ Network Logo" class="mockup-img">
-             <div class="mockup-glow"></div>
           </div>
 
           <!-- Floating Cards -->
@@ -54,7 +53,7 @@ import { RouterModule } from '@angular/router';
              <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
              <div class="card-content">
                 <h4>Cyber Defense</h4>
-             </div>
+             </div>u5
           </div>
 
           <div class="floating-card card-5">
@@ -215,15 +214,6 @@ import { RouterModule } from '@angular/router';
       z-index: 5;
       width: 280px;
       animation: floatMockup 8s ease-in-out infinite;
-      
-      &::before {
-          content: '';
-          position: absolute;
-          inset: -50px;
-          background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
-          z-index: -1;
-          filter: blur(20px);
-      }
     }
 
     .mockup-img {

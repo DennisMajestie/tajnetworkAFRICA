@@ -192,11 +192,11 @@ import { HeroData } from '../../../core/models/types';
   styles: [`
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 550px 20px 150px; /* Enhanced top/bottom and side padding */
+      padding: 450px 20px 350px;
       overflow: hidden;
       /* Reverted background logic */
       :host-context(.theme-light) & {
@@ -211,7 +211,8 @@ import { HeroData } from '../../../core/models/types';
       }
 
       :host-context(.theme-light) .hero__overlay--v2 {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(2, 12, 24, 0.9) 100%);
+        background: linear-gradient(to bottom, rgb(0 0 0 / 38%) 0%, rgb(2 12 24 / 77%) 100%);
+        // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(2, 12, 24, 0.9) 100%);
       }
       :host-context(.theme-light) .africa-map-img { opacity: 0.7; }
       :host-context(.theme-light) .btn-secondary { background: #ffffff; color: var(--color-accent-blue); border-color: #e2e8f0; &:hover { background: #f8faff; } }

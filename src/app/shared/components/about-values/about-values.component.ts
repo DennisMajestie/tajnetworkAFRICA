@@ -66,7 +66,7 @@ import { CommonModule } from '@angular/common';
           <div class="values-image-col">
             <div class="image-frame">
               <div class="frame-glass"></div>
-              <img src="assets/images/taj/Taj Team/taj-mentor.jpeg" alt="Our Values" class="main-img" loading="lazy">
+              <img src="assets/images/taj/Taj Team/taj-mentor.jpg" alt="Our Values" class="main-img" loading="lazy">
               <div class="floating-label">
                 <i class="fa-solid fa-users-gear"></i>
                 <span>Innovation Team</span>

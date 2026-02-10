@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { EliteCardComponent } from '../elite-card/elite-card.component';
 
 interface PortfolioItem {
   id: number;
@@ -8,12 +9,16 @@ interface PortfolioItem {
   category: string;
   image: string;
   link: string;
+  description?: string;
+  type?: 'standard' | 'elite';
+  accentColor?: string;
+  tags?: string[];
 }
 
 @Component({
   selector: 'app-portfolio-showcase',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage],
+  imports: [CommonModule, RouterModule, NgOptimizedImage, EliteCardComponent],
   template: `
     <section class="portfolio-showcase">
       
@@ -32,21 +37,35 @@ interface PortfolioItem {
         </div>
 
         <div class="portfolio-grid">
-          <div class="portfolio-card" *ngFor="let item of displayItems; let i = index" 
-               [style.animation-delay]="i * 0.1 + 's'">
-            <div class="">
-              <img [ngSrc]="item.image" [alt]="item.title" class="portfolio-card__image" fill>
-              <div class="portfolio-card__overlay">
-                <div class="portfolio-card__content">
-                  <span class="portfolio-card__category">{{ item.category }}</span>
-                  <h3 class="portfolio-card__title">{{ item.title }}</h3>
-                  <a [routerLink]="['/portfolio']" class="portfolio-card__link">
-                    View Project <i class="fas fa-arrow-right"></i>
-                  </a>
+          <ng-container *ngFor="let item of displayItems; let i = index">
+            <!-- Elite Coded Card -->
+            <app-elite-card 
+              *ngIf="item.type === 'elite'"
+              [title]="item.title"
+              [description]="item.description || ''"
+              [image]="item.image"
+              [accentColor]="item.accentColor || ''"
+              [tags]="item.tags || []"
+              class="wow fadeInUp">
+            </app-elite-card>
+
+            <!-- Standard Card -->
+            <div *ngIf="item.type !== 'elite'" class="portfolio-card"
+                 [style.animation-delay]="i * 0.1 + 's'">
+              <div class="">
+                <img [ngSrc]="item.image" [alt]="item.title" class="portfolio-card__image" fill>
+                <div class="portfolio-card__overlay">
+                  <div class="portfolio-card__content">
+                    <span class="portfolio-card__category">{{ item.category }}</span>
+                    <h3 class="portfolio-card__title">{{ item.title }}</h3>
+                    <a [routerLink]="['/portfolio']" class="portfolio-card__link">
+                      View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ng-container>
         </div>
 
         <div class="portfolio-footer">
@@ -163,7 +182,7 @@ interface PortfolioItem {
 
     .portfolio-card {
       position: relative;
-      // border-radius: 24px;
+      border-radius: 24px;
       overflow: hidden;
       aspect-ratio: 3/3;
   
@@ -348,34 +367,36 @@ export class PortfolioShowcaseComponent {
   portfolioItems: PortfolioItem[] = [
     {
       id: 1,
-      title: 'NANTA',
-      category: 'GovTech',
-      image: 'assets/images/taj/Portfolio Cards/NANTA.png',
-      link: '/portfolio'
+      title: 'AmPay',
+      category: 'Fintech',
+      image: 'assets/images/portfolio/AmPay.svg',
+      link: '/portfolio',
+      description: 'AmPay is a digital payment platform that enables secure, fast, and convenient financial transactions for individuals and businesses. It simplifies payments, transfers, and collections through a user-friendly and reliable digital experience.',
+      type: 'elite',
+      accentColor: 'rgba(20, 184, 166, 0.35)',
+      tags: ['Fintech', 'Real Estate', 'Shortlets', 'Payments']
     },
-
     {
       id: 2,
-      title: 'AMPAY',
-      category: 'FinTech',
-      image: 'assets/images/portfolio/Frame 25.png',
-      link: '/portfolio'
+      title: 'SingingBee',
+      category: 'Media',
+      image: 'assets/images/portfolio/SingingBee.svg',
+      link: '/portfolio',
+      description: 'SingingBee Agency is a creative surprise-call service that uses music and heartfelt messages to help people celebrate, connect, and strengthen relationships in meaningful ways. Its personalised approach makes every message memorable and impactful for recipients.',
+      type: 'elite',
+      accentColor: 'rgba(219, 39, 119, 0.35)',
+      tags: ['Music', 'Surprise', 'Celebration']
     },
-
     {
       id: 3,
-      title: 'National ID Day',
-      category: 'GovTech',
-      image: 'assets/images/portfolio/Frame 28.png',
-      link: '/portfolio'
+      title: 'National ID day',
+      category: 'Government',
+      image: 'assets/images/portfolio/National ID day.svg',
+      link: '/portfolio',
+      description: 'The NIMC National ID Day App is a digital platform created to support Nigeria’s National Identity Management Commission initiatives and public engagement activities. It provides access to identity-related information and awareness resources around national identity.',
+      type: 'elite',
+      accentColor: 'rgba(34, 197, 94, 0.35)',
+      tags: ['Government', 'ID', 'National', 'Verification']
     },
-
-    // {
-    //   id: 4,
-    //   title: 'AI Air Radio',
-    //   category: 'Media & Entertainment',
-    //   image: 'assets/images/portfolio/Frame 26.png',
-    //   link: '/portfolio'
-    // }
   ];
 }

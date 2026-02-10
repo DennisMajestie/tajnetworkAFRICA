@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ServicesIntroComponent } from '../../shared/components/services-intro/services-intro.component';
+import { EliteCardComponent } from '../../shared/components/elite-card/elite-card.component';
 
 interface PortfolioItem {
   id: number;
@@ -10,12 +11,15 @@ interface PortfolioItem {
   image: string;
   link: string;
   description: string;
+  type?: 'standard' | 'elite';
+  accentColor?: string;
+  tags?: string[];
 }
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [CommonModule, RouterModule, ServicesIntroComponent],
+  imports: [CommonModule, RouterModule, ServicesIntroComponent, EliteCardComponent],
   template: `
     <main class="portfolio-page">
       <app-services-intro 
@@ -45,21 +49,35 @@ interface PortfolioItem {
           </div>
 
           <div class="portfolio-grid">
-            <div class="portfolio-card wow fadeInUp" *ngFor="let item of filteredItems; let i = index">
-              <div class="portfolio-card__image-box">
-                <img [src]="item.image" [alt]="item.title" class="portfolio-card__image">
-                <div class="portfolio-card__overlay">
-                  <div class="portfolio-card__content">
-                    <span class="portfolio-card__category">{{ item.category }}</span>
-                    <h3 class="portfolio-card__title">{{ item.title }}</h3>
-                    <p class="portfolio-card__desc">{{ item.description }}</p>
-                    <a routerLink="#" class="portfolio-card__btn">
-                      Explore Case Study <i class="fas fa-arrow-right"></i>
-                    </a>
+            <ng-container *ngFor="let item of filteredItems; let i = index">
+              <!-- Elite Coded Card -->
+              <app-elite-card 
+                *ngIf="item.type === 'elite'"
+                [title]="item.title"
+                [description]="item.description"
+                [image]="item.image"
+                [accentColor]="item.accentColor || ''"
+                [tags]="item.tags || []"
+                class="wow fadeInUp">
+              </app-elite-card>
+
+              <!-- Standard Image Card -->
+              <div *ngIf="item.type !== 'elite'" class="portfolio-card wow fadeInUp">
+                <div class="portfolio-card__image-box">
+                  <img [src]="item.image" [alt]="item.title" class="portfolio-card__image">
+                  <div class="portfolio-card__overlay">
+                    <div class="portfolio-card__content">
+                      <span class="portfolio-card__category">{{ item.category }}</span>
+                      <h3 class="portfolio-card__title">{{ item.title }}</h3>
+                      <p class="portfolio-card__desc">{{ item.description }}</p>
+                      <a routerLink="#" class="portfolio-card__btn">
+                        Explore Case Study <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </div>
       </section>
@@ -162,7 +180,7 @@ interface PortfolioItem {
     }
 
     .portfolio-card {
-      // border-radius: 24px;
+      border-radius: 24px;
       overflow: hidden;
       padding-top: 35px;
       aspect-ratio: 3/3;
@@ -324,117 +342,137 @@ export class PortfolioComponent implements OnInit {
 
   portfolioItems: PortfolioItem[] = [
     {
-      id: 2,
-      title: 'NANTA',
-      category: 'GovTech',
-      image: 'assets/images/taj/Portfolio Cards/NANTA.png',
-      link: '/portfolio',
-      description: 'Unified travel agency network portal for streamlined bookings and member management.'
-    },
-    // --- Other Projects ---
-    {
       id: 1,
-      title: 'AS-SABUR',
-      category: 'Travel Tech',
-      image: 'assets/images/taj/Portfolio Cards/AS-SABUR.png',
+      title: 'AmPay',
+      category: 'Fintech',
+      image: 'assets/images/portfolio/AmPay.svg',
       link: '/portfolio',
-      description: 'A comprehensive travel management system tailored for modern business efficiency.'
+      description: 'AmPay is a digital payment platform that enables secure, fast, and convenient financial transactions for individuals and businesses. It simplifies payments, transfers, and collections through a user-friendly and reliable digital experience.',
+      type: 'elite',
+      accentColor: 'rgba(20, 184, 166, 0.35)',
+      tags: ['Fintech', 'Real Estate', 'Shortlets', 'Payments']
     },
-
     {
-      id: 10,
-      title: 'National ID Day',
-      category: 'GovTech',
-      image: 'assets/images/portfolio/Frame 28.png',
+      id: 2,
+      title: 'AS-SABUR',
+      category: 'Travel',
+      image: 'assets/images/portfolio/AS-SABUR.svg',
       link: '/portfolio',
-      description: 'Identification management and outreach systems for national digital identity initiatives.'
+      description: 'AS-SABUR Travels & Tours is a Nigeria-based travel agency offering personalised travel planning, ticketing, visa support, and holiday packages to destinations worldwide. It combines professional service with seamless booking experiences to make every journey smooth and memorable.',
+      type: 'elite',
+      accentColor: 'rgba(0, 102, 255, 0.25)',
+      tags: ['Travel', 'Tours', 'Visa', 'Booking']
     },
-
     {
       id: 3,
-      title: 'Tifa Travels & Tours',
-      category: 'Travel Tech',
-      image: 'assets/images/taj/Portfolio Cards/Tifa Travels & Tours.png',
+      title: 'AiR Radio',
+      category: 'Media',
+      image: 'assets/images/portfolio/AiR Radio.svg',
       link: '/portfolio',
-      description: 'End-to-end travel management system with real-time flight and hotel integration.'
-    },
-
-    {
-      id: 5,
-      title: 'Elixir Attorneys',
-      category: 'Legal Tech',
-      image: 'assets/images/taj/Portfolio Cards/Elixir attorneys.png',
-      link: '/portfolio',
-      description: 'Sophisticated digital identity and case management platform for legal professionals.'
+      description: 'AI Radio is a digital broadcasting platform that leverages artificial intelligence to deliver curated audio content, music, and talk shows. It offers personalised listening experiences powered by smart automation and data-driven recommendations.',
+      type: 'elite',
+      accentColor: 'rgba(56, 189, 248, 0.3)',
+      tags: ['Entertainment', 'Media', 'Broadcasting', 'Audio']
     },
     {
       id: 4,
-      title: 'SingingBee',
-      category: 'Media & Entertainment',
-      image: 'assets/images/taj/Portfolio Cards/SingingBee.png',
+      title: 'Elixr Attorneys',
+      category: 'Legal',
+      image: 'assets/images/portfolio/Elixr Attorneys.svg',
       link: '/portfolio',
-      description: 'Dynamic mobile application focused on high-performance media and community engagement.'
+      description: 'Elixr Attorneys is a legal firm providing expert counsel across areas such as corporate law, tax planning, real estate, family law, and litigation for both individuals and businesses. The firm focuses on ensuring full legal compliance and strategic solutions tailored to clients\' needs.',
+      type: 'elite',
+      accentColor: 'rgba(255, 191, 0, 0.4)',
+      tags: ['Compliance', 'Law', 'Legal', 'Counsel']
     },
-
     {
-      id: 6,
-      title: 'Password Professionals',
-      category: 'E-Learning',
-      image: 'assets/images/taj/Portfolio Cards/Password Professional Tutors.png',
+      id: 5,
+      title: 'Eclipse Law Firm',
+      category: 'Legal',
+      image: 'assets/images/portfolio/Eclipse Law Firm.svg',
       link: '/portfolio',
-      description: 'Adaptive e-learning platform providing interactive educational resources for students.'
+      description: 'Eclipse Law Firm is a legal practice providing expert advisory and representation across key areas of law for individuals and corporate clients. The firm combines legal precision with strategic insight to deliver dependable legal solutions.',
+      type: 'elite',
+      accentColor: 'rgba(180, 83, 9, 0.3)',
+      tags: ['Law', 'Advisory', 'Representation']
     },
     {
       id: 7,
-      title: 'Prime Gym & Spa',
-      category: 'Fitness and Ecommerce',
-      image: 'assets/images/portfolio/Frame 22.png',
+      title: 'National ID day',
+      category: 'Government',
+      image: 'assets/images/portfolio/National ID day.svg',
       link: '/portfolio',
-      description: 'Dynamic fitness management and high-performance e-commerce integration.'
+      description: 'The NIMC National ID Day App is a digital platform created to support Nigeria’s National Identity Management Commission initiatives and public engagement activities. It provides access to identity-related information and awareness resources around national identity.',
+      type: 'elite',
+      accentColor: 'rgba(34, 197, 94, 0.35)',
+      tags: ['Government', 'ID', 'National', 'Verification']
     },
     {
       id: 8,
-      title: 'Ampay Fintech',
-      category: 'Fintech',
-      image: 'assets/images/portfolio/Frame 25.png',
+      title: 'NANTA',
+      category: 'Government',
+      image: 'assets/images/portfolio/NANTA.svg',
       link: '/portfolio',
-      description: 'Secure cross-border payment infrastructure designed for the African digital economy.'
+      description: 'The National Association of Nigeria Travel Agencies (NANTA) is the umbrella organisation representing travel agencies and tour operators in Nigeria, promoting industry professionalism and member interests since 1973.',
+      type: 'elite',
+      accentColor: 'rgba(34, 197, 94, 0.4)',
+      tags: ['Association', 'Travel', 'Verify']
     },
-
+    {
+      id: 9,
+      title: 'Password Prof. Tutors',
+      category: 'Education',
+      image: 'assets/images/portfolio/Password Professional Tutors.svg',
+      link: '/portfolio',
+      description: 'Password Professional Tutors is an educational support centre in Lagos focused on helping students excel academically through personalised guidance, quality content development, and critical thinking skill building.',
+      type: 'elite',
+      accentColor: 'rgba(99, 102, 241, 0.3)',
+      tags: ['Education', 'Learning', 'Tutoring']
+    },
+    {
+      id: 10,
+      title: 'Prime Gym & Spa',
+      category: 'Fitness',
+      image: 'assets/images/portfolio/Prime Gym & Spa.svg',
+      link: '/portfolio',
+      description: 'Prime Gym & Spa in Ogudu, Lagos is a fitness and wellness destination offering gym training, workout sessions, muscle strengthening programmes, and spa treatment packages. It blends modern fitness facilities with personalised support to help clients improve strength and health.',
+      type: 'elite',
+      accentColor: 'rgba(148, 163, 184, 0.3)',
+      tags: ['Fitness', 'Wellness', 'Training', 'Spa']
+    },
     {
       id: 11,
       title: 'Royal Newton',
-      category: 'Travel Tech',
-      image: 'assets/images/portfolio/Frame 29.png',
+      category: 'Travel',
+      image: 'assets/images/portfolio/Royal Newton.svg',
       link: '/portfolio',
-      description: 'Client relationship management system optimized for rapid scaling and market excellence.'
+      description: 'Royal Newton is a professional services brand offering structured solutions across consulting, business support, and strategic advisory services. It focuses on delivering reliable, results-driven outcomes tailored to client goals.',
+      type: 'elite',
+      accentColor: 'rgba(234, 179, 8, 0.25)',
+      tags: ['Consulting', 'Strategy', 'Professional']
     },
-
-    {
-      id: 9,
-      title: 'AI Air Radio',
-      category: 'Media & Entertainment',
-      image: 'assets/images/portfolio/Frame 26.png',
-      link: '/portfolio',
-      description: 'High-performance audio-visual management platform for modern media enterprises.'
-    },
-
     {
       id: 12,
-      title: 'Eclipse Legal Consult',
-      category: 'Legal Tech',
-      image: 'assets/images/portfolio/Frame 31.png',
+      title: 'SingingBee',
+      category: 'Media',
+      image: 'assets/images/portfolio/SingingBee.svg',
       link: '/portfolio',
-      description: 'Bespoke software suite for modern legal consulting and case management.'
+      description: 'SingingBee Agency is a creative surprise-call service that uses music and heartfelt messages to help people celebrate, connect, and strengthen relationships in meaningful ways. Its personalised approach makes every message memorable and impactful for recipients.',
+      type: 'elite',
+      accentColor: 'rgba(219, 39, 119, 0.35)',
+      tags: ['Music', 'Surprise', 'Celebration']
     },
-    // {
-    //   id: 13,
-    //   title: 'eSKILLZ',
-    //   category: 'E-Learning',
-    //   image: 'assets/images/portfolio/Frame 34.png',
-    //   link: '/portfolio',
-    //   description: 'An interactive repository of technical curricula and professional development resources.'
-    // }
+    {
+      id: 13,
+      title: 'Tifa Travels & Tours',
+      category: 'Travel',
+      image: 'assets/images/portfolio/Tifa Travels & Tours.svg',
+      link: '/portfolio',
+      description: 'TIFA is a travel booking platform that helps users find and book flights, hotels, and car rentals with best-price guarantees and easy search tools. It offers curated travel deals and 24/7 customer support to simplify travel planning from start to finish.',
+      type: 'elite',
+      accentColor: 'rgba(168, 85, 247, 0.3)',
+      tags: ['Flights', 'Convenience', 'Hotels']
+    }
   ];
 
   ngOnInit(): void {

@@ -793,23 +793,23 @@ background: rgba(0, 74, 120, 0.1) !important;
 /* Global Light Mode Navbar Content Overrides (Links & CTA) */
 .theme-light .btn-primary,
 .theme-light .navbar__cta {
-  background: #004a78 !important; /* New Deep Blue CTA */
+  background: #004a78 !important; 
   color: #ffffff !important;
   font-weight: 700 !important;
   border-radius: 100px !important;
   box-shadow: 0 0 15px rgba(0, 74, 120, 0.3) !important;
   border: none !important;
-  height: 44px; /* Reduced from 52px */
-  display: flex; /* Changed from none to flex */
+  height: 44px; 
+  display: flex; 
   align-items: center;
   justify-content: center;
-  padding: 0 24px; /* Reduced from 40px */
-  font-size: 0.95rem; /* Reduced from 1.1rem */
+  padding: 0 24px; 
+  font-size: 0.95rem; 
   vertical-align: middle;
   margin: 0;
 
   @media (min-width: 1024px) {
-    height: 52px !important;
+    height: 56px !important;
     padding: 0 40px !important;
     font-size: 1.1rem !important;
   }

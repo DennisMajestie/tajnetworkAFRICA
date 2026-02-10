@@ -28,7 +28,7 @@ import { CommonModule } from '@angular/common';
                 Operating at the intersection of technology and business strategy, we translate complex challenges into practical, performance driven solutions that deliver measurable impact.
               </p>
               <p class="company-desc founder-line">
-                Founded by <strong>Akibu Ismail</strong>, Taj Network Africa is committed to building high quality digital products with a strong emphasis on system performance, user experience, security, and operational efficiency.
+                Founded by <strong>Akibul Ismail</strong>, Taj Network Africa is committed to building high quality digital products with a strong emphasis on system performance, user experience, security, and operational efficiency.
               </p>
               <p class="company-desc conclusion-line">
                 At Taj Network Africa, technology is engineered to solve problems, scale with purpose, and drive results.
@@ -57,7 +57,7 @@ import { CommonModule } from '@angular/common';
           <div class="image-col">
             <div class="image-frame">
               <div class="frame-glass"></div>
-              <img src="assets/images/taj/Taj Team/taj-mentor.jpeg" alt="Innovation Team" class="main-img" loading="lazy">
+              <img src="assets/images/taj/Taj Team/taj-mentor.jpg" alt="Innovation Team" class="main-img" loading="lazy">
               
               <!-- Award Badge Overlay -->
               <div class="award-badge">
@@ -169,8 +169,8 @@ import { CommonModule } from '@angular/common';
     }
 
     .company-desc {
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.3rem;
+      line-height: 1.5;
       color: rgba(255, 255, 255, 0.6);
       margin-bottom: 20px;
     }

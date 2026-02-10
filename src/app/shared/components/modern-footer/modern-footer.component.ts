@@ -85,7 +85,7 @@ import { NavigationConfig } from '../../../core/models/types';
               <li><a routerLink="/services" class="footer__link">Custom Software</a></li>
               <li><a routerLink="/services" class="footer__link">UI/UX Design</a></li>
               <li><a routerLink="/training" class="footer__link">Tech Training</a></li>
-              <li><a routerLink="/services" class="footer__link">AI Solutions</a></li>
+              <!-- <li><a routerLink="/services" class="footer__link">AI Solutions</a></li> -->
             </ul>
           </div>
 
@@ -283,14 +283,15 @@ import { NavigationConfig } from '../../../core/models/types';
     }
 
     .footer__logo-img {
-      height: 80px;
+      height: 130px;
       width: auto;
     }
 
     .footer__description {
       color: var(--color-neutral-darkGray);
       margin-bottom: 2rem;
-      line-height: 1.8;
+      font-size: 1.2rem;
+      line-height: 1.6;
       max-width: 400px;
     }
 
@@ -331,6 +332,8 @@ import { NavigationConfig } from '../../../core/models/types';
       list-style: none;
       padding: 0;
       margin: 0;
+      font-size: 1.2rem !important;
+      line-height: 1.5 !important;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -340,6 +343,7 @@ import { NavigationConfig } from '../../../core/models/types';
       color: var(--color-neutral-darkGray);
       text-decoration: none;
       transition: all 0.3s ease;
+      
 
       &:hover {
         color: var(--color-accent-blue);
@@ -351,6 +355,8 @@ import { NavigationConfig } from '../../../core/models/types';
       list-style: none;
       padding: 0;
       margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.5;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -461,7 +467,7 @@ import { NavigationConfig } from '../../../core/models/types';
     }
 
     :host-context(.theme-light) .footer__social-link {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #ffffff !important;
 

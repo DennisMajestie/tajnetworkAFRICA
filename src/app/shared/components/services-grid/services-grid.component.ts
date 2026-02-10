@@ -97,7 +97,7 @@ const SERVICE_ICONS: { [key: string]: string } = {
     }
 
     .services-grid-container {
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: 0 25px;
     }
